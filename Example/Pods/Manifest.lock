@@ -1,0 +1,16 @@
+PODS:
+  - zhUITableViewAnimations (0.1.0)
+
+DEPENDENCIES:
+  - zhUITableViewAnimations (from `../`)
+
+EXTERNAL SOURCES:
+  zhUITableViewAnimations:
+    :path: ../
+
+SPEC CHECKSUMS:
+  zhUITableViewAnimations: 606cd440b8c8ae819cacc4f858a010f10dd294c1
+
+PODFILE CHECKSUM: 10c6fb8603497d2c3d81874da993d59c91334ddf
+
+COCOAPODS: 1.3.1

@@ -1,0 +1,6 @@
+framework module Pods_zhUITableViewAnimations_Example {
+  umbrella header "Pods-zhUITableViewAnimations_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

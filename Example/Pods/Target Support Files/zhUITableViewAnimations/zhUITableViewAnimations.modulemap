@@ -1,0 +1,6 @@
+framework module zhUITableViewAnimations {
+  umbrella header "zhUITableViewAnimations-umbrella.h"
+
+  export *
+  module * { export * }
+}
