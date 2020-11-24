@@ -57,6 +57,7 @@ public extension CGMutablePath {
 }
 
 public extension NSScreen {
+    
     var unitsPerInch: CGSize {
         let millimetersPerInch:CGFloat = 25.4
         let screenDescription = deviceDescription
@@ -82,7 +83,7 @@ public extension NSScreen {
     
     /// 获取当前屏幕的单位像素值
     static var scale: CGFloat {
-        /// 如何获取iOS 中的 UIScreen.main.scale 值??
+        /// 如何获取像 iOS 中的 UIScreen.main.scale 值??
         return 2 // NSScreen.main?.backingScaleFactor
     }
 }
@@ -92,6 +93,26 @@ public extension NSEdgeInsets {
     /// 返回零值的NSEdgeInsets
     static var zero: NSEdgeInsets {
         return NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    /// 设置top值返回NSEdgeInsets
+    static func top(_ value: CGFloat) -> NSEdgeInsets {
+        return NSEdgeInsets(top: value, left: 0, bottom: 0, right: 0)
+    }
+    
+    /// 设置left值返回NSEdgeInsets
+    static func left(_ value: CGFloat) -> NSEdgeInsets {
+        return NSEdgeInsets(top: 0, left: value, bottom: 0, right: 0)
+    }
+    
+    /// 设置bottom值返回NSEdgeInsets
+    static func bottom(_ value: CGFloat) -> NSEdgeInsets {
+        return NSEdgeInsets(top: 0, left: 0, bottom: value, right: 0)
+    }
+    
+    /// 设置right值返回NSEdgeInsets
+    static func right(_ value: CGFloat) -> NSEdgeInsets {
+        return NSEdgeInsets(top: 0, left: 0, bottom: 0, right: value)
     }
     
     /// 获取NSEdgeInsets在水平方向上的值
@@ -309,7 +330,7 @@ public extension UPeakValue {
 public extension UPeakValue {
     
     /// 将极值转为绘图区横坐标线
-    func takeXaxisLine(_ n: Int) -> Array<Any> {
+    func takeXaxisLine(_ n: Int) -> [String] {
         return takeXaxisLine(n) { (_, value) -> String in String(format: "%.2f", value) }
     }
     
@@ -419,7 +440,7 @@ public extension Array {
         for index in range.location..<length {
             value.append(self[index])
         }
-        return filter({ !closure($0).isZero }) .peakValue(closure)
+        return value.filter({ !closure($0).isZero }) .peakValue(closure)
     }
     
     /// 计算数组极值与参考值的最大跨度

@@ -163,7 +163,7 @@ open class UTextLayer: UBaseLayer {
         }
     }
 
-    /// 内部边缘留白 (自适应时有效)
+    /// 文本边缘留白 (自适应时四周均有效，其他情况就近边缘设置)
     public var contentEdgeInsets: NSEdgeInsets = .zero {
         didSet {
             setNeedsDisplay()
@@ -186,14 +186,16 @@ open class UTextLayer: UBaseLayer {
         var rect = CGRect(origin: .zero, size: size)
         switch textAlignment {
         case .left:
+            rect.origin.x = contentEdgeInsets.left
             rect.origin.y = (bounds.height - size.height) / 2
         case .right:
-            rect.origin.x = bounds.width - size.width
+            rect.origin.x = bounds.width - size.width - contentEdgeInsets.right
             rect.origin.y = (bounds.height - size.height) / 2
         case .top:
             rect.origin.x = (bounds.width - size.width) / 2
-            rect.origin.y = bounds.height - size.height
+            rect.origin.y = bounds.height - size.height - contentEdgeInsets.top
         case .bottom:
+            rect.origin.y = contentEdgeInsets.bottom
             rect.origin.x = (bounds.width - size.width) / 2
         case .center:
             rect.origin.x = (bounds.width - size.width) / 2
@@ -225,7 +227,7 @@ open class UTextLayer: UBaseLayer {
     
     /// 文本内容实际尺寸
     public var intrinsicSize: CGSize {
-        guard let attrib = attributedText else {
+        guard let attrib = makeAttributed() else {
             return .zero
         }
         let maxs = CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
@@ -256,7 +258,7 @@ open class UTextLayer: UBaseLayer {
 /// {0.5, 0.5} 则表示文本区域的中心点与position重叠;
 /// {0, 0} 则表示文本区域左上点与position重叠;
 /// {1, 0} 则表示文本区域右上点与position重叠;
-/// {0, 0} 左上, {0.5, 0.5} 中心, {1, 1} 右下 ...
+/// {0, 0} 左上, {0.5, 0.5} 中心, {1, 1} 右下...
 public extension CGPoint {
     
     static let positionOffsetLeftTop = CGPoint(x: 0, y: 0)

@@ -61,7 +61,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
     private var trackingLineLayer: UTrackingLineLayer!
     
     /// 数据跟踪提示框
-    private var trackingTooltipLayer: UTrackingTooltipLayer!
+    private var trackingTooltipLayer: UTrackingAixsLayer!
     
     /// 计算结果
     private var calculated: UTimeCalculate!
@@ -127,7 +127,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         trackingLineLayer = UTrackingLineLayer()
         chartContainerLayer.addSublayer(trackingLineLayer)
         
-        trackingTooltipLayer = UTrackingTooltipLayer()
+        trackingTooltipLayer = UTrackingAixsLayer()
         chartContainerLayer.addSublayer(trackingTooltipLayer)
     }
 
@@ -209,9 +209,9 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         
 //        trackingTooltipLayer.frame = meas.unionChartFrame
 //        trackingTooltipLayer.frame = bounds
-        trackingTooltipLayer.setText(text: "sdf", for: .left)
+//        trackingTooltipLayer.setText(text: "sdf", for: .left)
         trackingTooltipLayer.boundsRect = meas.unionChartFrame
-        trackingTooltipLayer.updateTracking(location: vapp)
+        trackingTooltipLayer.updateTracking(location: vapp, axis: [.left("90.8 "), .right("啊哈哈是"), .bottom("2019-09.19")])
     }
     
 

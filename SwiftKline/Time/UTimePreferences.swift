@@ -31,7 +31,7 @@ open class UTimePreferences {
     public var defaultChange: Double = 0.06
     
     /// 绘制区边缘留白
-    public var contentInsets = NSEdgeInsets(top: 0, left: 50, bottom: 0, right: 50)
+    public var contentInsets = NSEdgeInsets(top: 0, left: 50, bottom: 0, right: 100)
     
     /// 网格线颜色
     public var gridLineColor: NSColor? = .red
