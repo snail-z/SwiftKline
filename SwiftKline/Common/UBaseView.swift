@@ -9,15 +9,9 @@
 import Cocoa
 
  open class UBaseView: NSView {
-
-    open override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        // Drawing code here.
-    }
     
     open override var isFlipped: Bool {
-        return true // Flip coordinate system.
+        return true
     }
     
     public override init(frame frameRect: NSRect) {

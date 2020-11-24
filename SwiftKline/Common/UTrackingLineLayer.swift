@@ -9,9 +9,9 @@
 import Cocoa
 
 open class UTrackingTooltipLayer: UBaseLayer {
-
-    /// 内容的可视区域
-    public var trackRect: CGRect = .zero
+    
+    /// 绘制区边界
+    public var boundsRect: CGRect = .zero
     
     /// 坐标轴方向
     public enum TrackDirection {
@@ -30,46 +30,26 @@ open class UTrackingTooltipLayer: UBaseLayer {
         directionTextLayer = UTextLayers()
         addSublayer(directionTextLayer)
         
-        
+        xtextlayer.borderColor = NSColor.red.cgColor
+        xtextlayer.borderWidth = 2
+        xtextlayer.isDisableActions = true
+        xtextlayer.textAlignment = .adaptive
+        xtextlayer.textColor = .white
+        xtextlayer.font = .boldSystemFont(ofSize: 16)
+        xtextlayer.contentEdgeInsets = NSEdgeInsets.init(top: 10, left: 1, bottom: 10, right: 1)
         addSublayer(xtextlayer)
     }
     
     /// 更新提示框
     public func updateTracking(location point: CGPoint) {
-        guard trackRect.contains(point) else {
+        guard boundsRect.contains(point) else {
             return
         }
         
-        var renders = [UTextRender]()
+        xtextlayer.backgroundColor = NSColor.brown.cgColor
         
-//        if let value = directionTexts[.top] {
-//            var render = UTextRender()
-//            render.text = value
-//            render.color = .black
-//            render.backgroundColor = .red
-//            render.position = CGPoint(x: point.x, y: trackRect.minY)
-//            renders.append(render)
-//        }
-//
-//        if let value = directionTexts[.left] {
-            var render = UTextRender()
-            render.text = "skfj是劳动法"
-            render.color = .black
-            render.backgroundColor = .red
-            render.position = CGPoint(x: 100, y: 100)
-            renders.append(render)
-//        }
-//        ULabelLayer
-        
-//        UNSLabelsLayer
-        
-        xtextlayer.backgroundColor = NSColor.purple.cgColor
-//        xtextlayer.string = "山东矿机"
-//        xtextlayer.font = NSFont.systemFont(ofSize: 12)
-        xtextlayer.frame = CGRect(x: 200, y: 200, width: 100, height: 50)
-        xtextlayer.position = CGPoint(x: point.x, y: trackRect.minY)
-        directionTextLayer.frame = bounds
-        directionTextLayer.renders = renders
+        xtextlayer.text = "呼呼哈哈"
+        xtextlayer.needsAdjust(position: point, offset: .positionOffsetCenterRight)
     }
     
     private lazy var directionTexts: [TrackDirection: String] = {
@@ -79,8 +59,8 @@ open class UTrackingTooltipLayer: UBaseLayer {
 
 open class UTrackingLineLayer: UBaseLayer {
     
-    /// 绘线的可视区域
-    public var trackRects: [CGRect] = [.zero]
+    /// 绘制区域
+    public var drawableRects: [CGRect] = [.zero]
 
     /// 绘线颜色
     public var lineColor: NSColor? {
@@ -114,7 +94,7 @@ open class UTrackingLineLayer: UBaseLayer {
     
     /// 在指定范围内更新跟踪位置 (使用预先设置的trackRects)
     public func updateTracking(location point: CGPoint) {
-        updateTracking(location: point, in: trackRects)
+        updateTracking(location: point, in: drawableRects)
     }
     
     /// 在指定多个范围内更新跟踪位置 (实时入参rects)

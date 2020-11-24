@@ -207,13 +207,11 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         let rectss = [meas.majorChartFrame, meas.minorChartFrame]
         trackingLineLayer.updateTracking(location: vapp, in: rectss)
         
-        trackingTooltipLayer.frame = meas.unionChartFrame
+//        trackingTooltipLayer.frame = meas.unionChartFrame
+//        trackingTooltipLayer.frame = bounds
         trackingTooltipLayer.setText(text: "sdf", for: .left)
-        trackingTooltipLayer.trackRect = meas.unionChartFrame
+        trackingTooltipLayer.boundsRect = meas.unionChartFrame
         trackingTooltipLayer.updateTracking(location: vapp)
-        
-        let ns = NSTextField()
-        ns.sizeToFit()
     }
     
 
@@ -286,7 +284,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
     
     open override func layout() {
         super.layout()
-        trackingTooltipLayer.frame = meas.unionChartFrame
+//        trackingTooltipLayer.frame = meas.unionChartFrame
 //        majorBriefTextLayer.frame = measurement.majorBriefFrame
 //        majorBriefTextLayer.backgroundColor = NSColor.yellow.cgColor
 //

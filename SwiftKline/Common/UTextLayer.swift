@@ -40,25 +40,11 @@ public struct UTextRender {
     /// 文本位置
     public var position: CGPoint = .zero
 
-    /// 文本位置偏移 (单位坐标系，默认值{0,1}) 基于position偏移，同时控制显示位置。
-    ///
-    ///     {0.5, 0.5} 则表示文本区域的中心点与position重叠;
-    ///     {0, 0} 则表示文本区域左上点与position重叠;
-    ///     {1, 0} 则表示文本区域右上点与position重叠;
-    ///     {0, 0} 左上, {0.5, 0.5} 中心, {1, 1} 右下
-    ///
-    ///     {0,   0}, {0.5,   0}, {1,   0},
-    ///     {0, 0.5}, {0.5, 0.5}, {1, 0.5},
-    ///     {0,   1}, {0.5,   1}, {1,   1}
-    public var positionOffset: CGPoint = CGPoint(x: 0, y: 1)
+    /// 文本位置偏移量(单位坐标系)，基于position偏移，可与position同时控制显示位置
+    public var positionOffset: CGPoint = .positionOffsetLeftTop
 }
 
 open class UTextLayers: UBaseLayer {
-
-    override func initialization() {
-        super.initialization()
-        contentsScale = NSScreen.scale
-    }
     
     /// 绘制数组内容
     public var renders: [UTextRender]? {
@@ -72,14 +58,15 @@ open class UTextLayers: UBaseLayer {
         renders = [render]
     }
     
+    override func initialization() {
+        super.initialization()
+        isGeometryFlipped = true
+        contentsScale = NSScreen.scale
+    }
+    
     override public func draw(in ctx: CGContext) {
         guard let res = renders, !res.isEmpty else { return }
-        ctx.clear(bounds)
-        ctx.textMatrix = .identity
-        ctx.translateBy(x: 0, y: bounds.height)
-        ctx.scaleBy(x: 1.0, y: -1.0)
-            
-        func ratable( _ a: CGFloat) -> CGFloat { return min(1, max(0, a)) }
+        func limit( _ a: CGFloat) -> CGFloat { return min(1, max(0, a)) }
         
         for re in res {
             guard let attrib = makeAttrib(with: re) else { continue }
@@ -88,7 +75,7 @@ open class UTextLayers: UBaseLayer {
             var size = attrib.boundingRect(with: maxs, options: [.usesFontLeading, .usesLineFragmentOrigin], context: nil).size
             size = CGSize(width: ceil(size.width), height: ceil(size.height))
             
-            let scale = CGPoint(x: ratable(re.positionOffset.x), y: ratable(re.positionOffset.y))
+            let scale = CGPoint(x: limit(re.positionOffset.x), y: limit(re.positionOffset.y))
             let origin = CGPoint(x: re.position.x - size.width * scale.x, y: re.position.y - size.height * scale.y)
             
             var fills = size, fillo = origin
@@ -136,33 +123,157 @@ open class UTextLayers: UBaseLayer {
 
 open class UTextLayer: UBaseLayer {
     
-    /// 设置文本 (String/NSAttributedString)
-    public var text: Any?
+    /// 设置文本
+    public var text: String? {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    /// 设置属性文本
+    public var attributedText: NSAttributedString? {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
        
     /// 文本字体
-    public var font: NSFont? = .systemFont(ofSize: 12)
+    public var font: NSFont? {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     /// 文本颜色
-    public var textColor: NSColor? = .black
+    public var textColor: NSColor? = .black {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     /// 对齐类型
     public enum TextAlignment {
-        case left, right, top, bottom, center
+        case left, right, top, bottom, center, adaptive
     }
     
-    /// 文本对齐方式
-    public var textAlignment: TextAlignment = .center
+    /// 文本对齐方式 (设置为.adaptive将自适应文本)
+    public var textAlignment: TextAlignment = .center {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
+    /// 内部边缘留白 (自适应时有效)
+    public var contentEdgeInsets: NSEdgeInsets = .zero {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     override func initialization() {
         super.initialization()
+        contentsScale = NSScreen.scale
     }
     
-    func df() {
+    open override func draw(in ctx: CGContext) {
+        guard let attrib = makeAttributed() else { return }
+        ctx.clear(bounds)
+        ctx.textMatrix = .identity
+        ctx.translateBy(x: 0, y: bounds.height)
+        ctx.scaleBy(x: 1.0, y: -1.0)
         
-//        guard let res = renders, !res.isEmpty else { return }
+        let size = intrinsicSize
+        var rect = CGRect(origin: .zero, size: size)
+        switch textAlignment {
+        case .left:
+            rect.origin.y = (bounds.height - size.height) / 2
+        case .right:
+            rect.origin.x = bounds.width - size.width
+            rect.origin.y = (bounds.height - size.height) / 2
+        case .top:
+            rect.origin.x = (bounds.width - size.width) / 2
+            rect.origin.y = bounds.height - size.height
+        case .bottom:
+            rect.origin.x = (bounds.width - size.width) / 2
+        case .center:
+            rect.origin.x = (bounds.width - size.width) / 2
+            rect.origin.y = (bounds.height - size.height) / 2
+        case .adaptive:
+            rect.origin.x = contentEdgeInsets.left
+            rect.origin.y = contentEdgeInsets.bottom
+        }
         
-        let maxs = CGSize(width: min(100, bounds.width), height: min(200, bounds.height))
-        let attrib = NSMutableAttributedString.init(string: "")
-        var size = attrib.boundingRect(with: maxs, options: [.usesFontLeading, .usesLineFragmentOrigin], context: nil).size
+        let path = CGMutablePath()
+        path.addRect(rect)
+        let framesetter = CTFramesetterCreateWithAttributedString(attrib)
+        let frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, attrib.length), path, nil)
+        CTFrameDraw(frame, ctx)
     }
+    
+    private func makeAttributed() -> NSAttributedString? {
+        if let _ = attributedText {
+            return attributedText
+        } else {
+            guard let value = text else { return nil }
+            
+            let attrib = NSMutableAttributedString(string: value)
+            attrib.addAttribute(.font, value: font ?? .systemFont(ofSize: 12), range: NSMakeRange(0, value.count))
+            attrib.addAttribute(.foregroundColor, value: textColor ?? .black, range: NSMakeRange(0, value.count))
+            return attrib
+        }
+    }
+    
+    /// 文本内容实际尺寸
+    public var intrinsicSize: CGSize {
+        guard let attrib = attributedText else {
+            return .zero
+        }
+        let maxs = CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
+        let size = attrib.boundingRect(with: maxs, options: [.usesFontLeading, .usesLineFragmentOrigin], context: nil).size
+        return CGSize(width: ceil(size.width), height: ceil(size.height))
+    }
+    
+    /// 调整位置
+    public func needsAdjust(position: CGPoint, offset: CGPoint = .positionOffsetCenter) {
+        var size = bounds.size
+        switch textAlignment {
+        case .adaptive:
+            size = intrinsicSize
+            size.width += contentEdgeInsets.horizontal
+            size.height += contentEdgeInsets.vertical
+        default: break
+        }
+        let scale = CGPoint(x: min(1, max(0, offset.x)), y: min(1, max(0, offset.y)))
+        let origin = CGPoint(x: position.x - size.width * scale.x, y: position.y - size.height * scale.y)
+        frame = CGRect(origin: origin, size: size)
+    }
+}
+
+/// 文本位置偏移量(单位坐标系)，基于position偏移，用于控制显示位置
+/// {0,   0}, {0.5,   0}, {1,   0},
+/// {0, 0.5}, {0.5, 0.5}, {1, 0.5},
+/// {0,   1}, {0.5,   1}, {1,   1}
+/// {0.5, 0.5} 则表示文本区域的中心点与position重叠;
+/// {0, 0} 则表示文本区域左上点与position重叠;
+/// {1, 0} 则表示文本区域右上点与position重叠;
+/// {0, 0} 左上, {0.5, 0.5} 中心, {1, 1} 右下 ...
+public extension CGPoint {
+    
+    static let positionOffsetLeftTop = CGPoint(x: 0, y: 0)
+    
+    static let positionOffsetRightTop = CGPoint(x: 1, y: 0)
+    
+    static let positionOffsetLeftBottom = CGPoint(x: 0, y: 1)
+    
+    static let positionOffsetRightBottom = CGPoint(x: 1, y: 1)
+
+    static let positionOffsetCenter = CGPoint(x: 0.5, y: 0.5)
+    
+    static let positionOffsetCenterTop = CGPoint(x: 0.5, y: 0)
+    
+    static let positionOffsetCenterLeft = CGPoint(x: 0, y: 0.5)
+    
+    static let positionOffsetCenterBottom = CGPoint(x: 0.5, y: 1)
+    
+    static let positionOffsetCenterRight = CGPoint(x: 1, y: 0.5)
 }
