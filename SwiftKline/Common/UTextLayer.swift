@@ -138,7 +138,7 @@ open class UTextLayer: UBaseLayer {
     }
        
     /// 文本字体
-    public var font: NSFont? {
+    public var font: NSFont? = .systemFont(ofSize: 12) {
         didSet {
             setNeedsDisplay()
         }

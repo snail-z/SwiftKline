@@ -8,9 +8,80 @@
 
 import Cocoa
 
-open class UTrackingAixsLayerUTrackingTooltipLayer: UBaseLayer {
+open class UTrackingLineLayer: UBaseLayer {
     
+    /// 绘制区域
+    public var drawableRects: [CGRect] = [.zero]
+
+    /// 绘线颜色
+    public var lineColor: NSColor? {
+        didSet {
+            crossLineLayer.strokeColor = lineColor?.cgColor
+        }
+    }
+    
+    /// 绘线宽度
+    public var lineWidth: CGFloat = 0 {
+        didSet {
+            crossLineLayer.lineWidth = lineWidth
+        }
+    }
+    
+    /// 绘虚线的实线部分和间隔长度
+    public var lineDashPattern: [NSNumber]? {
+        didSet {
+            crossLineLayer.lineDashPattern = lineDashPattern
+        }
+    }
+    
+    private var crossLineLayer: UShapeLayer!
+    
+    override func initialization() {
+        super.initialization()
+        crossLineLayer = UShapeLayer()
+        crossLineLayer.fillColor = NSColor.clear.cgColor
+        addSublayer(crossLineLayer)
+    }
+    
+    /// 在指定范围内更新跟踪位置 (使用预先设置的trackRects)
+    public func updateTracking(location point: CGPoint) {
+        updateTracking(location: point, in: drawableRects)
+    }
+    
+    /// 在指定多个范围内更新跟踪位置 (实时入参rects)
+    public func updateTracking(location point: CGPoint, in rects: [CGRect]) {
+        guard let res = rects.filter({ $0.contains(point) }).first else {
+            return
+        }
+        
+        /// 按最小y值的rect排序
+        let sortRects = rects.sorted(by: { $0.minY < $1.minY })
+        
+        /// 绘制纵线 (仅纵线贯穿)
+        let path = CGMutablePath()
+        for rs in sortRects {
+            path.move(to: CGPoint(x: point.x, y: rs.minY))
+            path.addLine(to: CGPoint(x: point.x, y: rs.maxY))
+        }
+        
+        /// 在包含该点的区域绘制横线
+        path.move(to: CGPoint(x: res.minX, y: point.y))
+        path.addLine(to: CGPoint(x: res.maxX, y: point.y))
+        
+        crossLineLayer.path = path
+    }
+    
+    /// 在指定范围内更新跟踪位置
+    public func updateTracking(location point: CGPoint, in rect: CGRect) {
+        updateTracking(location: point, in: [rect])
+    }
+    
+    /// 在当前视图区更新跟踪位置
+    public func updateTrackingInBounds(location point: CGPoint) {
+        updateTracking(location: point, in: bounds)
+    }
 }
+
 
 open class UTrackingWidgetLayer: UBaseLayer {
     
@@ -18,16 +89,16 @@ open class UTrackingWidgetLayer: UBaseLayer {
     public var boundsRect: CGRect = .zero
     
     /// 坐标轴挂件
-    public enum WidgetType {
+    public enum Widget {
         case top(_ value: String)
         case left(_ value: String)
         case bottom(_ value: String)
         case right(_ value: String)
     }
-    
+
     /// 更新坐标提示窗
-    public func updateTracking(location point: CGPoint, widget content: [WidgetType]) {
-        for element in content {
+    public func updateTracking(location point: CGPoint, widgets: [Widget]) {
+        for element in widgets {
             switch element {
             case .left(let value):
                 leftTextLayer.text = value
@@ -117,76 +188,100 @@ open class UTrackingWidgetLayer: UBaseLayer {
     }
 }
 
-open class UTrackingLineLayer: UBaseLayer {
-    
-    /// 绘制区域
-    public var drawableRects: [CGRect] = [.zero]
 
-    /// 绘线颜色
-    public var lineColor: NSColor? {
+public struct UTrackingTooltipItem {
+    
+    /// 属性文本(居左)
+    public var leftText: NSAttributedString!
+    
+    /// 属性文本(居右)
+    public var rightText: NSAttributedString!
+    
+    /// 便利构造
+    static func make(left: NSAttributedString, right: NSAttributedString) -> Self {
+        var item = UTrackingTooltipItem()
+        item.leftText = left
+        item.rightText = right
+        return item
+    }
+}
+
+open class UTrackingTooltipLayer: UBaseLayer {
+    
+    /// 数据条目
+    public var items: [UTrackingTooltipItem]? {
         didSet {
-            crossLineLayer.strokeColor = lineColor?.cgColor
+            setNeedsDisplay()
+            _updateLayout()
         }
     }
     
-    /// 绘线宽度
-    public var lineWidth: CGFloat = 0 {
+    /// 每个条目高度
+    public var itemHeight: CGFloat = 15 {
         didSet {
-            crossLineLayer.lineWidth = lineWidth
+            setNeedsDisplay()
         }
     }
     
-    /// 绘虚线的实线部分和间隔长度
-    public var lineDashPattern: [NSNumber]? {
+    /// 每个条目间距
+    public var itemSpacing: CGFloat = 8 {
         didSet {
-            crossLineLayer.lineDashPattern = lineDashPattern
+            setNeedsDisplay()
         }
     }
     
-    private var crossLineLayer: UShapeLayer!
+    /// 内容边缘留白
+    public var contentEdgeInsets: NSEdgeInsets = .zero {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    /// 绘制区边界
+    public var boundsRect: CGRect = .zero
+    
+    func _updateLayout() {
+        guard let elements = items else { return }
+        var height = contentEdgeInsets.vertical
+        height += CGFloat(elements.count) * itemHeight
+        height += CGFloat(elements.count - 1) * itemSpacing
+        
+        let size = CGSize(width: 150, height: height)
+//        frame = CGRect(x: 10, y: 10, width: size.width, height: size.height)
+        _size = size
+    }
+    
+    var _size: CGSize = .zero
     
     override func initialization() {
         super.initialization()
-        crossLineLayer = UShapeLayer()
-        crossLineLayer.fillColor = NSColor.clear.cgColor
-        addSublayer(crossLineLayer)
+        contentsScale = NSScreen.scale
+        isGeometryFlipped = true
     }
     
-    /// 在指定范围内更新跟踪位置 (使用预先设置的trackRects)
-    public func updateTracking(location point: CGPoint) {
-        updateTracking(location: point, in: drawableRects)
-    }
-    
-    /// 在指定多个范围内更新跟踪位置 (实时入参rects)
-    public func updateTracking(location point: CGPoint, in rects: [CGRect]) {
-        guard let res = rects.filter({ $0.contains(point) }).first else {
-            return
+    open override func draw(in ctx: CGContext) {
+        guard let elements = items else { return }
+        
+        let fillPath = CGMutablePath()
+        fillPath.addRect(CGRect(x: boundsRect.minX, y: bounds.height - _size.height - contentEdgeInsets.top, width: _size.width, height: _size.height))
+        ctx.setFillColor(NSColor.orange.cgColor)
+        ctx.addPath(fillPath)
+        ctx.drawPath(using: .fill)
+        
+        for (index, item) in elements.enumerated() {
+            let y = CGFloat(index) * (itemHeight + itemSpacing)
+            let rect = CGRect(x: 0, y: y, width: _size.width, height: itemHeight)
+             
+            let path = CGMutablePath()
+            path.addRect(rect)
+            
+            let framesetterLeft = CTFramesetterCreateWithAttributedString(item.leftText)
+            let frameLeft = CTFramesetterCreateFrame(framesetterLeft, CFRangeMake(0, item.leftText.length), path, nil)
+            CTFrameDraw(frameLeft, ctx)
+            
+            let framesetterRight = CTFramesetterCreateWithAttributedString(item.rightText)
+            let frameRight = CTFramesetterCreateFrame(framesetterRight, CFRangeMake(0, item.rightText.length), path, nil)
+            CTFrameDraw(frameRight, ctx)
         }
-        
-        /// 按最小y值的rect排序
-        let sortRects = rects.sorted(by: { $0.minY < $1.minY })
-        
-        /// 绘制纵线 (仅纵线贯穿)
-        let path = CGMutablePath()
-        for rs in sortRects {
-            path.move(to: CGPoint(x: point.x, y: rs.minY))
-            path.addLine(to: CGPoint(x: point.x, y: rs.maxY))
-        }
-        
-        /// 在包含该点的区域绘制横线
-        path.move(to: CGPoint(x: res.minX, y: point.y))
-        path.addLine(to: CGPoint(x: res.maxX, y: point.y))
-        
-        crossLineLayer.path = path
-    }
-    
-    /// 在指定范围内更新跟踪位置
-    public func updateTracking(location point: CGPoint, in rect: CGRect) {
-        updateTracking(location: point, in: [rect])
-    }
-    
-    /// 在当前视图区更新跟踪位置
-    public func updateTrackingInBounds(location point: CGPoint) {
-        updateTracking(location: point, in: bounds)
     }
 }

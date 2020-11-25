@@ -60,8 +60,11 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
     /// 鼠标跟踪线
     private var trackingLineLayer: UTrackingLineLayer!
     
-    /// 数据跟踪提示框
+    /// 坐标轴提示框
     private var trackingWidgetLayer: UTrackingWidgetLayer!
+    
+    /// 数据跟踪提示框
+    private var trackingTooltipLayer: UTrackingTooltipLayer!
     
     /// 计算结果
     private var calculated: UTimeCalculate!
@@ -129,6 +132,9 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         
         trackingWidgetLayer = UTrackingWidgetLayer()
         chartContainerLayer.addSublayer(trackingWidgetLayer)
+        
+        trackingTooltipLayer = UTrackingTooltipLayer()
+        chartContainerLayer.addSublayer(trackingTooltipLayer)
     }
 
     override func sublayerInitialization() {
@@ -211,7 +217,38 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
 //        trackingTooltipLayer.frame = bounds
 //        trackingTooltipLayer.setText(text: "sdf", for: .left)
         trackingWidgetLayer.boundsRect = meas.unionChartFrame
-        trackingWidgetLayer.updateTracking(location: vapp, widget: [.left("90.8 "), .right("啊哈哈是"), .bottom("2019-09.19"), .top("top数据的")])
+        trackingWidgetLayer.updateTracking(location: vapp, widgets: [.left("90.8 "), .right("啊哈哈是"), .bottom("2019-09.19"), .top("top数据的")])
+        
+        trackingTooltipLayer.isDisableActions = true
+//        trackingTooltipLayer.frame = CGRect(x: 150, y: 10, width: 200, height: 180)
+        trackingTooltipLayer.boundsRect = meas.unionChartFrame
+        trackingTooltipLayer.backgroundColor = NSColor.lightGray.cgColor
+        
+        let rp = NSMutableParagraphStyle()
+            rp.pk.alignment(.right)
+            
+            let leftp = NSMutableParagraphStyle()
+            leftp.pk.alignment(.left)
+            
+            let attri1 = NSMutableAttributedString.init(string: "开盘")
+            attri1.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)) .paragraphStyle(leftp)
+        
+            let attri2 = NSMutableAttributedString.init(string: "0.905")
+            attri2.pk.foregroundColor(.red).font(.systemFont(ofSize: 12)) .paragraphStyle(rp)
+            
+            let attrib1 = NSMutableAttributedString.init(string: "涨跌幅")
+            attrib1.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)).paragraphStyle(leftp)
+            
+            let attrib2 = NSMutableAttributedString.init(string: "+8.77%")
+            attrib2.pk.foregroundColor(.yellow).font(.systemFont(ofSize: 12)).paragraphStyle(rp)
+        
+        if meas.minorChartFrame.contains(vapp) {
+            trackingTooltipLayer.items = nil
+        } else {
+            trackingTooltipLayer.items = [.make(left: attri1, right: attri2),
+                                          .make(left: attrib1, right: attrib2),
+                                          .make(left: attri1, right: attri2)]
+        }
     }
     
 
