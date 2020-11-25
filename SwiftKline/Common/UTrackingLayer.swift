@@ -12,13 +12,13 @@ open class UTrackingAixsLayerUTrackingTooltipLayer: UBaseLayer {
     
 }
 
-open class UTrackingAixsLayer: UBaseLayer {
+open class UTrackingWidgetLayer: UBaseLayer {
     
     /// 绘制区边界
     public var boundsRect: CGRect = .zero
     
-    /// 坐标轴方向
-    public enum TrackAixs {
+    /// 坐标轴挂件
+    public enum WidgetType {
         case top(_ value: String)
         case left(_ value: String)
         case bottom(_ value: String)
@@ -26,31 +26,53 @@ open class UTrackingAixsLayer: UBaseLayer {
     }
     
     /// 更新坐标提示窗
-    public func updateTracking(location point: CGPoint, axis elements: [TrackAixs]) {
-        for element in elements {
+    public func updateTracking(location point: CGPoint, widget content: [WidgetType]) {
+        for element in content {
             switch element {
             case .left(let value):
                 leftTextLayer.text = value
-                leftTextLayer.frame = CGRect(x: 0, y: 0, width: 50, height: 18)
-                let position = CGPoint(x: boundsRect.minX, y: point.y)
+                let y = limitY(by: leftTextLayer.layoutSize.height, location: point)
+                let position = CGPoint(x: boundsRect.minX, y: y)
                 leftTextLayer.needsAdjust(position: position, offset: .positionOffsetCenterRight)
                 
             case .right(let value):
                 rightTextLayer.text = value
-                rightTextLayer.frame = CGRect(x: 0, y: 0, width: 100, height: 18)
-                let position = CGPoint(x: boundsRect.maxX, y: point.y)
+                let y = limitY(by: rightTextLayer.layoutSize.height, location: point)
+                let position = CGPoint(x: boundsRect.maxX, y: y)
                 rightTextLayer.needsAdjust(position: position, offset: .positionOffsetCenterLeft)
                 
             case .bottom(let value):
                 bottomTextLayer.text = value
-                let position = CGPoint(x: point.x, y: boundsRect.maxY - 30)
+                let x = limitX(by: bottomTextLayer.layoutSize.width, location: point)
+                let position = CGPoint(x: x, y: boundsRect.maxY)
                 bottomTextLayer.needsAdjust(position: position, offset: .positionOffsetCenterTop)
                 
             case .top(let value):
                 topTextLayer.text = value
-                let position = CGPoint(x: point.x, y: boundsRect.minY)
-                topTextLayer.needsAdjust(position: position, offset: .positionOffsetCenterTop)
+                let x = limitX(by: topTextLayer.layoutSize.width, location: point)
+                let position = CGPoint(x: x, y: boundsRect.minY)
+                topTextLayer.needsAdjust(position: position, offset: .positionOffsetCenterBottom)
             }
+        }
+    }
+    
+    private func limitX(by width: CGFloat, location: CGPoint) -> CGFloat {
+        if location.x - width / 2 < boundsRect.minX {
+            return width / 2 + boundsRect.minX
+        } else if location.x + width / 2 > boundsRect.maxX {
+            return boundsRect.maxX - width / 2
+        } else {
+            return location.x
+        }
+    }
+
+    private func limitY(by height: CGFloat, location: CGPoint) -> CGFloat {
+        if location.y - height / 2 < boundsRect.minY {
+            return height / 2 + boundsRect.minY
+        } else if location.y + height / 2 > boundsRect.maxY {
+            return boundsRect.maxY - height / 2
+        } else {
+            return location.y
         }
     }
     
@@ -65,6 +87,7 @@ open class UTrackingAixsLayer: UBaseLayer {
         let textLayer = makeTextLayer()
         textLayer.textAlignment = .right
         textLayer.contentEdgeInsets = .right(5)
+        textLayer.frame = CGRect(x: 0, y: 0, width: 50, height: 18)
         return textLayer
     }()
     
@@ -79,6 +102,7 @@ open class UTrackingAixsLayer: UBaseLayer {
         let textLayer = makeTextLayer()
         textLayer.textAlignment = .left
         textLayer.contentEdgeInsets = .left(5)
+        textLayer.frame = CGRect(x: 0, y: 0, width: 100, height: 18)
         return textLayer
     }()
     
@@ -87,7 +111,7 @@ open class UTrackingAixsLayer: UBaseLayer {
         textLayer.isDisableActions = true
         textLayer.font = .systemFont(ofSize: 10)
         textLayer.textColor = .white
-        textLayer.backgroundColor = NSColor.brown.cgColor
+        textLayer.backgroundColor = NSColor.gray.cgColor
         addSublayer(textLayer)
         return textLayer
     }

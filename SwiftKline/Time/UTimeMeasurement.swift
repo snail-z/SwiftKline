@@ -36,7 +36,7 @@ public struct UTimeMeasurement {
         let x = min(majorChartFrame.minX, minorChartFrame.minX)
         let y = min(majorChartFrame.minY, minorChartFrame.minY)
         let width = max(majorChartFrame.width, minorChartFrame.width)
-        let height = max(majorChartFrame.maxY, minorChartFrame.maxY)
+        let height = max(majorChartFrame.maxY - y, minorChartFrame.maxY - y)
         return CGRect(x: x, y: y, width: width, height: height)
     }
 }

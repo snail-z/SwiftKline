@@ -235,16 +235,20 @@ open class UTextLayer: UBaseLayer {
         return CGSize(width: ceil(size.width), height: ceil(size.height))
     }
     
+    /// 实际布局尺寸
+    public var layoutSize: CGSize {
+        guard textAlignment == .adaptive else {
+            return bounds.size
+        }
+        var size = intrinsicSize
+        size.width += contentEdgeInsets.horizontal
+        size.height += contentEdgeInsets.vertical
+        return size
+    }
+    
     /// 调整位置
     public func needsAdjust(position: CGPoint, offset: CGPoint = .positionOffsetCenter) {
-        var size = bounds.size
-        switch textAlignment {
-        case .adaptive:
-            size = intrinsicSize
-            size.width += contentEdgeInsets.horizontal
-            size.height += contentEdgeInsets.vertical
-        default: break
-        }
+        let size = layoutSize
         let scale = CGPoint(x: min(1, max(0, offset.x)), y: min(1, max(0, offset.y)))
         let origin = CGPoint(x: position.x - size.width * scale.x, y: position.y - size.height * scale.y)
         frame = CGRect(origin: origin, size: size)
