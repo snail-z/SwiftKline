@@ -124,6 +124,11 @@ public extension NSEdgeInsets {
     var vertical: CGFloat {
         return top + bottom
     }
+    
+    /// 调换top和bottom
+    var swapVertical: NSEdgeInsets {
+        return NSEdgeInsets(top: bottom, left: left, bottom: top, right: right)
+    }
 }
 
 public extension NSRect {
@@ -396,11 +401,11 @@ public extension Array {
     /// 查找数组内最大值和最小值
     func peakValue(_ closure: (_ sender: Self.Element) -> Double) -> UPeakValue {
         guard !isEmpty else { return .zero }
-        var minValue = closure(self[0]), maxValue = closure(self[0])
+        var maxValue = closure(self[0]), minValue = closure(self[0])
         let lastIndex = count - 1
         for index in stride(from: 0, to: lastIndex, by: 2) {
             let one = closure(self[index]), two = closure(self[index + 1])
-            let maxTemp = fmax(one, two), minTemp = fmax(one, two)
+            let maxTemp = fmax(one, two), minTemp = fmin(one, two)
             if maxTemp > maxValue { maxValue = maxTemp }
             if minTemp < minValue { minValue = minTemp }
         }

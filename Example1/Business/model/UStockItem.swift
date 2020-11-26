@@ -28,8 +28,7 @@ public class UStockItem: UBaseItem {
 }
 
 // MARK: 分时线信息
-public class UTimeItem: UBaseItem {
-
+public class UTimeItem: UBaseItem {    
     /// 日期
     public var date: String = ""
     /// 昨收
@@ -41,13 +40,13 @@ public class UTimeItem: UBaseItem {
     /// 成交量
     public var volume: Double = 0
     /// 成交额
-    public var amount: Double = 0
-    /// 大盘价
-    public var lead_price: Double = 0
-    /// 大盘是否上涨
-    public var lead_upward: Bool = false
-    /// 大盘成交量
-    public var lead_volume: Double = 0
+    public var total_volume: Double = 0
+    /// 涨跌
+    public var price_change : Double = 0
+    /// 涨跌幅
+    public var price_change_rate: Double = 0
+    /// 转手率
+    public var turnover: Double = 0
 }
 
 extension UTimeItem: UTimeDataSource {

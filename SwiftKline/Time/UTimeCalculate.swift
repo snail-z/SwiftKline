@@ -36,7 +36,6 @@ internal class UTimeCalculate {
     }
     
     private func getReferenceValue() -> Double {
-        return 2880.330810546875
         if let refValue = target.referenceSystem?._referenceValue {
             return refValue
         } else {

@@ -5,18 +5,17 @@
 //  Created by zhanghao on 2020/2/23.
 //  Copyright © 2020 Psychokinesis. All rights reserved.
 //
-#if os(iOS) || os(tvOS)
-import UIKit
-
-public typealias NSUIFont = UIFont
-public typealias NSUIColor = UIColor
-#endif
 
 #if os(OSX)
-import AppKit
 
-public typealias NSUIFont = NSFont
-public typealias NSUIColor = NSColor
+import Cocoa
+
+#endif
+
+#if os(iOS) || os(tvOS)
+
+import UIKit
+
 #endif
 
 public extension PKAttributedStringExtensions where Base: NSAttributedString {

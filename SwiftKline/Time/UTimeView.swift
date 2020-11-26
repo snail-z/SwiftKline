@@ -199,30 +199,43 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
 //        doubleTap.delaysOtherMouseButtonEvents = true
 //        doubleTap.delaysSecondaryMouseButtonEvents = true
         self.addGestureRecognizer(pan)
-        
-        
-        
-//        NSMagnificationGestureRecognizer
     }
     
     open override func mouseMoved(with event: NSEvent) {
+        
+        
+//        return
         let p = event.locationInWindow
 //        print("mouseMoved is: \(event.deltaY)")
         let vapp = convert(p, from: window!.contentView)
         
+        var lp: CGPoint = .zero
+        lp.x = vapp.x - meas.unionChartFrame.minX
+        lp.y = vapp.y - meas.unionChartFrame.minY
+        let index = xaxisToIndex(lp.x, shapeWidth: preference.shapeWidth, shapeSpacing: preference.shapeSpacing, count: dataList!.count)
+        print("index is: \(index)")
+        
+        let ppxxx = meas.xaixs(by: index)
+        print("ppxxx is: \(ppxxx)")
+        let pppppp = CGPoint(x: ppxxx, y: vapp.y)
+        
         let rectss = [meas.majorChartFrame, meas.minorChartFrame]
-        trackingLineLayer.updateTracking(location: vapp, in: rectss)
+        trackingLineLayer.updateTracking(location: pppppp, in: rectss)
         
 //        trackingTooltipLayer.frame = meas.unionChartFrame
 //        trackingTooltipLayer.frame = bounds
 //        trackingTooltipLayer.setText(text: "sdf", for: .left)
+        let item = dataList![index]
+//        item._date.
+        
         trackingWidgetLayer.boundsRect = meas.unionChartFrame
         trackingWidgetLayer.updateTracking(location: vapp, widgets: [.left("90.8 "), .right("啊哈哈是"), .bottom("2019-09.19"), .top("top数据的")])
         
         trackingTooltipLayer.isDisableActions = true
 //        trackingTooltipLayer.frame = CGRect(x: 150, y: 10, width: 200, height: 180)
-        trackingTooltipLayer.boundsRect = meas.unionChartFrame
-        trackingTooltipLayer.backgroundColor = NSColor.lightGray.cgColor
+//        trackingTooltipLayer.frame = CGRect(x: 10, y: 10, width: 100, height: 50)
+        let orColor = NSColor.orange.withAlphaComponent(0.5)
+        trackingTooltipLayer.backgroundColor = orColor.cgColor
         
         let rp = NSMutableParagraphStyle()
             rp.pk.alignment(.right)
@@ -242,16 +255,42 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
             let attrib2 = NSMutableAttributedString.init(string: "+8.77%")
             attrib2.pk.foregroundColor(.yellow).font(.systemFont(ofSize: 12)).paragraphStyle(rp)
         
+        let Tattrib1 = NSMutableAttributedString.init(string: "成交量")
+        Tattrib1.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)).paragraphStyle(leftp)
+        
+        let Tattrib2 = NSMutableAttributedString.init(string: "2542.96万股")
+        Tattrib2.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)).paragraphStyle(rp)
+        
         if meas.minorChartFrame.contains(vapp) {
             trackingTooltipLayer.items = nil
         } else {
             trackingTooltipLayer.items = [.make(left: attri1, right: attri2),
                                           .make(left: attrib1, right: attrib2),
-                                          .make(left: attri1, right: attri2)]
+                                          .make(left: attrib1, right: attrib2),
+                                          .make(left: Tattrib1, right: Tattrib2)]
+            trackingTooltipLayer.itemCount = 4
+            
+            trackingTooltipLayer.sizeToFit(width: 150)
         }
-    }
-    
+        let width: CGFloat = 150
+        let height = trackingTooltipLayer.frame.height
 
+        let refMinX = meas.unionChartFrame.minX + width
+        let refMaxX = meas.unionChartFrame.maxX - width
+        
+        if vapp.x > refMaxX {
+            let poitns = CGPoint(x: meas.unionChartFrame.minX + width / 2, y: meas.unionChartFrame.minY + height/2)
+            trackingTooltipLayer.position = poitns
+        } else if vapp.x < refMinX  {
+            let poitns = CGPoint(x: meas.unionChartFrame.maxX - width / 2, y: meas.unionChartFrame.minY + height/2)
+            trackingTooltipLayer.position = poitns
+        } else {}
+        
+        
+        
+        
+        
+    }
     
     open override func mouseDragged(with event: NSEvent) {
         print("mouseDragged")
@@ -340,7 +379,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         var minorChartFrame = CGRect.zero, minorBriefFrame = CGRect.zero
         
         // .integral - 表示原点的值向下取整，表示大小的值向上取整，可以保证绘制范围平整地对齐到像素边界
-        let rect = bounds.inset(by: preference.contentInsets).integral
+        let rect = bounds.inset(by: preference.contentEdgeInsets).integral
         let majorChartHeight = fmin(rect.height * preference.majorChartRatio, rect.height)
         
         // 计算五个区域 (区分日期栏不同位置)
@@ -395,13 +434,13 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
 
         /// 计算条形图宽度或间距
         if preference.shapeSpacing > 0 {
-            var allSpacing = CGFloat(preference.maximumEntries - 1) * preference.shapeSpacing
+            var allSpacing = CGFloat(preference.maximumNumberOfEntries - 1) * preference.shapeSpacing
             allSpacing = fmin(allSpacing, majorChartFrame.width)
-            preference.shapeWidth = (majorChartFrame.width - allSpacing) / CGFloat(preference.maximumEntries)
+            preference.shapeWidth = (majorChartFrame.width - allSpacing) / CGFloat(preference.maximumNumberOfEntries)
         } else {
-            var allWidth = CGFloat(preference.maximumEntries) * preference.shapeWidth
+            var allWidth = CGFloat(preference.maximumNumberOfEntries) * preference.shapeWidth
             allWidth = fmin(allWidth, majorChartFrame.width)
-            preference.shapeSpacing = (majorChartFrame.width - allWidth) / CGFloat(preference.maximumEntries - 1)
+            preference.shapeSpacing = (majorChartFrame.width - allWidth) / CGFloat(preference.maximumNumberOfEntries - 1)
         }
         
         meas.shapeWidth = preference.shapeWidth
@@ -472,7 +511,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
             var rightRender = UTextRender()
             let s = rightValues[index]
             let doubleValue = Double(s)
-            rightRender.text = "\(doubleValue)"
+            rightRender.text = "\(String(describing: doubleValue))"
             rightRender.font = NSFont.systemFont(ofSize: 22)
             rightRender.color = floatedColor(by: start.y)
 //            rightRender.backgroundColor = .orange
@@ -483,15 +522,6 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         
         majorXaxisLineLayer.path = path.cgPath
         majorXaxisTextLayer.renders = renders
-        
-//
-//        let tefe = NSTextField.init(string: "2880.33")
-//        tefe.backgroundColor = .white
-//        tefe.textColor = .black
-//        tefe.isBezeled = false
-//        tefe.font = NSFont.systemFont(ofSize: 22)
-//        tefe.frame = CGRect(x: 9, y: 150, width: 100, height: 50)
-//        addSubview(tefe)
     }
     
     func updateMajorTrendChart() {
@@ -503,7 +533,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         let fromPath = CGMutablePath()
         let path1 = CGMutablePath()
         let path2 = CGMutablePath()
-        /// 路径动画：fromPath必须和toPath绘线点一致，动画才能平滑显示
+        /// 路径动画：fromPath必须和toPath绘线点数量一致，动画才能平滑显示
         fromPath.move(to: CGPoint(x: meas.majorChartFrame.minX, y: priceY))
         path1.move(to: CGPoint(x: meas.majorChartFrame.minX, y: priceY))
         path2.move(to: CGPoint(x: meas.majorChartFrame.minX, y: averageY))
@@ -540,12 +570,12 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         fromPath22.addLine(to: CGPoint(x: meas.majorChartFrame.minX, y: meas.majorChartFrame.maxY))
         fromPath22.closeSubpath()
         
-        let testL = CAShapeLayer()
-        testL.strokeColor = NSColor.blue.cgColor
-        testL.fillColor = NSColor.clear.cgColor
-        testL.lineWidth = 5
-        testL.path = fillPath
-        chartContainerLayer.addSublayer(testL)
+//        let testL = CAShapeLayer()
+//        testL.strokeColor = NSColor.blue.cgColor
+//        testL.fillColor = NSColor.clear.cgColor
+//        testL.lineWidth = 5
+//        testL.path = fillPath
+//        chartContainerLayer.addSublayer(testL)
         
         
         
@@ -571,7 +601,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
 //        fromPath.closeSubpath()
         
 //        trendFillLayer._oldPath = fromPath
-        trendFillLayer.gradientPath = fromPath22
+//        trendFillLayer.gradientPath = fromPath22
         
         let toPath = CGMutablePath.init()
         toPath.move(to: CGPoint(x: meas.majorChartFrame.minX, y: priceY))
@@ -581,14 +611,14 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         toPath.addLine(to: CGPoint(x: meas.majorChartFrame.minX, y: meas.majorChartFrame.maxY))
         toPath.closeSubpath()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.trendFillLayer.gradientPath = fillPath
-        })
+//        })
     }
     
     func updateMinorCharts() {
         let yaxis = yaxisMake(calculated.volumePeakValue, meas.minorChartFrame)
-        var referenceValue = calculated.referenceValue
+        let referenceValue = calculated.referenceValue
         
         let risePath = CGMutablePath()
         let fallPath = CGMutablePath()
@@ -600,10 +630,6 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
             let r = CGRect(x: x, y: y,
                            width: meas.shapeWidth,
                            height: meas.minorChartFrame.maxY - y)
-            
-//            if index > 0 {
-//                referenceValue = dataList![index - 1]._latestPrice
-//            }
             
             if element._latestPrice > referenceValue {
                 risePath.addRect(r)

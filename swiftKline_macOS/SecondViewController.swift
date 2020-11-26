@@ -84,7 +84,7 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         nsscrollView.snp.makeConstraints { (make) in
             make.top.bottom.equalToSuperview()
             make.left.equalTo(10)
-            make.width.equalTo(200)
+            make.width.equalTo(100)
         }
         
 //        nsscrollView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
@@ -113,7 +113,7 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
             make.left.equalTo(_tableView.snp.right)
             make.top.equalToSuperview()
             make.right.equalToSuperview()
-            make.height.equalTo(400)
+            make.height.equalTo(500)
         }
         
         
@@ -124,24 +124,36 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             
-                let path = Bundle.main.path(forResource: "times_data", ofType: "plist")
-                let value = NSMutableDictionary(contentsOfFile: path!)
-                if let object = UStockItem.deserialize(from: value) {
-                    self.timeView.dataList = object.times
+//                let path = Bundle.main.path(forResource: "times_data", ofType: "plist")
+            let path = Bundle.main.path(forResource: "time_chart_data", ofType: "json")
+            
+//            let jssting =
+            let url = URL.init(fileURLWithPath: path!)
+            let data = try! Data(contentsOf: url)
+            let jsonData:Any = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+            let jsonArr = jsonData as! NSArray
+            
+            
+            
+                if let objectItems = Array<UTimeItem>.deserialize(from: jsonArr) {
+                    if let vis = objectItems as? [UTimeItem] {
+                        self.timeView.dataList = vis
+                        for it in vis {
+                            print("date is: \(it.date)")
+                            print("price is : \(it.price)")
+                        }
+                    }
+                    
                     
                     let preference = UTimePreferences()
+                    preference.maximumNumberOfEntries = 242
                     preference.dateBarPosition = .bottom
-                    preference.shapeWidth = 0.5
+                    preference.contentEdgeInsets = NSEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
+                    preference.shapeSpacing = 0.5
                     self.timeView.preference = preference
                     
                     print("time viewis: \(self.timeView.frame)")
                     self.timeView.drawChart()
-                    
-        //            print("=============\(object.stock_name)=============")
-                    
-                    for it in object.times {
-        //                print("date is: \(it.date)")
-                    }
                 }
         
         })

@@ -1,0 +1,30 @@
+PODS:
+  - Masonry (1.1.0)
+  - MJExtension (3.0.17)
+  - PKCategories (0.2.9):
+    - PKCategories/Foundation (= 0.2.9)
+    - PKCategories/Other (= 0.2.9)
+    - PKCategories/UIKit (= 0.2.9)
+  - PKCategories/Foundation (0.2.9)
+  - PKCategories/Other (0.2.9)
+  - PKCategories/UIKit (0.2.9)
+
+DEPENDENCIES:
+  - Masonry (~> 1.1.0)
+  - MJExtension (~> 3.0.17)
+  - PKCategories (~> 0.2.9)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Masonry
+    - MJExtension
+    - PKCategories
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
+  PKCategories: d3631dbd73d2689cb6fa7e275dba3d9a66087d93
+
+PODFILE CHECKSUM: f8364fa372c59762e455cb966e40b95d7b239833
+
+COCOAPODS: 1.5.3

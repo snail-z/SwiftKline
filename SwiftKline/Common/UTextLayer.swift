@@ -66,6 +66,8 @@ open class UTextLayers: UBaseLayer {
     
     override public func draw(in ctx: CGContext) {
         guard let res = renders, !res.isEmpty else { return }
+        ctx.clear(bounds)
+        
         func limit( _ a: CGFloat) -> CGFloat { return min(1, max(0, a)) }
         
         for re in res {

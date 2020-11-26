@@ -1,0 +1,8 @@
+use_frameworks!
+
+target 'TQChartKit' do
+
+  pod 'zhCategories', '~> 1.1'
+  pod 'MJExtension', '~> 3.0'
+
+end

@@ -206,52 +206,38 @@ public struct UTrackingTooltipItem {
     }
 }
 
+class UTrackingLineCanvas {
+    
+}
+
+open class UTrackingTooltipCanvas {
+    
+    func draw(in ctx: CGContext) {
+        
+    }
+    
+}
+
 open class UTrackingTooltipLayer: UBaseLayer {
     
-    /// 数据条目
+    /// 每个条目高度
+    public var itemHeight: CGFloat = 15
+    
+    /// 每个条目间距
+    public var itemSpacing: CGFloat = 8
+    
+    /// 数据条目数量
+    public var itemCount: Int = 0
+    
+    /// 内容边缘留白
+    public var contentEdgeInsets: NSEdgeInsets = .init(top: 10, left: 10, bottom: 20, right: 20)
+    
+    /// 更新数据条目
     public var items: [UTrackingTooltipItem]? {
         didSet {
             setNeedsDisplay()
-            _updateLayout()
         }
     }
-    
-    /// 每个条目高度
-    public var itemHeight: CGFloat = 15 {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
-    
-    /// 每个条目间距
-    public var itemSpacing: CGFloat = 8 {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
-    
-    /// 内容边缘留白
-    public var contentEdgeInsets: NSEdgeInsets = .zero {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
-    
-    /// 绘制区边界
-    public var boundsRect: CGRect = .zero
-    
-    func _updateLayout() {
-        guard let elements = items else { return }
-        var height = contentEdgeInsets.vertical
-        height += CGFloat(elements.count) * itemHeight
-        height += CGFloat(elements.count - 1) * itemSpacing
-        
-        let size = CGSize(width: 150, height: height)
-//        frame = CGRect(x: 10, y: 10, width: size.width, height: size.height)
-        _size = size
-    }
-    
-    var _size: CGSize = .zero
     
     override func initialization() {
         super.initialization()
@@ -259,19 +245,30 @@ open class UTrackingTooltipLayer: UBaseLayer {
         isGeometryFlipped = true
     }
     
+    public func sizeToFit(width: CGFloat) {
+        var height = contentEdgeInsets.vertical
+        height += CGFloat(itemCount) * itemHeight
+        height += CGFloat(itemCount - 1) * itemSpacing
+        frame = CGRect(origin: frame.origin, size: CGSize(width: width, height: height))
+    }
+    
     open override func draw(in ctx: CGContext) {
         guard let elements = items else { return }
+        ctx.clear(bounds)
         
-        let fillPath = CGMutablePath()
-        fillPath.addRect(CGRect(x: boundsRect.minX, y: bounds.height - _size.height - contentEdgeInsets.top, width: _size.width, height: _size.height))
-        ctx.setFillColor(NSColor.orange.cgColor)
-        ctx.addPath(fillPath)
-        ctx.drawPath(using: .fill)
+//        let insetRect = bounds.inset(by: contentEdgeInsets.swapVertical)
+//        let fillPath = CGMutablePath()
+//        fillPath.addRect(insetRect)
+//        ctx.setFillColor(NSColor.orange.cgColor)
+//        ctx.addPath(fillPath)
+//        ctx.drawPath(using: .fill)
         
-        for (index, item) in elements.enumerated() {
-            let y = CGFloat(index) * (itemHeight + itemSpacing)
-            let rect = CGRect(x: 0, y: y, width: _size.width, height: itemHeight)
-             
+        var index = elements.count - 1
+        
+        for item in elements {
+            let y = contentEdgeInsets.bottom + (itemHeight + itemSpacing) * CGFloat(index)
+            let rect = CGRect(x: contentEdgeInsets.left, y: y, width: bounds.width - contentEdgeInsets.horizontal, height: itemHeight)
+            
             let path = CGMutablePath()
             path.addRect(rect)
             
@@ -282,6 +279,8 @@ open class UTrackingTooltipLayer: UBaseLayer {
             let framesetterRight = CTFramesetterCreateWithAttributedString(item.rightText)
             let frameRight = CTFramesetterCreateFrame(framesetterRight, CFRangeMake(0, item.rightText.length), path, nil)
             CTFrameDraw(frameRight, ctx)
+            
+            index-=1
         }
     }
 }

@@ -22,7 +22,7 @@ open class UTimePreferences {
     public var trendCategory: TrendCategory = .oneday
     
     /// 最大数据量(默认242条)
-    public var maximumEntries: Int = 242
+    public var maximumNumberOfEntries: Int = 242
 
     /// 设置图表中的数值精度，默认保留两位小数
     public var decimalKeepPlace: Int = 2
@@ -31,7 +31,7 @@ open class UTimePreferences {
     public var defaultChange: Double = 0.06
     
     /// 绘制区边缘留白
-    public var contentInsets = NSEdgeInsets(top: 20, left: 50, bottom: 20, right: 100)
+    public var contentEdgeInsets: NSEdgeInsets = .zero
     
     /// 网格线颜色
     public var gridLineColor: NSColor? = .red
