@@ -184,14 +184,17 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
     override func gestureInitialization() {
 //        NSGestureRecognizer
         
-        let singleTap = NSClickGestureRecognizer.init(target: self, action: #selector(single(tap:)))
-        singleTap.delegate = self
-        if #available(OSX 10.12.2, *) {
-            singleTap.numberOfTouchesRequired = 1
-        } else {
-            // Fallback on earlier versions
-            singleTap.numberOfClicksRequired = 1
+        let singleTap = NSClickGestureRecognizer.pk.addGestureHandler { (g) in
+            print("===g is: \(g)")
         }
+//        let singleTap = NSClickGestureRecognizer.init(target: self, action: #selector(single(tap:)))
+//        singleTap.delegate = self
+//        if #available(OSX 10.12.2, *) {
+//            singleTap.numberOfTouchesRequired = 1
+//        } else {
+//            // Fallback on earlier versions
+//            singleTap.numberOfClicksRequired = 1
+//        }
         self.addGestureRecognizer(singleTap)
         
         let pan = NSPanGestureRecognizer.init(target: self, action: #selector(doublesdkja(tap:)))
@@ -229,7 +232,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
 //        item._date.
         
         trackingWidgetLayer.boundsRect = meas.unionChartFrame
-        trackingWidgetLayer.updateTracking(location: vapp, widgets: [.left("90.8 "), .right("啊哈哈是"), .bottom("2019-09.19"), .top("top数据的")])
+        trackingWidgetLayer.updateTracking(location: vapp, widgets: [.left("90.8 "), .right("啊哈哈是"), .bottom("2019-09.19"), .top("swift top数据的")])
         
         trackingTooltipLayer.isDisableActions = true
 //        trackingTooltipLayer.frame = CGRect(x: 150, y: 10, width: 200, height: 180)

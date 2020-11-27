@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import QuartzCore
 
 class SecondViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
@@ -116,23 +117,68 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
             make.height.equalTo(500)
         }
         
-        
-
-        
+    
         timeView.layoutSubtreeIfNeeded()
         timeView.needsLayout = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+    
+            /*
+             NSRect imgRect = NSMakeRect（0.0，0.0， 100.0，100.0）;
+             NSSize imgSize = imgRect.size;
+             
+             NSBitmapImageRep * offscreenRep = [[[NSBitmapImageRep alloc]
+             initWithBitmapDataPlanes：NULL
+             pixelsWide：imgSize.width
+             pixelsHigh：imgSize.height
+             bitsPerSample：8
+             samplesPerPixel：4
+             hasAlpha：YES
+             isPlanar：NO
+             colorSpaceName：NSDeviceRGBColorSpace
+             bitmapFormat：NSAlphaFirstBitmapFormat
+             bytesPerRow：0
+             bitsPerPixel：0] autorelease];
+             
+             //设置屏幕上下文
+             NSGraphicsContext * g = [NSGraphicsContext graphicsContextWithBitmapImageRep：offscreenRep];
+             [NSGraphicsContext saveGraphicsState];
+             [NSGraphicsContext setCurrentContext：g];
+             
+             //用Cocoa绘制第一个笔划
+             NSPoint p1 = NSMakePoint（NSMaxX（imgRect），NSMinY（imgRect））;
+             NSPoint p2 = NSMakePoint（NSMinX（imgRect），NSMaxY（imgRect））;
+             [NSBezierPath strokeLineFromPoint：p1 toPoint：p2];
+             
+             //使用Core Graphics绘制第二行程
+             CGContextRef ctx = [g graphicsPort];
+             CGContextBeginPath（ctx）;
+             CGContextMoveToPoint（ctx，0.0，0.0）;
+             CGContextAddLineToPoint（ctx，imgSize.width，imgSize.height）;
+             CGContextClosePath（ctx）;
+             CGContextStrokePath（ctx）;
+             
+             //做绘图，所以设置当前上下文回到它是什么
+             [NSGraphicsContext restoreGraphicsState];
+             
+             //创建一个NSImage并将其添加到它
+             NSImage * img = [[[NSImage alloc] initWithSize：imgSize] autorelease];
+             [img addRepresentation：offscreenRep];
+             
+             //然后继续保存或查看NSImage
+              //            let imddg = NSImage()
+              //            let ctx = NSGraphicsContext.current?.cgContext
+              ////            ctx?.addRect(<#T##rect: CGRect##CGRect#>)
+              //            ctx?.setFillColor(NSColor.orange.cgColor)
+              //            ctx?.makeImage()
+              //            UIGraphicsGetImageFromCurrentImageContext
+             */
             
-//                let path = Bundle.main.path(forResource: "times_data", ofType: "plist")
             let path = Bundle.main.path(forResource: "time_chart_data", ofType: "json")
-            
-//            let jssting =
             let url = URL.init(fileURLWithPath: path!)
             let data = try! Data(contentsOf: url)
             let jsonData:Any = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
             let jsonArr = jsonData as! NSArray
-            
             
             
                 if let objectItems = Array<UTimeItem>.deserialize(from: jsonArr) {
