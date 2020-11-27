@@ -6,15 +6,15 @@
 //  Copyright © 2020 Psychokinesis. All rights reserved.
 //
 
-#if os(OSX)
-
-import Cocoa
-
-#endif
-
 #if os(iOS) || os(tvOS)
 
 import UIKit
+
+#endif
+
+#if os(OSX)
+
+import AppKit
 
 #endif
 
