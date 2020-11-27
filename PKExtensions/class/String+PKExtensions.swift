@@ -73,6 +73,32 @@ public extension PKStringExtensions {
 
 public extension PKStringExtensions {
     
+    /// 尝试将文件路径转成JSON数据 (nil/Array/Dictionary)
+    func toJSONData() -> Any? {
+        guard let data = try? Data(contentsOf: URL(fileURLWithPath: base)) else {
+            return nil
+        }
+        
+        guard let jsonObj = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else {
+            return nil
+        }
+        
+        return jsonObj
+    }
+    
+    /// 尝试将文件路径转成Array
+    func toJSONArray() -> [Any]? {
+        return toJSONData() as? [Any]
+    }
+    
+    /// 尝试将文件路径转成Dictionary
+    func toJSONDictionary() -> [String: Any]? {
+        return toJSONData() as? [String: Any]
+    }
+}
+
+public extension PKStringExtensions {
+    
     /// 检查字符串是否为空或只包含空白和换行字符
     var isBlank: Bool {
         let trimmed = base.trimmingCharacters(in: .whitespacesAndNewlines)

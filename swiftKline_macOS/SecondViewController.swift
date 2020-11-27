@@ -175,13 +175,18 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
              */
             
             let path = Bundle.main.path(forResource: "time_chart_data", ofType: "json")
-            let url = URL.init(fileURLWithPath: path!)
-            let data = try! Data(contentsOf: url)
-            let jsonData:Any = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
-            let jsonArr = jsonData as! NSArray
+
+            guard let result = path?.pk.toJSONData() as? [Any] else {
+                return
+            }
+            
+//            let url = URL.init(fileURLWithPath: path!)
+//            let data = try! Data(contentsOf: url)
+//            let jsonData:Any = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+//            let jsonArr = jsonData as! NSArray
             
             
-                if let objectItems = Array<UTimeItem>.deserialize(from: jsonArr) {
+                if let objectItems = Array<UTimeItem>.deserialize(from: result) {
                     if let vis = objectItems as? [UTimeItem] {
                         self.timeView.dataList = vis
                         for it in vis {
