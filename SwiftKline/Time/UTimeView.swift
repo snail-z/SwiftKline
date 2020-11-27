@@ -229,16 +229,18 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
 //        trackingTooltipLayer.frame = bounds
 //        trackingTooltipLayer.setText(text: "sdf", for: .left)
         let item = dataList![index]
-//        item._date.
+        let value1 = item._date.pk.toString(format: "MM/dd HH:mm")
         
         trackingWidgetLayer.boundsRect = meas.unionChartFrame
-        trackingWidgetLayer.updateTracking(location: vapp, widgets: [.left("90.8 "), .right("啊哈哈是"), .bottom("2019-09.19"), .top("swift top数据的")])
+        trackingWidgetLayer.updateTracking(location: vapp, widgets: [.left("90.8 "), .right("啊哈哈是"), .bottom(value1), .top("swift top数据的")])
         
         trackingTooltipLayer.isDisableActions = true
 //        trackingTooltipLayer.frame = CGRect(x: 150, y: 10, width: 200, height: 180)
 //        trackingTooltipLayer.frame = CGRect(x: 10, y: 10, width: 100, height: 50)
         let orColor = NSColor.orange.withAlphaComponent(0.5)
         trackingTooltipLayer.backgroundColor = orColor.cgColor
+        
+        
         
         let rp = NSMutableParagraphStyle()
             rp.pk.alignment(.right)
