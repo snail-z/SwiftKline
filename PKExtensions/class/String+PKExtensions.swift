@@ -7,11 +7,15 @@
 //
 
 #if os(OSX)
-    import Cocoa
+
+import Cocoa
+
 #endif
 
 #if os(iOS) || os(tvOS)
-    import UIKit
+
+import UIKit
+
 #endif
 
 public extension PKStringExtensions {
