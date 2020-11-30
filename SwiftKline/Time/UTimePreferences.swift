@@ -159,4 +159,13 @@ open class UTimePreferences {
     
     /// 副图区数据文本高度
     public var minorBriefHeight: CGFloat = 20
+    
+    /// 所有分时点的分钟数集合 (需要与`timelineVisibleMinutes`配合使用，用于精准绘制时间线)
+    var timelineAllMinutes: Range<Int> = Range.init(0...1)
+    
+    /// 需要展示点的分钟数集合 (需要与`timelineAllMinutes`配合使用，用于精准绘制时间线)
+    var timelineVisibleMinutes: [Int] = [Int]() // 这两个属性主要用于自定义时间线，若没有配置内部将均匀绘制时间线
+    
+    /// 需要显示的时间线文本 (配合`timelineVisibleMinutes`使用时，两者元素数量必须相等，某个为空可用NSNull填充)
+    var timelineVisibleTexts: [String?]?
 }
