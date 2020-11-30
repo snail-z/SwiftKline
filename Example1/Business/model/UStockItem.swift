@@ -64,7 +64,9 @@ extension UTimeItem: UTimeDataSource {
     }
     
     public var _date: Date {
-        return Date()
+        // 2017-06-26 11:03:00
+        let rdate = Date.pk.date(fromString: date, format: .yMdHms)!
+        return rdate
     }
 }
 

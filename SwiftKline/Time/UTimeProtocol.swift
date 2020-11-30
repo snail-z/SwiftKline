@@ -31,6 +31,11 @@ public protocol UTimeDataSource {
 }
 
 public extension UTimeDataSource {
+    
+    /// 日期字符串 (可用于直接显示，减少date转换)
+    var _dateDisplayString: String {
+        return ""
+    }
 
     /// 返回此值用于绘制大盘红绿柱，默认为0
     var _leadRgbVolume: Double {

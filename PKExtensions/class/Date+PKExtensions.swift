@@ -552,18 +552,6 @@ public extension Date {
 
 public extension String {
 
-    /**
-    * 对Date格式化的扩展，将Date转化为指定格式的String
-    * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q) 可以用 1-2 个占位符
-    * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
-    * eg:
-    * ("yyyy-MM-dd hh:mm:ss.S") ==> 2020-07-02 08:09:04.423
-    * ("yyyy-MM-dd E HH:mm:ss") ==> 2020-03-10 二 20:09:04
-    * ("yyyy-MM-dd EE hh:mm:ss") ==> 2020-03-10 周二 08:09:04
-    * ("yyyy-MM-dd EEE hh:mm:ss") ==> 2020-03-10 星期二 08:09:04
-    * ("yyyy-M-d h:m:s.S") ==> 2020-7-2 8:9:4.18
-    */
-    
     /// yyyy-MM-dd HH:mm:ss
     static var yMdHms: String { return "yyyy-MM-dd HH:mm:ss" }
     
@@ -575,4 +563,16 @@ public extension String {
     
     /// HH:mm:ss
     static var Hms: String { return "HH:mm:ss" }
+    
+    /**
+    * 对Date格式化的扩展，将Date转化为指定格式的String
+    * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q) 可以用 1-2 个占位符
+    * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+    * eg:
+    * ("yyyy-MM-dd hh:mm:ss.S") ==> 2020-07-02 08:09:04.423
+    * ("yyyy-MM-dd E HH:mm:ss") ==> 2020-03-10 二 20:09:04
+    * ("yyyy-MM-dd EE hh:mm:ss") ==> 2020-03-10 周二 08:09:04
+    * ("yyyy-MM-dd EEE hh:mm:ss") ==> 2020-03-10 星期二 08:09:04
+    * ("yyyy-M-d h:m:s.S") ==> 2020-7-2 8:9:4.18
+    */
 }

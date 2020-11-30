@@ -229,10 +229,10 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
 //        trackingTooltipLayer.frame = bounds
 //        trackingTooltipLayer.setText(text: "sdf", for: .left)
         let item = dataList![index]
-        let value1 = item._date.pk.toString(format: "MM/dd HH:mm")
+        let timeText = item._date.pk.toString(format: "MM/dd HH:mm")
         
         trackingWidgetLayer.boundsRect = meas.unionChartFrame
-        trackingWidgetLayer.updateTracking(location: vapp, widgets: [.left("90.8 "), .right("啊哈哈是"), .bottom(value1), .top("swift top数据的")])
+        trackingWidgetLayer.updateTracking(location: vapp, widgets: [.left("90.8 "), .right("啊哈哈是"), .bottom(timeText), .top("swift top数据的")])
         
         trackingTooltipLayer.isDisableActions = true
 //        trackingTooltipLayer.frame = CGRect(x: 150, y: 10, width: 200, height: 180)
@@ -248,23 +248,31 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
             let leftp = NSMutableParagraphStyle()
             leftp.pk.alignment(.left)
             
-            let attri1 = NSMutableAttributedString.init(string: "开盘")
+            let attri1 = NSMutableAttributedString.init(string: "时间")
             attri1.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)) .paragraphStyle(leftp)
         
-            let attri2 = NSMutableAttributedString.init(string: "0.905")
-            attri2.pk.foregroundColor(.red).font(.systemFont(ofSize: 12)) .paragraphStyle(rp)
+        
+            let attri2 = NSMutableAttributedString.init(string: timeText)
+            attri2.pk.foregroundColor(.black).font(.systemFont(ofSize: 12)) .paragraphStyle(rp)
             
-            let attrib1 = NSMutableAttributedString.init(string: "涨跌幅")
+            let attrib1 = NSMutableAttributedString.init(string: "价格")
             attrib1.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)).paragraphStyle(leftp)
             
-            let attrib2 = NSMutableAttributedString.init(string: "+8.77%")
-            attrib2.pk.foregroundColor(.yellow).font(.systemFont(ofSize: 12)).paragraphStyle(rp)
+            let attrib2 = NSMutableAttributedString.init(string: "\(item._latestPrice)")
+            attrib2.pk.foregroundColor(.red).font(.systemFont(ofSize: 12)).paragraphStyle(rp)
         
-        let Tattrib1 = NSMutableAttributedString.init(string: "成交量")
+        let Tattrib1 = NSMutableAttributedString.init(string: "涨跌额")
         Tattrib1.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)).paragraphStyle(leftp)
         
-        let Tattrib2 = NSMutableAttributedString.init(string: "2542.96万股")
+        let Tattrib2 = NSMutableAttributedString.init(string: "+0.40%")
         Tattrib2.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)).paragraphStyle(rp)
+        
+        let volTrib1 = NSMutableAttributedString.init(string: "成交量")
+        volTrib1.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)).paragraphStyle(leftp)
+        
+        let voldm = item._volume.pk.stringValueShortened() + "手"
+        let volTrib2 = NSMutableAttributedString.init(string: voldm)
+        volTrib2.pk.foregroundColor(.white).font(.systemFont(ofSize: 12)).paragraphStyle(rp)
         
         if meas.minorChartFrame.contains(vapp) {
             trackingTooltipLayer.items = nil
@@ -272,8 +280,9 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
             trackingTooltipLayer.items = [.make(left: attri1, right: attri2),
                                           .make(left: attrib1, right: attrib2),
                                           .make(left: attrib1, right: attrib2),
-                                          .make(left: Tattrib1, right: Tattrib2)]
-            trackingTooltipLayer.itemCount = 4
+                                          .make(left: Tattrib1, right: Tattrib2),
+                                          .make(left: volTrib1, right: volTrib2)]
+            trackingTooltipLayer.itemCount = 5
             
             trackingTooltipLayer.sizeToFit(width: 150)
         }
@@ -342,7 +351,6 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         let tracking = NSTrackingArea.init(rect: bounds, options: [.mouseMoved, .activeAlways, .inVisibleRect], owner: self, userInfo: nil)
         
         self.addTrackingArea(tracking)
-    
     }
 
     open override func updateTrackingAreas() {
@@ -359,7 +367,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         minorXaxisLineLayer.path = NSBezierPath(rect: meas.minorChartFrame).cgPath
         minorXaxisLineLayer.fillColor = NSColor.orange.cgColor
                 
-        dateLineLayer.path = NSBezierPath.init(rect: meas.datesBarFrame).cgPath
+        dateLineLayer.path = NSBezierPath(rect: meas.datesBarFrame).cgPath
         dateLineLayer.fillColor = NSColor.blue.cgColor
     }
     
@@ -374,9 +382,8 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
     }
     
     private func updateMeasurement() {
-        
+        updateChartLayout()
     }
-    
     
     private func updateChartLayout() {
         var datesBarFrame = CGRect.zero
@@ -386,6 +393,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         // .integral - 表示原点的值向下取整，表示大小的值向上取整，可以保证绘制范围平整地对齐到像素边界
         let rect = bounds.inset(by: preference.contentEdgeInsets).integral
         let majorChartHeight = fmin(rect.height * preference.majorChartRatio, rect.height)
+        
         
         // 计算五个区域 (区分日期栏不同位置)
         switch preference.dateBarPosition {
