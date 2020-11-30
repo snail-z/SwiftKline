@@ -121,6 +121,17 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         timeView.layoutSubtreeIfNeeded()
         timeView.needsLayout = true
         
+        
+        let nowDate = Date.init()
+        let nm = nowDate.toNumberOfMinutes()
+        print("nm is: \(nm)")
+        
+        let ms1 = Date.minuteStringFrom(numberOfMinutes:65)
+        print("======================> ms1 is: \(ms1)")
+        
+        let ms2 = Date.minuteStringFrom(numberOfMinutes: 834)
+        print("======================> ms2 is: \(ms2)")
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
     
             /*

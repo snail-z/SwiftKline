@@ -6,6 +6,8 @@
 //  Copyright © 2020 zhanghao. All rights reserved.
 //
 
+import Foundation
+import CoreGraphics
 
 public extension CGMutablePath {
     
@@ -55,198 +57,6 @@ public extension CGMutablePath {
         addLine(to: CGPoint(x: shape.rect.minX, y: shape.rect.minY + shape.rect.height))
     }
 }
-
-public extension NSScreen {
-    
-    var unitsPerInch: CGSize {
-        let millimetersPerInch:CGFloat = 25.4
-        let screenDescription = deviceDescription
-        if let displayUnitSize = (screenDescription[NSDeviceDescriptionKey.size] as? NSValue)?.sizeValue,
-            let screenNumber = (screenDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? NSNumber)?.uint32Value {
-            let displayPhysicalSize = CGDisplayScreenSize(screenNumber)
-            return CGSize(width: millimetersPerInch * displayUnitSize.width / displayPhysicalSize.width,
-                          height: millimetersPerInch * displayUnitSize.height / displayPhysicalSize.height)
-        } else {
-            return CGSize(width: 72.0, height: 72.0) // this is the same as what CoreGraphics assumes if no EDID data is available from the display device — https://developer.apple.com/documentation/coregraphics/1456599-cgdisplayscreensize?language=objc
-        }
-    }
-//
-//    let desc = NSScreen.main!.deviceDescription
-//    let size = desc[NSDeviceDescriptionKey(rawValue: "NSDeviceSize")]
-//    let number = desc[NSDeviceDescriptionKey(rawValue: "NSScreenNumber")]
-//    if let screen = NSScreen.main {
-//        print("main screen units per inch \(screen.unitsPerInch)")
-//    }
-}
-
-public extension NSScreen {
-    
-    /// 获取当前屏幕的单位像素值
-    static var scale: CGFloat {
-        /// 如何获取像 iOS 中的 UIScreen.main.scale 值??
-        return 2 // NSScreen.main?.backingScaleFactor
-    }
-}
-
-public extension NSEdgeInsets {
-    
-    /// 返回零值的NSEdgeInsets
-    static var zero: NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    
-    /// 设置top值返回NSEdgeInsets
-    static func top(_ value: CGFloat) -> NSEdgeInsets {
-        return NSEdgeInsets(top: value, left: 0, bottom: 0, right: 0)
-    }
-    
-    /// 设置left值返回NSEdgeInsets
-    static func left(_ value: CGFloat) -> NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: value, bottom: 0, right: 0)
-    }
-    
-    /// 设置bottom值返回NSEdgeInsets
-    static func bottom(_ value: CGFloat) -> NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: value, right: 0)
-    }
-    
-    /// 设置right值返回NSEdgeInsets
-    static func right(_ value: CGFloat) -> NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: 0, right: value)
-    }
-    
-    /// 获取NSEdgeInsets在水平方向上的值
-    var horizontal: CGFloat {
-        return left + right
-    }
-    
-    /// 获取NSEdgeInsets在垂直方向上的值
-    var vertical: CGFloat {
-        return top + bottom
-    }
-    
-    /// 调换top和bottom
-    var swapVertical: NSEdgeInsets {
-        return NSEdgeInsets(top: bottom, left: left, bottom: top, right: right)
-    }
-}
-
-public extension NSRect {
-
-    func inset(by inset: NSEdgeInsets) -> Self {
-        return NSRect(x: inset.left,
-                      y: inset.top,
-                      width: width - inset.horizontal,
-                      height: height - inset.vertical)
-    }
-}
-
-#if os(iOS) || os(tvOS)
-import UIKit
-
-public extension UIBezierPath {
-
-    /// 绘制两点间连线
-    func addLine(_ start: CGPoint, end: CGPoint) {
-        move(to: start)
-        addLine(to: end)
-    }
-    
-    /// 绘制横线
-    func addLine(horizontal start: CGPoint, length: CGFloat) {
-        move(to: start)
-        addLine(to: CGPoint(x: start.x + length, y: start.y))
-    }
-    
-    /// 绘制竖线
-    func addLine(vertical start: CGPoint, length: CGFloat) {
-        move(to: start)
-        addLine(to: CGPoint(x: start.x, y: start.y + length))
-    }
-    
-    /// 绘制矩形框
-    func addRect(_ rect: CGRect) {
-        move(to: rect.origin)
-        addLine(to: CGPoint(x: rect.minX + rect.width, y: rect.minY))
-        addLine(to: CGPoint(x: rect.minX + rect.width, y: rect.minY + rect.height))
-        addLine(to: CGPoint(x: rect.minX, y: rect.minY + rect.height))
-        close()
-    }
-    
-    /// 绘制蜡烛线
-    func addCandle(_ shape: UCandleShape) {
-        addRect(shape.rect)
-        move(to: shape.top)
-        addLine(to: CGPoint(x: shape.top.x, y: shape.rect.minY))
-        move(to: shape.bottom)
-        addLine(to: CGPoint(x: shape.bottom.x, y: shape.rect.minY + shape.rect.height))
-    }
-    
-    /// 绘制蜡烛线(树枝形态)
-    func addForkCandle(_ shape: UCandleShape) {
-        move(to: shape.top)
-        addLine(to: shape.bottom)
-        move(to: CGPoint(x: shape.top.x, y: shape.rect.minY))
-        addLine(to: CGPoint(x: shape.rect.minX + shape.rect.width, y: shape.rect.minY))
-        move(to: CGPoint(x: shape.bottom.x, y: shape.rect.minY + shape.rect.height))
-        addLine(to: CGPoint(x: shape.rect.minX, y: shape.rect.minY + shape.rect.height))
-    }
-}
-#endif
-
-#if os(OSX)
-import Cocoa
-
-public extension NSBezierPath {
-    
-    /// 绘制两点间连线
-    func addLine(_ start: CGPoint, end: CGPoint) {
-        move(to: start)
-        line(to: end)
-    }
-    
-    /// 绘制横线
-    func addLine(horizontal start: CGPoint, length: CGFloat) {
-        move(to: start)
-        line(to: CGPoint(x: start.x + length, y: start.y))
-    }
-    
-    /// 绘制竖线
-    func addLine(vertical start: CGPoint, length: CGFloat) {
-        move(to: start)
-        line(to: CGPoint(x: start.x, y: start.y + length))
-    }
-    
-    /// 绘制矩形框
-    func addRect(_ rect: CGRect) {
-        move(to: rect.origin)
-        line(to: CGPoint(x: rect.minX + rect.width, y: rect.minY))
-        line(to: CGPoint(x: rect.minX + rect.width, y: rect.minY + rect.height))
-        line(to: CGPoint(x: rect.minX, y: rect.minY + rect.height))
-        close()
-    }
-    
-    /// 绘制蜡烛线
-    func addCandle(_ shape: UCandleShape) {
-        addRect(shape.rect)
-        move(to: shape.top)
-        line(to: CGPoint(x: shape.top.x, y: shape.rect.minY))
-        move(to: shape.bottom)
-        line(to: CGPoint(x: shape.bottom.x, y: shape.rect.minY + shape.rect.height))
-    }
-    
-    /// 绘制蜡烛线(树枝形态)
-    func addForkCandle(_ shape: UCandleShape) {
-        move(to: shape.top)
-        line(to: shape.bottom)
-        move(to: CGPoint(x: shape.top.x, y: shape.rect.minY))
-        line(to: CGPoint(x: shape.rect.minX + shape.rect.width, y: shape.rect.minY))
-        move(to: CGPoint(x: shape.bottom.x, y: shape.rect.minY + shape.rect.height))
-        line(to: CGPoint(x: shape.rect.minX, y: shape.rect.minY + shape.rect.height))
-    }
-}
-
-#endif
 
 public extension UPeakValue {
     
@@ -314,6 +124,49 @@ public extension UPeakValue {
     }
 }
 
+public extension NSUIEdgeInsets {
+    
+    /// 返回零值的NSEdgeInsets
+    static var zero: NSUIEdgeInsets {
+        return NSUIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    /// 设置top值返回NSEdgeInsets
+    static func top(_ value: CGFloat) -> NSUIEdgeInsets {
+        return NSUIEdgeInsets(top: value, left: 0, bottom: 0, right: 0)
+    }
+    
+    /// 设置left值返回NSEdgeInsets
+    static func left(_ value: CGFloat) -> NSUIEdgeInsets {
+        return NSUIEdgeInsets(top: 0, left: value, bottom: 0, right: 0)
+    }
+    
+    /// 设置bottom值返回NSEdgeInsets
+    static func bottom(_ value: CGFloat) -> NSUIEdgeInsets {
+        return NSUIEdgeInsets(top: 0, left: 0, bottom: value, right: 0)
+    }
+    
+    /// 设置right值返回NSEdgeInsets
+    static func right(_ value: CGFloat) -> NSUIEdgeInsets {
+        return NSUIEdgeInsets(top: 0, left: 0, bottom: 0, right: value)
+    }
+    
+    /// 获取NSEdgeInsets在水平方向上的值
+    var horizontal: CGFloat {
+        return left + right
+    }
+    
+    /// 获取NSEdgeInsets在垂直方向上的值
+    var vertical: CGFloat {
+        return top + bottom
+    }
+    
+    /// 调换top和bottom
+    var swapVertical: NSUIEdgeInsets {
+        return NSUIEdgeInsets(top: bottom, left: left, bottom: top, right: right)
+    }
+}
+
 public extension Double {
     
     /// 判断Double是否有效(不包含零值、不带无穷大的值、不带非法数字）
@@ -326,6 +179,31 @@ public extension Double {
         return CGFloat(self)
     }
 }
+
+#if os(OSX)
+
+import Cocoa
+
+public extension CGRect {
+
+    func inset(by inset: NSEdgeInsets) -> Self {
+        return NSRect(x: inset.left,
+                      y: inset.top,
+                      width: width - inset.horizontal,
+                      height: height - inset.vertical)
+    }
+}
+
+public extension NSScreen {
+    
+    /// 获取当前屏幕的单位像素值
+    static var scale: CGFloat {
+        /// 如何获取像 iOS 中的 UIScreen.main.scale 值??
+        return 2 // NSScreen.main?.backingScaleFactor
+    }
+}
+
+#endif
 
 public extension Array {
     
@@ -418,5 +296,44 @@ public extension Array {
         let value2 = fabs(peakValue.min - reference)
         let maxValue = fmax(value1, value2)
         return fmax(maxValue, 0)
+    }
+}
+
+public extension Date {
+    
+    /// 将Date转为分钟数，如 9:30 => 570
+    func toNumberOfMinutes() -> Int {
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        calendar.locale = .current
+        let allComps = calendar.dateComponents([Calendar.Component.hour, .minute] , from: self)
+        guard
+            let hour = allComps.hour,
+            let minute = allComps.minute else {
+            return 0
+        }
+        return hour * 60 + minute
+    }
+    
+    /// 将分钟数转为Date(HH:mm格式)，如 570 => 9:30
+    static func dateFrom(numberOfMinutes: Int) -> Date? {
+        let dateString = minuteStringFrom(numberOfMinutes: numberOfMinutes)
+        return Date.pk.date(fromString: dateString, format: "HH:mm")
+    }
+    
+    /// 将分钟数转为分钟字符串
+    static func minuteStringFrom(numberOfMinutes: Int) -> String {
+        let hour = String(format: "%.2ld", numberOfMinutes / 60)
+        let mins = String(format: "%.2ld", numberOfMinutes % 60)
+        return hour + ":" + mins
+    }
+    
+    /// 返回某个时间段的分钟数集
+    static func numberOfMinutesList(range: Range<Int>) -> [Int] {
+        var list = [Int]()
+        for idx in range {
+            list.append(idx)
+        }
+        return list
     }
 }

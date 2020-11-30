@@ -291,11 +291,6 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
             let poitns = CGPoint(x: meas.unionChartFrame.maxX - width / 2, y: meas.unionChartFrame.minY + height/2)
             trackingTooltipLayer.position = poitns
         } else {}
-        
-        
-        
-        
-        
     }
     
     open override func mouseDragged(with event: NSEvent) {
@@ -492,13 +487,13 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         }
         
         // 绘制参考线
-        let dash = NSBezierPath()
+        let dash = CGMutablePath()
         let dasp = CGPoint(x: meas.majorChartFrame.minX, y: dashY)
         dash.addLine(horizontal: dasp, length: meas.majorChartFrame.width)
-        majorDashLayer.path = dash.cgPath
+        majorDashLayer.path = dash
         
         // 绘制横轴线和文本
-        let path = NSBezierPath()
+        let path = CGMutablePath()
         var renders = [UTextRender]()
         for (index, text) in leftValues.enumerated() {
             let start = CGPoint(x: meas.majorChartFrame.minX, y: originY + spacing * CGFloat(index))
@@ -525,7 +520,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
             renders.append(rightRender)
         }
         
-        majorXaxisLineLayer.path = path.cgPath
+        majorXaxisLineLayer.path = path
         majorXaxisTextLayer.renders = renders
     }
     
