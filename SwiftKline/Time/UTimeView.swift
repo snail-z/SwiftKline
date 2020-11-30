@@ -187,14 +187,6 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         let singleTap = NSClickGestureRecognizer.pk.addGestureHandler { (g) in
             print("===g is: \(g)")
         }
-//        let singleTap = NSClickGestureRecognizer.init(target: self, action: #selector(single(tap:)))
-//        singleTap.delegate = self
-//        if #available(OSX 10.12.2, *) {
-//            singleTap.numberOfTouchesRequired = 1
-//        } else {
-//            // Fallback on earlier versions
-//            singleTap.numberOfClicksRequired = 1
-//        }
         self.addGestureRecognizer(singleTap)
         
         let pan = NSPanGestureRecognizer.init(target: self, action: #selector(doublesdkja(tap:)))
