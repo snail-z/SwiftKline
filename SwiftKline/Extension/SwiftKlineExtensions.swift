@@ -239,7 +239,7 @@ public extension Array {
     }
     
     /// 查找数组内最大值和最小值
-    func peakValue(_ closure: (_ sender: Self.Element) -> Double) -> UPeakValue {
+    func peakValue(by closure: (_ sender: Self.Element) -> Double) -> UPeakValue {
         guard !isEmpty else { return .zero }
         var maxValue = closure(self[0]), minValue = closure(self[0])
         let lastIndex = count - 1
@@ -256,7 +256,7 @@ public extension Array {
     }
     
     /// 查找数组某范围内最大最小值
-    func peakValue(at range: NSRange, _ closure: (_ sender: Self.Element) -> Double) -> UPeakValue {
+    func peakValue(at range: NSRange, by closure: (_ sender: Self.Element) -> Double) -> UPeakValue {
         guard !isEmpty else { return .zero }
         var peakValue = UPeakValue.same(closure(self[range.location]))
         let lastIndex = NSMaxRange(range) - 1
@@ -274,7 +274,7 @@ public extension Array {
     
     /// 查找数组内最大值和最小值，忽略零值比较
     func ignoreZeroPeakValue(_ closure: (_ sender: Self.Element) -> Double) -> UPeakValue {
-        return filter({ !closure($0).isZero }) .peakValue(closure)
+        return filter({ !closure($0).isZero }) .peakValue(by: closure)
     }
 
     /// 查找数组某范围内最大最小值，忽略零值比较
@@ -285,12 +285,12 @@ public extension Array {
         for index in range.location..<length {
             value.append(self[index])
         }
-        return value.filter({ !closure($0).isZero }) .peakValue(closure)
+        return value.filter({ !closure($0).isZero }) .peakValue(by: closure)
     }
     
     /// 计算数组极值与参考值的最大跨度
     func spanValue(reference: Double, _ closure: (_ sender: Self.Element) -> Double) -> Double {
-        let peakValue = self.peakValue(closure)
+        let peakValue = self.peakValue(by: closure)
         guard peakValue.isValid else { return 0 }
         let value1 = fabs(peakValue.max - reference)
         let value2 = fabs(peakValue.min - reference)
@@ -302,7 +302,7 @@ public extension Array {
 public extension Date {
     
     /// 将Date转为分钟数，如 9:30 => 570
-    func toNumberOfMinutes() -> Int {
+    func minuteUnit() -> Int {
         var calendar = Calendar.current
         calendar.timeZone = NSTimeZone.local
         calendar.locale = .current
@@ -329,11 +329,24 @@ public extension Date {
     }
     
     /// 返回某个时间段的分钟数集
-    static func numberOfMinutesList(range: Range<Int>) -> [Int] {
-        var list = [Int]()
-        for idx in range {
-            list.append(idx)
+    static func minuteUnitRanges(_ ranges: ClosedRange<Int>...) -> [Int] {
+        /// 分时与分钟数对照：
+        /// 09:30 <=> 570
+        /// 10:00 <=> 600
+        /// 10:30 <=> 630
+        /// 11:00 <=> 660
+        /// 11:30 <=> 690
+        /// 13:00 <=> 780
+        /// 14:00 <=> 840
+        /// 14:30 <=> 870
+        /// 15:00 <=> 900
+        /// 15:05 <=> 905
+        /// 15:30 <=> 930
+        /// 16:00 <=> 960
+        var values = [Int]()
+        for range in ranges {
+            values.append(contentsOf: range.map({  $0 }))
         }
-        return list
+        return values
     }
 }

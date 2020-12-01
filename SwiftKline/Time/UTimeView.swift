@@ -201,17 +201,14 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         
 //        return
         let p = event.locationInWindow
-//        print("mouseMoved is: \(event.deltaY)")
         let vapp = convert(p, from: window!.contentView)
         
         var lp: CGPoint = .zero
         lp.x = vapp.x - meas.unionChartFrame.minX
         lp.y = vapp.y - meas.unionChartFrame.minY
         let index = xaxisToIndex(lp.x, shapeWidth: preference.shapeWidth, shapeSpacing: preference.shapeSpacing, count: dataList!.count)
-        print("index is: \(index)")
         
         let ppxxx = meas.xaixs(by: index)
-        print("ppxxx is: \(ppxxx)")
         let pppppp = CGPoint(x: ppxxx, y: vapp.y)
         
         let rectss = [meas.majorChartFrame, meas.minorChartFrame]
@@ -322,8 +319,6 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         calculated = UTimeCalculate(target: self)
         calculated.recalculate()
         
-        print(calculated.pricePeakValue)
-        
         updateChartLayout()
         
 //        clearChart()
@@ -347,7 +342,6 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
     public func clearChart() {
         backgroundColor = .lightGray
         
-        print("majorBriefFrame is: \(meas.majorBriefFrame)")
         majorXaxisLineLayer.path = NSBezierPath(rect: meas.majorChartFrame).cgPath
         majorXaxisLineLayer.fillColor = NSColor.orange.cgColor
         
@@ -643,6 +637,64 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         VOLRiseLayer.path = risePath
         VOLFallLayer.path = fallPath
         VOLFlatLayer.path = flatPath
+        
+        drawTimelines()
+    }
+    
+    func drawTimelines() {
+        
+        if
+            let allValues = preference.timelineAllMinutes,
+            let visibleValues = preference.timelineVisibleMinutes {
+            
+            guard visibleValues.count != preference.timelineVisibleTexts.count else {
+                return
+            }
+        
+            print("allValues is: \(allValues)")
+        } else {
+            
+        }
+        
+        let alist1 = [570, 630, 690, 840, 900]
+        
+        for (index, element) in dataList!.enumerated() {
+            if alist1.contains(element._date.minuteUnit()) {
+                
+            }
+        }
+        
+//        let ress = dataList!.filter({ (elem) -> Bool in
+//            return alist1.contains(elem._date.minuteUnit())
+//        })
+//
+//        for element in ress {
+//
+//            dataList!.firstIndex { (ss) -> Bool in
+//                element._date.toNumberOfMinutes() == ss._date.toNumberOfMinutes()
+//            }
+//        }
+        
+        
+        
+        for ele in dataList! {
+            
+        }
+        dataList!.forEach { (ds) in
+            ds._date.pk.dateComponents().hour
+        }
+        
+        
+        let array: [Any] = ["d", "a", "u", NSNull(), "K"]
+
+        for index in 0..<array.count {
+            let value = array[index]
+            print("value is: \(value)")
+            
+            if value is String {
+                print("string value is: \(value)")
+            }
+        }
     }
 }
 

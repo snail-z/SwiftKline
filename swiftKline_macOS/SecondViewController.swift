@@ -49,14 +49,8 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
 //        }
     
         
-        for idx in 0...10 {
-            queue2.sync {
-                print("idx is: \(idx)")
-                print("----current is: \(Thread.current)")
-            }
-        }
         
-        var butt = NSButton()
+        let butt = NSButton()
         butt.addObserver(self, forKeyPath: "font", options: .new, context: nil)
         
         
@@ -121,16 +115,6 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         timeView.layoutSubtreeIfNeeded()
         timeView.needsLayout = true
         
-        
-        let nowDate = Date.init()
-        let nm = nowDate.toNumberOfMinutes()
-        print("nm is: \(nm)")
-        
-        let ms1 = Date.minuteStringFrom(numberOfMinutes:65)
-        print("======================> ms1 is: \(ms1)")
-        
-        let ms2 = Date.minuteStringFrom(numberOfMinutes: 834)
-        print("======================> ms2 is: \(ms2)")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
     
@@ -197,13 +181,10 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
 //            let jsonArr = jsonData as! NSArray
             
             
+            
                 if let objectItems = Array<UTimeItem>.deserialize(from: result) {
                     if let vis = objectItems as? [UTimeItem] {
                         self.timeView.dataList = vis
-                        for it in vis {
-                            print("date is: \(it.date)")
-                            print("price is : \(it.price)")
-                        }
                     }
                     
                     
@@ -212,14 +193,28 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
                     preference.dateBarPosition = .bottom
                     preference.contentEdgeInsets = NSEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
                     preference.shapeSpacing = 0.5
-                    self.timeView.preference = preference
                     
-                    print("time viewis: \(self.timeView.frame)")
+                    preference.timelineAllMinutes = Date.minuteUnitRanges(570...690, 780...900)
+                    preference.timelineVisibleMinutes = [570, 780]
+                    
+                    
+                    self.timeView.preference = preference
                     self.timeView.drawChart()
                 }
         
         })
 
+        gonext("10:00")
+        gonext("10:30")
+        gonext("11:00")
+        gonext("14:00")
+        gonext("14:30")
+    }
+    
+    func gonext(_ string: String) {
+        let dda = Date.pk.date(fromString: string, format: "HH:mm")!
+        let mivalue = dda.minuteUnit()
+        print("\(string) <=> \(mivalue)")
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {

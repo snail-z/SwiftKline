@@ -88,7 +88,7 @@ internal class UTimeCalculate {
             let min = target.referenceSystem?._minVolume {
             return UPeakValue(max: max, min: min)
         } else {
-            return target.dataList!.peakValue({ $0._volume })
+            return target.dataList!.peakValue(by: { $0._volume })
         }
     }
     
@@ -96,7 +96,7 @@ internal class UTimeCalculate {
         guard let _ = target.dataList?.first?._leadRgbVolume else {
             return .zero
         }
-        return target.dataList!.peakValue({ $0._leadRgbVolume })
+        return target.dataList!.peakValue(by: { $0._leadRgbVolume })
     }
     
     internal init(target: UTimeView) {
