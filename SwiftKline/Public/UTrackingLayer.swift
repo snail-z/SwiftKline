@@ -82,7 +82,6 @@ open class UTrackingLineLayer: UBaseLayer {
     }
 }
 
-
 open class UTrackingWidgetLayer: UBaseLayer {
     
     /// 绘制区边界
@@ -187,7 +186,6 @@ open class UTrackingWidgetLayer: UBaseLayer {
         return textLayer
     }
 }
-
 
 public struct UTrackingTooltipItem {
     

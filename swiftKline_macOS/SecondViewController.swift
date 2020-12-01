@@ -204,11 +204,12 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         
         })
 
-        gonext("10:00")
-        gonext("10:30")
-        gonext("11:00")
-        gonext("14:00")
-        gonext("14:30")
+        let lay = UBreathinglightLayer()
+        lay.backgroundColor = NSColor.lightGray.cgColor
+        lay.frame = CGRect(x: 370, y: 50, width: 50, height: 50)
+        timeView.baseLayer.addSublayer(lay)
+        
+        lay.startAnimating()
     }
     
     func gonext(_ string: String) {

@@ -24,11 +24,17 @@ import Cocoa
         initialization()
     }
     
-    private(set) var baseLayer: UBaseLayer!
+    public var baseLayer: UBaseLayer {
+        get {
+            return backedLayer
+        }
+    }
+    
+    private var backedLayer: UBaseLayer!
     
     internal func initialization() {
-        baseLayer = UBaseLayer()
-        layer = baseLayer
+        backedLayer = UBaseLayer()
+        layer = backedLayer
     }
     
     public var backgroundColor: NSColor? {

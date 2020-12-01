@@ -316,15 +316,15 @@ public extension Date {
     }
     
     /// 将分钟数转为Date(HH:mm格式)，如 570 => 9:30
-    static func dateFrom(numberOfMinutes: Int) -> Date? {
-        let dateString = minuteStringFrom(numberOfMinutes: numberOfMinutes)
+    static func minuteDate(from minuteUnit: Int) -> Date? {
+        let dateString = minuteString(from: minuteUnit)
         return Date.pk.date(fromString: dateString, format: "HH:mm")
     }
     
     /// 将分钟数转为分钟字符串
-    static func minuteStringFrom(numberOfMinutes: Int) -> String {
-        let hour = String(format: "%.2ld", numberOfMinutes / 60)
-        let mins = String(format: "%.2ld", numberOfMinutes % 60)
+    static func minuteString(from minuteUnit: Int) -> String {
+        let hour = String(format: "%.2ld", minuteUnit / 60)
+        let mins = String(format: "%.2ld", minuteUnit % 60)
         return hour + ":" + mins
     }
     

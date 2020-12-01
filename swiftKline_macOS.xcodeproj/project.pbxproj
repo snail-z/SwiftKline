@@ -73,6 +73,12 @@
 		61B0F4DA256FA74B005E2C1A /* String+PKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B0F4D9256FA74B005E2C1A /* String+PKExtensions.swift */; };
 		61B0F4DC256FA880005E2C1A /* Double+PKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B0F4DB256FA87F005E2C1A /* Double+PKExtensions.swift */; };
 		61B0F4DE256FAA6C005E2C1A /* Array+PKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B0F4DD256FAA6C005E2C1A /* Array+PKExtensions.swift */; };
+		61B86AE0257640B90005CD0D /* UBreathinglightLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86ADF257640B90005CD0D /* UBreathinglightLayer.swift */; };
+		61B86AE4257665AB0005CD0D /* UKlinePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86AE3257665AB0005CD0D /* UKlinePreferences.swift */; };
+		61B86AE6257665E10005CD0D /* UKlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86AE5257665E10005CD0D /* UKlineView.swift */; };
+		61B86AE8257665F70005CD0D /* UKlineViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86AE7257665F70005CD0D /* UKlineViewInterface.swift */; };
+		61B86AEA257666BB0005CD0D /* UKlineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86AE9257666BB0005CD0D /* UKlineProtocol.swift */; };
+		61B86AF0257667990005CD0D /* UKlineCalculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86AEF257667990005CD0D /* UKlineCalculate.swift */; };
 		61D1912E255A723C00217C76 /* WakaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1912D255A723C00217C76 /* WakaCell.swift */; };
 		61D19130255A766300217C76 /* AKViewcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61D1912F255A766300217C76 /* AKViewcell.xib */; };
 		61F017A7255BC43A0003119A /* UBaseLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F017A6255BC43A0003119A /* UBaseLayer.swift */; };
@@ -174,6 +180,12 @@
 		61B0F4D9256FA74B005E2C1A /* String+PKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+PKExtensions.swift"; sourceTree = "<group>"; };
 		61B0F4DB256FA87F005E2C1A /* Double+PKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+PKExtensions.swift"; sourceTree = "<group>"; };
 		61B0F4DD256FAA6C005E2C1A /* Array+PKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+PKExtensions.swift"; sourceTree = "<group>"; };
+		61B86ADF257640B90005CD0D /* UBreathinglightLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBreathinglightLayer.swift; sourceTree = "<group>"; };
+		61B86AE3257665AB0005CD0D /* UKlinePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UKlinePreferences.swift; sourceTree = "<group>"; };
+		61B86AE5257665E10005CD0D /* UKlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UKlineView.swift; sourceTree = "<group>"; };
+		61B86AE7257665F70005CD0D /* UKlineViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UKlineViewInterface.swift; sourceTree = "<group>"; };
+		61B86AE9257666BB0005CD0D /* UKlineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UKlineProtocol.swift; sourceTree = "<group>"; };
+		61B86AEF257667990005CD0D /* UKlineCalculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UKlineCalculate.swift; sourceTree = "<group>"; };
 		61D1912D255A723C00217C76 /* WakaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakaCell.swift; sourceTree = "<group>"; };
 		61D1912F255A766300217C76 /* AKViewcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AKViewcell.xib; sourceTree = "<group>"; };
 		61F017A6255BC43A0003119A /* UBaseLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBaseLayer.swift; sourceTree = "<group>"; };
@@ -346,26 +358,27 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		61555C6B255BDF0400C75C54 /* Common */ = {
+		61555C6B255BDF0400C75C54 /* Public */ = {
 			isa = PBXGroup;
 			children = (
 				61F017A6255BC43A0003119A /* UBaseLayer.swift */,
 				61F017A8255BC4930003119A /* UBaseView.swift */,
+				61B86ADF257640B90005CD0D /* UBreathinglightLayer.swift */,
 				615C7256255D17E000CD141E /* UGradientLayer.swift */,
 				61F017AE255BC5DD0003119A /* UShapeLayer.swift */,
 				61F017AF255BC5DD0003119A /* UTextLayer.swift */,
 				6171186025625AC900ACCCFA /* UTrackingLayer.swift */,
 			);
-			path = Common;
+			path = Public;
 			sourceTree = "<group>";
 		};
 		615C723F255CC4B000CD141E /* Time */ = {
 			isa = PBXGroup;
 			children = (
+				615C7240255CC84600CD141E /* UTimeProtocol.swift */,
 				615C7242255CC84700CD141E /* UTimeCalculate.swift */,
 				615C7254255CD48C00CD141E /* UTimeMeasurement.swift */,
 				615C7241255CC84600CD141E /* UTimePreferences.swift */,
-				615C7240255CC84600CD141E /* UTimeProtocol.swift */,
 				61F017AC255BC5100003119A /* UTimeView.swift */,
 				615C7258255D2C1B00CD141E /* UTimeViewInterface.swift */,
 			);
@@ -423,12 +436,25 @@
 			path = controllers;
 			sourceTree = "<group>";
 		};
+		61B86AE12576639E0005CD0D /* KLine */ = {
+			isa = PBXGroup;
+			children = (
+				61B86AE9257666BB0005CD0D /* UKlineProtocol.swift */,
+				61B86AEF257667990005CD0D /* UKlineCalculate.swift */,
+				61B86AE3257665AB0005CD0D /* UKlinePreferences.swift */,
+				61B86AE5257665E10005CD0D /* UKlineView.swift */,
+				61B86AE7257665F70005CD0D /* UKlineViewInterface.swift */,
+			);
+			path = KLine;
+			sourceTree = "<group>";
+		};
 		61F017A5255BC41F0003119A /* SwiftKline */ = {
 			isa = PBXGroup;
 			children = (
 				61555C66255BDBCA00C75C54 /* Extension */,
-				61555C6B255BDF0400C75C54 /* Common */,
+				61555C6B255BDF0400C75C54 /* Public */,
 				615C723F255CC4B000CD141E /* Time */,
+				61B86AE12576639E0005CD0D /* KLine */,
 			);
 			path = SwiftKline;
 			sourceTree = "<group>";
@@ -610,8 +636,10 @@
 				6111EDE3256FC7E20093F6A8 /* PKExtensions.swift in Sources */,
 				6111EE10257093DE0093F6A8 /* NSUIColor+PKExtensions.swift in Sources */,
 				614FE34325592C5A00FBE6AB /* UTimeLayerOverlaps.swift in Sources */,
+				61B86AE8257665F70005CD0D /* UKlineViewInterface.swift in Sources */,
 				61B0F4DA256FA74B005E2C1A /* String+PKExtensions.swift in Sources */,
 				6111EE3B2570B0410093F6A8 /* UIView+PKExtensions.swift in Sources */,
+				61B86AE6257665E10005CD0D /* UKlineView.swift in Sources */,
 				61B0F4DC256FA880005E2C1A /* Double+PKExtensions.swift in Sources */,
 				6111EE232570A5680093F6A8 /* UIImage+PKExtensions.swift in Sources */,
 				614FE3412559118300FBE6AB /* NSAttributedString+PKExtensionsl.swift in Sources */,
@@ -622,17 +650,21 @@
 				61097F4525553348004AF81C /* SecondViewController.swift in Sources */,
 				61555C68255BDC5600C75C54 /* SwiftKlineExtensions.swift in Sources */,
 				6111EE1A2570A09B0093F6A8 /* UIAlertController+PKExtensions.swift in Sources */,
+				61B86AE4257665AB0005CD0D /* UKlinePreferences.swift in Sources */,
 				6111EE362570B0410093F6A8 /* UIView+PKToast.swift in Sources */,
 				6111EE0C25708C0C0093F6A8 /* NSUIBezierPath+PKExtensions.swift in Sources */,
 				61F017A9255BC4930003119A /* UBaseView.swift in Sources */,
 				6111EE0A2570879A0093F6A8 /* NSUIApplication+PKExtensions.swift in Sources */,
 				6111EDE1256FC7870093F6A8 /* CGGeometry+PKExtensions.swift in Sources */,
+				61B86AE0257640B90005CD0D /* UBreathinglightLayer.swift in Sources */,
 				6111EE182570A0290093F6A8 /* UIDevice+PKExtensions.swift in Sources */,
 				6111EE3D2570B0410093F6A8 /* UITableView+PKExtensions.swift in Sources */,
+				61B86AEA257666BB0005CD0D /* UKlineProtocol.swift in Sources */,
 				6111EE282570AF3E0093F6A8 /* UINavigationController+PKExtensions.swift in Sources */,
 				6111EDDF256FC71B0093F6A8 /* CALayer+PKExtensions.swift in Sources */,
 				61097ED22554F178004AF81C /* ViewController.swift in Sources */,
 				6111EDE5256FC9BD0093F6A8 /* UIScreen+PKExtensions.swift in Sources */,
+				61B86AF0257667990005CD0D /* UKlineCalculate.swift in Sources */,
 				61B0F4D8256FA635005E2C1A /* Date+PKExtensions.swift in Sources */,
 				6111EE272570AF3E0093F6A8 /* UINavigationBar+PKExtensions.swift in Sources */,
 				615C7255255CD48C00CD141E /* UTimeMeasurement.swift in Sources */,

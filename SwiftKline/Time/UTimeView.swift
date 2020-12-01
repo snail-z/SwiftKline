@@ -208,7 +208,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         lp.y = vapp.y - meas.unionChartFrame.minY
         let index = xaxisToIndex(lp.x, shapeWidth: preference.shapeWidth, shapeSpacing: preference.shapeSpacing, count: dataList!.count)
         
-        let ppxxx = meas.xaixs(by: index)
+        let ppxxx = meas.midxaixs(by: index)
         let pppppp = CGPoint(x: ppxxx, y: vapp.y)
         
         let rectss = [meas.majorChartFrame, meas.minorChartFrame]
@@ -533,7 +533,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         path2.move(to: CGPoint(x: meas.majorChartFrame.minX, y: averageY))
     
         for (index, element) in dataList!.enumerated() {
-            let centerX = meas.xaixs(by: index)
+            let centerX = meas.midxaixs(by: index)
             let latestValue = calculated.pricePeakValue.limited(element._latestPrice)
             let averageValue = calculated.pricePeakValue.limited(element._averagePrice)
             let latestY = yaxis(latestValue)
@@ -549,7 +549,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         trendLineLayer.path = path1
         trendAverageLineLayer.path = path2
         
-        let endX = meas.xaixs(by: dataList!.count - 1)
+        let endX = meas.midxaixs(by: dataList!.count - 1)
         /// 绘制走势渐变填充
         let fillPath = CGMutablePath.init()
         fillPath.addPath(path1)
@@ -656,13 +656,25 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
             
         }
         
-        let alist1 = [570, 630, 690, 840, 900]
+        let alist1 = [570, 630, 650, 660, 900]
         
+        var mudIndexset = IndexSet.init()
         for (index, element) in dataList!.enumerated() {
             if alist1.contains(element._date.minuteUnit()) {
-                
+                mudIndexset.insert(index)
             }
         }
+        
+        let path = CGMutablePath()
+        for idx in mudIndexset {
+            let x = meas.midxaixs(by: idx)
+            path.move(to: CGPoint(x: x, y: meas.majorChartFrame.minY))
+            path.addLine(to: CGPoint(x: x, y: meas.majorChartFrame.maxY))
+            path.move(to: CGPoint(x: x, y: meas.minorChartFrame.minY))
+            path.addLine(to: CGPoint(x: x, y: meas.minorChartFrame.maxY))
+        }
+        
+        dateLineLayer.path = path
         
 //        let ress = dataList!.filter({ (elem) -> Bool in
 //            return alist1.contains(elem._date.minuteUnit())

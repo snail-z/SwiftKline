@@ -69,14 +69,14 @@ public extension UTimeMeasurement {
     
     
     /// 获取某个下标对应的横轴中心位置
-    func xaixs(by index: Int) -> CGFloat {
+    func midxaixs(by index: Int) -> CGFloat {
         let centerX = (shapeWidth + shapeSpacing) * CGFloat(index) + shapeWidth * 0.5
         return centerX + majorChartFrame.minX
     }
     
     /// 获取某个下标对应的横轴起始位置
     func minxaixs(by index: Int) -> CGFloat {
-        return xaixs(by: index) - shapeWidth * 0.5
+        return midxaixs(by: index) - shapeWidth * 0.5
     }
     
     
