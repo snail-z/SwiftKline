@@ -11,11 +11,10 @@ import Cocoa
 open class UTimePreferences {
 
     /// 分时图走势类别
-    public enum TrendCategory: Int {
-        /// 单日分时走势
-        case oneday = 1
-        /// 五日分时走势
-        case fiveDays = 5
+    public enum TrendCategory {
+        
+        /// 单日分时走势，五日分时走势
+        case oneday, fiveDays
     }
 
     /// 走势类别

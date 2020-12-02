@@ -8,12 +8,45 @@
 
 import Cocoa
 
-class UKlineProtocol: NSView {
-
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        // Drawing code here.
-    }
+/// K线走势数据源
+public protocol UKlineDataSource {
     
+    /// 开盘价
+    var _openPrice: Double { get }
+
+    /// 最高价
+    var _highPrice: Double { get }
+    
+    /// 最低价
+    var _lowPrice: Double { get }
+    
+    /// 收盘价
+    var _closePrice: Double { get }
+    
+    /// 成交量
+    var _volume: Double { get }
+    
+    /// 日期
+    var _date: Date { get }
+    
+    /// 均价
+    var _averagePrice: Double { get }
+
+    /// 成交额
+    var _turnover: Double { get }
+    
+    /// 昨收价
+    var _preClosePrice: Double { get }
+}
+
+public extension UKlineDataSource {
+    
+    /// 均价
+    var _averagePrice: Double { return 0 }
+
+    /// 成交额
+    var _turnover: Double { return 0 }
+    
+    /// 昨收价
+    var _preClosePrice: Double { return 0 }
 }

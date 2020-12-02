@@ -175,41 +175,26 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
                 return
             }
             
-//            let url = URL.init(fileURLWithPath: path!)
-//            let data = try! Data(contentsOf: url)
-//            let jsonData:Any = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
-//            let jsonArr = jsonData as! NSArray
-            
-            
-            
-                if let objectItems = Array<UTimeItem>.deserialize(from: result) {
-                    if let vis = objectItems as? [UTimeItem] {
-                        self.timeView.dataList = vis
-                    }
-                    
-                    
-                    let preference = UTimePreferences()
-                    preference.maximumNumberOfEntries = 242
-                    preference.dateBarPosition = .bottom
-                    preference.contentEdgeInsets = NSEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
-                    preference.shapeSpacing = 0.5
-                    
-                    preference.timelineAllMinutes = Date.minuteUnitRanges(570...690, 780...900)
-                    preference.timelineVisibleMinutes = [570, 780]
-                    
-                    
-                    self.timeView.preference = preference
-                    self.timeView.drawChart()
-                }
-        
+//                if let objectItems = Array<UTimeItem>.deserialize(from: result) {
+//                    if let vis = objectItems as? [UTimeItem] {
+//                        self.timeView.dataList = vis
+//                    }
+//
+//
+//                    let preference = UTimePreferences()
+//                    preference.maximumNumberOfEntries = 242
+//                    preference.dateBarPosition = .bottom
+//                    preference.contentEdgeInsets = NSEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
+//                    preference.shapeSpacing = 0.5
+//
+//                    preference.timelineAllMinutes = Date.minuteUnitRanges(570...690, 780...900)
+//                    preference.timelineVisibleMinutes = [570, 780]
+//
+//
+//                    self.timeView.preference = preference
+//                    self.timeView.drawChart()
+//                }
         })
-
-        let lay = UBreathinglightLayer()
-        lay.backgroundColor = NSColor.lightGray.cgColor
-        lay.frame = CGRect(x: 370, y: 50, width: 50, height: 50)
-        timeView.baseLayer.addSublayer(lay)
-        
-        lay.startAnimating()
     }
     
     func gonext(_ string: String) {
@@ -252,15 +237,44 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
     
     
     
+    var ascrollView: NSScrollView!
+    var docView: UBaseView!
     
-    
+    func testDemo2() {
+        ascrollView = NSScrollView()
+        ascrollView.scrollerStyle = .legacy
+        ascrollView.hasHorizontalRuler = true
+        ascrollView.hasVerticalRuler = true
+        ascrollView.hasHorizontalRuler = true
+        ascrollView.horizontalScroller?.alphaValue = 1
+        ascrollView.scrollerKnobStyle = .light
+        ascrollView.horizontalScrollElasticity = .automatic
+        ascrollView.verticalScrollElasticity = .automatic
+        
+        
+        docView = UBaseView.init()
+        docView.frame = CGRect.init(x: 0, y: 0, width: 2000, height: 100)
+        docView.backgroundColor = .yellow
+        
+        
+//        scrollView.frame = CGRect(x: 200, y: 200, width: 1400, height: 300)
+        ascrollView.backgroundColor = .orange
+        
+        view.addSubview(ascrollView)
+        ascrollView.frame = CGRect(x: 100, y: 100, width: 500, height: 300)
+        ascrollView.documentView = docView
+        
+    }
     
 //========================================================================
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        testDemo()
+//        testDemo()
+        testDemo2()
         // Do view setup here.
 //        print("view is: \(view)")
 //        nameView = WakaView.init()

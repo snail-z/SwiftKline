@@ -8,7 +8,7 @@
 
 import Cocoa
 
-/// 走势数据源
+/// 分时走势数据源
 public protocol UTimeDataSource {
     
     /// 最新价
