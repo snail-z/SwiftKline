@@ -10,17 +10,17 @@ import Cocoa
 
 internal class UKlineCalculate {
     
-    /// 获取绘制范围和需要计算的数据范围
-    func shouldDrawRange() -> NSRange {
+    /// 需要绘制的数据范围
+    func rangeOfDrawn() -> NSRange {
         
         // 获取滚动视图的水平偏移量
-        let currentOffsetX = target.scrollView.contentView.bounds.origin.x - target.scrollView.frame.origin.x
+        let offsetX = target.scrollView.contentView.bounds.origin.x - target.scrollView.frame.origin.x
         
         // 蜡烛图的单个宽度和间距
-        let spacingAndWidth = target.meas.shapeWidth + target.meas.shapeSpacing
+        let oneWidth = target.meas.shapeWidth + target.meas.shapeSpacing
         
         // 当前滚动位置对应的数据量下标
-        var index = Int(round(currentOffsetX / spacingAndWidth))
+        var index = Int(round(offsetX / oneWidth))
         
         // 可视范围内需要绘制的蜡烛图数量
         var length = target.preference.numberOfKlines
@@ -42,6 +42,22 @@ internal class UKlineCalculate {
         return range
     }
 
+    /// 需要计算的数据范围
+    func rangeOfCalculated() -> NSRange {
+        
+        // 获取滚动视图的水平偏移量
+        let offsetX = target.scrollView.contentView.bounds.origin.x - target.scrollView.frame.origin.x
+        
+        // 蜡烛图的单个宽度和间距
+        let oneWidth = target.meas.shapeWidth + target.meas.shapeSpacing
+        
+        // 当前滚动位置对应的数据量下标 (可以画出多少根K线)
+        var index = Int(round(offsetX / oneWidth))
+        
+        
+        return NSRange.init(location: 0, length: 0)
+    }
+    
     internal init(target: UKlineView) {
         self.target = target
     }
