@@ -365,3 +365,18 @@ extension NSScrollView {
         }
     }
 }
+
+public extension CGRect {
+    
+    init(origin: CGPoint, width: CGFloat, height: CGFloat) {
+        self.init(origin: origin, size: CGSize(width: width, height: height))
+    }
+
+    init(origin: CGPoint, width: Double, height: Double) {
+        self.init(origin: origin, size: CGSize(width: width, height: height))
+    }
+
+    init(origin: CGPoint, width: Int, height: Int) {
+        self.init(origin: origin, size: CGSize(width: width, height: height))
+    }
+}

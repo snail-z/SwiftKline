@@ -79,6 +79,9 @@
 		61B86AE8257665F70005CD0D /* UKlineViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86AE7257665F70005CD0D /* UKlineViewInterface.swift */; };
 		61B86AEA257666BB0005CD0D /* UKlineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86AE9257666BB0005CD0D /* UKlineProtocol.swift */; };
 		61B86AF0257667990005CD0D /* UKlineCalculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86AEF257667990005CD0D /* UKlineCalculate.swift */; };
+		61B86AF22578B4860005CD0D /* UKlineMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B86AF12578B4860005CD0D /* UKlineMeasurement.swift */; };
+		61B86AF52578C4020005CD0D /* 600887_append.json in Resources */ = {isa = PBXBuildFile; fileRef = 61B86AF32578C4020005CD0D /* 600887_append.json */; };
+		61B86AF62578C4020005CD0D /* 600887_kdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 61B86AF42578C4020005CD0D /* 600887_kdata.json */; };
 		61D1912E255A723C00217C76 /* WakaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1912D255A723C00217C76 /* WakaCell.swift */; };
 		61D19130255A766300217C76 /* AKViewcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61D1912F255A766300217C76 /* AKViewcell.xib */; };
 		61F017A7255BC43A0003119A /* UBaseLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F017A6255BC43A0003119A /* UBaseLayer.swift */; };
@@ -186,6 +189,9 @@
 		61B86AE7257665F70005CD0D /* UKlineViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UKlineViewInterface.swift; sourceTree = "<group>"; };
 		61B86AE9257666BB0005CD0D /* UKlineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UKlineProtocol.swift; sourceTree = "<group>"; };
 		61B86AEF257667990005CD0D /* UKlineCalculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UKlineCalculate.swift; sourceTree = "<group>"; };
+		61B86AF12578B4860005CD0D /* UKlineMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UKlineMeasurement.swift; sourceTree = "<group>"; };
+		61B86AF32578C4020005CD0D /* 600887_append.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_append.json; sourceTree = "<group>"; };
+		61B86AF42578C4020005CD0D /* 600887_kdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_kdata.json; sourceTree = "<group>"; };
 		61D1912D255A723C00217C76 /* WakaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakaCell.swift; sourceTree = "<group>"; };
 		61D1912F255A766300217C76 /* AKViewcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AKViewcell.xib; sourceTree = "<group>"; };
 		61F017A6255BC43A0003119A /* UBaseLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBaseLayer.swift; sourceTree = "<group>"; };
@@ -397,6 +403,8 @@
 		615C7249255CCC6D00CD141E /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				61B86AF32578C4020005CD0D /* 600887_append.json */,
+				61B86AF42578C4020005CD0D /* 600887_kdata.json */,
 				61B0F4D5256F7EA8005E2C1A /* time_chart_data.json */,
 				615C724A255CCD4400CD141E /* times_data.plist */,
 			);
@@ -441,6 +449,7 @@
 			children = (
 				61B86AE9257666BB0005CD0D /* UKlineProtocol.swift */,
 				61B86AEF257667990005CD0D /* UKlineCalculate.swift */,
+				61B86AF12578B4860005CD0D /* UKlineMeasurement.swift */,
 				61B86AE3257665AB0005CD0D /* UKlinePreferences.swift */,
 				61B86AE5257665E10005CD0D /* UKlineView.swift */,
 				61B86AE7257665F70005CD0D /* UKlineViewInterface.swift */,
@@ -573,7 +582,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61B86AF52578C4020005CD0D /* 600887_append.json in Resources */,
 				61097ED42554F17A004AF81C /* Assets.xcassets in Resources */,
+				61B86AF62578C4020005CD0D /* 600887_kdata.json in Resources */,
 				61B0F4D6256F7EA8005E2C1A /* time_chart_data.json in Resources */,
 				615C724B255CCD4500CD141E /* times_data.plist in Resources */,
 				61097ED72554F17A004AF81C /* Main.storyboard in Resources */,
@@ -657,6 +668,7 @@
 				6111EE0A2570879A0093F6A8 /* NSUIApplication+PKExtensions.swift in Sources */,
 				6111EDE1256FC7870093F6A8 /* CGGeometry+PKExtensions.swift in Sources */,
 				61B86AE0257640B90005CD0D /* UBreathinglightLayer.swift in Sources */,
+				61B86AF22578B4860005CD0D /* UKlineMeasurement.swift in Sources */,
 				6111EE182570A0290093F6A8 /* UIDevice+PKExtensions.swift in Sources */,
 				6111EE3D2570B0410093F6A8 /* UITableView+PKExtensions.swift in Sources */,
 				61B86AEA257666BB0005CD0D /* UKlineProtocol.swift in Sources */,

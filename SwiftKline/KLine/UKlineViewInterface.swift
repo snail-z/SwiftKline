@@ -8,12 +8,17 @@
 
 import Cocoa
 
-open class UKlineViewInterface: NSView {
-
-    func kssd() {
-        
-    }
+public protocol UKlineViewInterface {
+    
+    /// 设置K线图样式
+    var preference: UKlinePreferences! { get set }
+    
+    /// 设置走势数据
+    var dataList: [UKlineDataSource]! { get set }
+    
+    /// 绘制图表数据
+    func drawChart()
+    
+    /// 清空图表数据
+    func clearChart()
 }
-
-
-

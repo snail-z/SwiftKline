@@ -27,7 +27,10 @@ public protocol UKlineDataSource {
     var _volume: Double { get }
     
     /// 日期
-    var _date: Date { get }
+    var _date: Date? { get }
+    
+    /// 日期文本
+    var _dateText: String? { get }
     
     /// 均价
     var _averagePrice: Double { get }
@@ -40,6 +43,12 @@ public protocol UKlineDataSource {
 }
 
 public extension UKlineDataSource {
+    
+    /// 日期
+    var _date: Date? { return nil }
+    
+    /// 日期文本
+    var _dateText: String? { return nil }
     
     /// 均价
     var _averagePrice: Double { return 0 }

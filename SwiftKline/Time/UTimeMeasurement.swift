@@ -98,18 +98,6 @@ public extension UTimeMeasurement {
         return 9
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func makeXaxisClosure() {
         let pe = UPeakValue.init(max: 190, min: 9)
         let rect = CGRect(x: 0, y: 0, width: 10, height: 1)

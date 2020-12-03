@@ -9,6 +9,16 @@
 import Cocoa
 import QuartzCore
 
+class MySScroller: NSScroller {
+    override func drawKnob() {
+        super.drawKnob()
+        let knobRect = NSInsetRect(self.rect(for: .knob), 3, 0)
+        let path1 = NSUIBezierPath.init(roundedRect: knobRect, xRadius: 3, yRadius: 3)
+        NSColor.red.set()
+        path1.fill()
+    }
+}
+
 class SecondViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
     var _dataArray: [String]!
@@ -240,20 +250,51 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
     var ascrollView: NSScrollView!
     var docView: UBaseView!
     
+    var klineView: UKlineView!
+    
+    func testDemo3() {
+        klineView = UKlineView.init()
+        klineView.backgroundColor = .brown
+        view.addSubview(klineView)
+        klineView.frame = CGRect(x: 50, y: 50, width: 700, height: 500)
+        
+        let path = Bundle.main.path(forResource: "600887_kdata", ofType: "json")
+
+        guard let result = path?.pk.toJSONArray() else {
+            return
+        }
+    
+        if let objectItems = Array<UKLineItem>.deserialize(from: result) {
+            if let valuss = objectItems as? [UKLineItem] {
+                klineView.dataList = valuss
+                klineView.drawChart()
+            }
+        }
+    }
+    
     func testDemo2() {
         ascrollView = NSScrollView()
-        ascrollView.scrollerStyle = .legacy
-        ascrollView.hasHorizontalRuler = true
-        ascrollView.hasVerticalRuler = true
-        ascrollView.hasHorizontalRuler = true
+        
+//        ascrollView.hasHorizontalRuler = true
+//        ascrollView.hasVerticalRuler = true
+//        ascrollView.hasHorizontalRuler = true
+        ascrollView.hasHorizontalScroller = true
+        ascrollView.hasVerticalScroller = true
         ascrollView.horizontalScroller?.alphaValue = 1
-        ascrollView.scrollerKnobStyle = .light
+        
+        ascrollView.scrollerInsets = NSUIEdgeInsets.init(top: 2, left: 2, bottom: 2, right: 2)
+//        ascrollView.contentInsets = NSUIEdgeInsets.pk.make(same: 10)
         ascrollView.horizontalScrollElasticity = .automatic
         ascrollView.verticalScrollElasticity = .automatic
+        ascrollView.borderType = .lineBorder
+//        ascrollView.autohidesScrollers = true
         
+        ascrollView.verticalScroller = MySScroller.init()
+        ascrollView.scrollerStyle = .legacy
+        ascrollView.scrollerKnobStyle = .dark
         
         docView = UBaseView.init()
-        docView.frame = CGRect.init(x: 0, y: 0, width: 2000, height: 100)
+        docView.frame = CGRect.init(x: 0, y: 0, width: 2000, height: 1000)
         docView.backgroundColor = .yellow
         
         
@@ -274,7 +315,9 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         super.viewDidLoad()
         
 //        testDemo()
-        testDemo2()
+//        testDemo2()
+        testDemo3()
+        
         // Do view setup here.
 //        print("view is: \(view)")
 //        nameView = WakaView.init()
