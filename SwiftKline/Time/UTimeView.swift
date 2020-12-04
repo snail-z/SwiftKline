@@ -450,13 +450,13 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
     /// 绘制主图区横轴线
     private func updateMajorXlines() {
         let leftValues = calculated.pricePeakValue
-            .takeXaxisLine(preference.majorNumberOfLines) { (_, doubleValue) -> String in
-                return String(format: "%.*lf", preference.decimalKeepPlace, doubleValue)
-        }
+            .fragments(by: preference.majorNumberOfLines, { (_, doubleValue) -> String in
+            return String(format: "%.*lf", preference.decimalKeepPlace, doubleValue)
+        })
         
         let rightValues = calculated.changeRatePeakValue
-            .takeXaxisLine(preference.majorNumberOfLines) { (_, doubleValue) -> String in
-                return String(format: "%.*lf", 6, doubleValue)
+            .fragments(by: preference.majorNumberOfLines) { (_, doubleValue) -> String in
+            return String(format: "%.*lf", 6, doubleValue)
         }
         
         // 横轴线间距

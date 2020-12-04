@@ -119,17 +119,17 @@ public extension UPeakValue {
 
 public extension UPeakValue {
     
-    /// 将极值转为绘图区横坐标线
-    func takeXaxisLine(_ n: Int) -> [String] {
-        return takeXaxisLine(n) { (_, value) -> String in String(format: "%.2f", value) }
+    /// 将极值等分段对应到绘图区横坐标
+    func fragments(by lines: Int) -> [String] {
+        return fragments(by: lines, { (_, value) -> String in String(format: "%.2f", value) })
     }
     
     /// 将极值转为绘图区横坐标线 (自定义内容)
-    func takeXaxisLine(_ n: Int, _ closure: (_ index: Int, _ value: Double) -> String) -> [String] {
-        let numberOfSegments = Swift.max(2, n) - 1
-        let equalValue = fabs(max - min) / Double(numberOfSegments)
+    func fragments(by lines: Int, _ closure: (_ index: Int, _ value: Double) -> String) -> [String] {
+        let fragments = Swift.max(2, lines) - 1
+        let equalValue = fabs(max - min) / Double(fragments)
         var axisValues = [String]()
-        for index in 0...numberOfSegments {
+        for index in 0...fragments {
             let value = max - equalValue * Double(index)
             axisValues.append(closure(index, value))
         }
