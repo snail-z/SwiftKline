@@ -14,13 +14,18 @@ public struct UPeakValue {
     public var min: Double
 }
 
+/// 极大极小值及对应的索引 (带索引的极值)
+public struct UPeakIndexValue {
+    public var max: (index: Int, value: Double)
+    public var min: (index: Int, value: Double)
+}
+
 /// K线图形状
 public struct UCandleShape {
     public var top: CGPoint
     public var rect: CGRect
     public var bottom: CGPoint
 }
-
 
 
 /// 将某个数值转为绘图区对应的位置

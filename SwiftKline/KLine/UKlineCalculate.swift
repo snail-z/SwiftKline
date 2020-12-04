@@ -42,7 +42,7 @@ internal class UKlineCalculate {
         return range
     }
 
-    /// 需要计算的数据范围
+    /// 需要计算的数据范围 (真实的可视范围)
     func rangeOfCalculated() -> NSRange {
         
         // 获取滚动视图的水平偏移量
@@ -54,9 +54,49 @@ internal class UKlineCalculate {
         // 当前滚动位置对应的数据量下标 (可以画出多少根K线)
         var index = Int(round(offsetX / oneWidth))
         
+        // 将下标控制在数据量之内，防止越界
+        index = min(target.dataList.count, max(0, index))
         
-        return NSRange.init(location: 0, length: 0)
+        // 获取对应的数据范围
+        var range = NSRange(location: index, length: target.preference.numberOfKlines)
+        
+        // 如果范围超过实际数据量，则取有效数据长度
+        if NSMaxRange(range) > target.dataList.count {
+            range.length = target.dataList.count - range.location
+        }
+        
+        // 如果滚动视图拖动到边界以外，则取有效边界内数据
+        if target.scrollView.contentView.documentVisibleRect.origin.x < 0,
+            target.scrollView.contentView.documentRect.width > target.meas.majorChartFrame.width {
+            let visibleX = abs(target.scrollView.contentView.documentVisibleRect.origin.x)
+            range.length -= Int(round(visibleX / oneWidth))
+        }
+
+        return range
     }
+    
+    func peakIndexValue(at range: NSRange, broken: Bool) -> UPeakIndexValue {
+        guard !target.dataList.isEmpty else {
+            return .zero
+        }
+        
+        var maxTuple: (index: Int, value: Double) = (0, .greatestFiniteMagnitude)
+        var minTuple: (index: Int, value: Double) = (0, .greatestFiniteMagnitude)
+        
+        target.dataList.forEach(at: range) { (element) in
+            if element._closePrice > maxTuple.value {
+                maxTuple.value = element._closePrice
+//                maxTuple.index = element
+            }
+            
+            if element._closePrice < minTuple.value {
+                
+            }
+        }
+        
+        return .zero
+    }
+    
     
     internal init(target: UKlineView) {
         self.target = target

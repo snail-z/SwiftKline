@@ -40,6 +40,9 @@ open class UKlineView: UKlineBase, UKlineViewInterface {
         scrollView.documentSize = CGSize(width: contentWidth, height: scrollView.frame.height)
         print("scrollView documentSize is: \(scrollView.documentSize)")
         
+        print("scrollView contentView is: \(scrollView.contentView)")
+        print("scrollView documentSize is: \(scrollView.documentView)")
+
         scrollView.contentView.postsBoundsChangedNotifications = true
         NotificationCenter.default.addObserver(self, selector: #selector(boundsChange), name: NSView.boundsDidChangeNotification, object: scrollView.contentView)
         
@@ -57,8 +60,14 @@ open class UKlineView: UKlineBase, UKlineViewInterface {
         
         if let cliV = noti.object as? NSClipView {
             print("boundsChange==> \(cliV.documentVisibleRect)")
-            
+            print("boundsChange==> \(cliV.bounds)")
         }
+        
+//        let clidp = scrollView.contentView.documentRect
+//        print("clidp is: \(clidp)")
+//
+//        let docum = scrollView.documentView!
+//        print("docum is: \(docum.bounds)")
     }
     
     

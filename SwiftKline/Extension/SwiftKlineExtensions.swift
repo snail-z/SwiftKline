@@ -58,6 +58,19 @@ public extension CGMutablePath {
     }
 }
 
+public extension UPeakIndexValue {
+    
+    /// 获取为零的带索引的极值
+    static var zero: UPeakIndexValue {
+        return UPeakIndexValue(max: (0, 0), min: (0, 0))
+    }
+    
+    /// 判断带索引的极值中是否有效(不包含零值、不带无穷大的值、不带非法数字）
+    var isValid: Bool {
+        return UPeakValue(max: max.value, min: min.value).isValid
+    }
+}
+
 public extension UPeakValue {
     
     /// 获取为零的极值
@@ -368,6 +381,7 @@ extension NSScrollView {
 
 public extension CGRect {
     
+    /// 通过origin、width、height初始化CGRect
     init(origin: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(origin: origin, size: CGSize(width: width, height: height))
     }
