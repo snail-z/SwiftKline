@@ -14,10 +14,16 @@ public struct UPeakValue {
     public var min: Double
 }
 
+/// 索引及对应的值
+public struct UIndexValue {
+    public var index: Int
+    public var value: Double
+}
+
 /// 极大极小值及对应的索引 (带索引的极值)
 public struct UPeakIndexValue {
-    public var max: (index: Int, value: Double)
-    public var min: (index: Int, value: Double)
+    public var max: UIndexValue
+    public var min: UIndexValue
 }
 
 /// K线图形状

@@ -58,11 +58,24 @@ public extension CGMutablePath {
     }
 }
 
+public extension UIndexValue {
+    
+    /// 获取为零的带索引值
+    static var zero: UIndexValue {
+        return UIndexValue(index: 0, value: 0)
+    }
+    
+    /// 判断带索引值是否有效(不包含零值、不带无穷大的值、不带非法数字）
+    var isValid: Bool {
+        return !value.isZero && !value.isNaN && !value.isInfinite
+    }
+}
+
 public extension UPeakIndexValue {
     
     /// 获取为零的带索引的极值
     static var zero: UPeakIndexValue {
-        return UPeakIndexValue(max: (0, 0), min: (0, 0))
+        return UPeakIndexValue(max: .zero, min: .zero)
     }
     
     /// 判断带索引的极值中是否有效(不包含零值、不带无穷大的值、不带非法数字）
@@ -251,18 +264,46 @@ public extension Array {
         }
     }
     
+    /// 遍历数组某范围内元素及下标
+    func forEach(at range:NSRange, _ body: (Int, Self.Element) -> Void) {
+        let length = NSMaxRange(range)
+        guard count < length else { return }
+        for index in range.location..<length {
+            body(index, self[index])
+        }
+    }
+        
+    /// 查找数组内最大值和最小值及其对应的下标
+    func peakIndexValue(by closure: (_ sender: Self.Element) -> Double) -> UPeakIndexValue {
+        guard !isEmpty else { return .zero }
+        var maxTuple = UIndexValue(index: 0, value: closure(self[0]))
+        var minTuple = UIndexValue(index: 0, value: closure(self[0]))
+        let lastTuple = UIndexValue(index: count - 1, value: closure(self[count - 1]))
+        for index in stride(from: 0, to: lastTuple.index, by: 2) {
+            let one = UIndexValue(index: index, value: closure(self[index]))
+            let two = UIndexValue(index: index + 1, value: closure(self[index + 1]))
+            let maxTemp = one.value > two.value ? one : two
+            let minTemp = one.value < two.value ? one : two
+            if maxTemp.value > maxTuple.value { maxTuple = maxTemp }
+            if minTemp.value < minTuple.value { minTuple = minTemp }
+        }
+        if lastTuple.value > maxTuple.value { maxTuple = lastTuple }
+        if lastTuple.value < minTuple.value { minTuple = lastTuple }
+        return UPeakIndexValue(max: maxTuple, min: minTuple)
+    }
+    
     /// 查找数组内最大值和最小值
     func peakValue(by closure: (_ sender: Self.Element) -> Double) -> UPeakValue {
         guard !isEmpty else { return .zero }
         var maxValue = closure(self[0]), minValue = closure(self[0])
         let lastIndex = count - 1
+        let lastValue = closure(self[lastIndex])
         for index in stride(from: 0, to: lastIndex, by: 2) {
             let one = closure(self[index]), two = closure(self[index + 1])
             let maxTemp = fmax(one, two), minTemp = fmin(one, two)
             if maxTemp > maxValue { maxValue = maxTemp }
             if minTemp < minValue { minValue = minTemp }
         }
-        let lastValue = closure(self[lastIndex])
         if lastValue > maxValue { maxValue = lastValue }
         if lastValue < minValue { minValue = lastValue }
         return UPeakValue(max: maxValue, min: minValue)

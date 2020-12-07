@@ -80,9 +80,12 @@ internal class UKlineCalculate {
             return .zero
         }
         
-        var maxTuple: (index: Int, value: Double) = (0, .greatestFiniteMagnitude)
-        var minTuple: (index: Int, value: Double) = (0, .greatestFiniteMagnitude)
+        var maxTuple = UIndexValue(index: 0, value: .greatestFiniteMagnitude)
+        var minTuple = UIndexValue(index: 0, value: -.greatestFiniteMagnitude)
         
+        target.dataList.forEach(at: range) { (index, ele) in
+            
+        }
         target.dataList.forEach(at: range) { (element) in
             if element._closePrice > maxTuple.value {
                 maxTuple.value = element._closePrice

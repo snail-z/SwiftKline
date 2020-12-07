@@ -18,4 +18,6 @@ import Cocoa
 
 public typealias SwiftFont = NSFont
 public typealias SwiftColor = NSColor
+
 #endif
+
