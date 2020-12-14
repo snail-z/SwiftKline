@@ -10,6 +10,13 @@ import Cocoa
 
 internal class UKlineCalculate {
     
+    /// 重新计算
+    internal func recalculate() {
+        guard let _ = target.dataList else { return }
+        let range = NSRange(location: 0, length: 60)
+        let _  = peakIndexValue(at: range, broken: false)
+    }
+    
     /// 需要绘制的数据范围
     func rangeOfDrawn() -> NSRange {
         
@@ -75,31 +82,33 @@ internal class UKlineCalculate {
         return range
     }
     
-    func peakIndexValue(at range: NSRange, broken: Bool) -> UPeakIndexValue {
-        guard !target.dataList.isEmpty else {
-            return .zero
+    /// 指定范围内的极值及对应的下标
+    func peakIndexValue(at range: NSRange, broken: Bool = false) -> UPeakIndexValue {
+        guard !broken else {
+            // 折线状态直接使用收盘价来计算极值
+            return target.dataList.peakIndexValue(at: range, by: { $0._closePrice })
         }
         
-        var maxTuple = UIndexValue(index: 0, value: .greatestFiniteMagnitude)
-        var minTuple = UIndexValue(index: 0, value: -.greatestFiniteMagnitude)
-        
-        target.dataList.forEach(at: range) { (index, ele) in
-            
-        }
-        target.dataList.forEach(at: range) { (element) in
-            if element._closePrice > maxTuple.value {
-                maxTuple.value = element._closePrice
-//                maxTuple.index = element
+        // 正常状态下，最大值按最高价计算，最小值按最低价计算
+        var maxTuple = UIndexValue(index: 0, value: -.greatestFiniteMagnitude)
+        var minTuple = UIndexValue(index: 0, value: .greatestFiniteMagnitude)
+        target.dataList.forEach(at:range) { (index, element) in
+            if element._highPrice > maxTuple.value {
+                maxTuple = UIndexValue(index: index, value: element._highPrice)
             }
-            
-            if element._closePrice < minTuple.value {
-                
+            if element._lowPrice < minTuple.value {
+                minTuple = UIndexValue(index: index, value: element._lowPrice)
             }
         }
-        
-        return .zero
+        return UPeakIndexValue(max: maxTuple, min: minTuple)
     }
     
+    /// 根据峰值点边缘间距扩大极值
+    func enlargedPeakValue(_ peakValue: UPeakValue) -> UPeakValue {
+        let factor = peakValue.distance.cgFloat / target.meas.majorChartFrame.height
+        let padding = (target.preference.peakTaggedEdgePadding * factor).double;
+        return UPeakValue(max: peakValue.max + padding, min: peakValue.min - padding)
+    }
     
     internal init(target: UKlineView) {
         self.target = target

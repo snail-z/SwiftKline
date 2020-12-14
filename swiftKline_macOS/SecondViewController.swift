@@ -267,6 +267,14 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         if let objectItems = Array<UKLineItem>.deserialize(from: result) {
             if let valuss = objectItems as? [UKLineItem] {
                 klineView.dataList = valuss
+                
+                var preference = UKlinePreferences()
+                preference.numberOfKlines = 20
+                preference.dateBarPosition = .bottom
+                preference.contentEdgeInsets = NSEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+                preference.shapeSpacing = 10
+                klineView.preference = preference
+                
                 klineView.drawChart()
             }
         }

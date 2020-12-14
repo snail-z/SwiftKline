@@ -59,3 +59,9 @@ public extension UKlineDataSource {
     /// 昨收价
     var _preClosePrice: Double { return 0 }
 }
+
+extension UKlineDataSource {
+    
+    
+    
+}

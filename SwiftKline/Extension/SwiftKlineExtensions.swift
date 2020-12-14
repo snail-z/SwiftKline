@@ -82,6 +82,11 @@ public extension UPeakIndexValue {
     var isValid: Bool {
         return UPeakValue(max: max.value, min: min.value).isValid
     }
+    
+    /// 不包含索引的最大最小值
+    var pureValue: UPeakValue {
+        return UPeakValue(max: max.value, min: min.value)
+    }
 }
 
 public extension UPeakValue {
@@ -206,6 +211,14 @@ public extension Double {
     }
 }
 
+public extension CGFloat {
+    
+    /// 转为Double
+    var double: Double {
+        return Double(self)
+    }
+}
+
 #if os(OSX)
 
 import Cocoa
@@ -267,7 +280,7 @@ public extension Array {
     /// 遍历数组某范围内元素及下标
     func forEach(at range:NSRange, _ body: (Int, Self.Element) -> Void) {
         let length = NSMaxRange(range)
-        guard count < length else { return }
+        guard length <= count else { return }
         for index in range.location..<length {
             body(index, self[index])
         }
@@ -275,11 +288,21 @@ public extension Array {
         
     /// 查找数组内最大值和最小值及其对应的下标
     func peakIndexValue(by closure: (_ sender: Self.Element) -> Double) -> UPeakIndexValue {
+        return peakIndexValue(at: NSRange(location: 0, length: count), by: closure)
+    }
+    
+    /// 查找数组某范围内最大值和最小值及其对应的下标
+    func peakIndexValue(at range: NSRange, by closure: (_ sender: Self.Element) -> Double) -> UPeakIndexValue {
         guard !isEmpty else { return .zero }
-        var maxTuple = UIndexValue(index: 0, value: closure(self[0]))
-        var minTuple = UIndexValue(index: 0, value: closure(self[0]))
-        let lastTuple = UIndexValue(index: count - 1, value: closure(self[count - 1]))
-        for index in stride(from: 0, to: lastTuple.index, by: 2) {
+        
+        let lastIndex = NSMaxRange(range) - 1
+        guard lastIndex < count else { return .zero }
+        
+        var maxTuple = UIndexValue(index: range.location, value: closure(self[range.location]))
+        var minTuple = UIndexValue(index: range.location, value: closure(self[range.location]))
+        let lastTuple = UIndexValue(index: lastIndex, value: closure(self[lastIndex]))
+        
+        for index in stride(from: range.location, to: lastTuple.index, by: 2) {
             let one = UIndexValue(index: index, value: closure(self[index]))
             let two = UIndexValue(index: index + 1, value: closure(self[index + 1]))
             let maxTemp = one.value > two.value ? one : two
@@ -294,19 +317,7 @@ public extension Array {
     
     /// 查找数组内最大值和最小值
     func peakValue(by closure: (_ sender: Self.Element) -> Double) -> UPeakValue {
-        guard !isEmpty else { return .zero }
-        var maxValue = closure(self[0]), minValue = closure(self[0])
-        let lastIndex = count - 1
-        let lastValue = closure(self[lastIndex])
-        for index in stride(from: 0, to: lastIndex, by: 2) {
-            let one = closure(self[index]), two = closure(self[index + 1])
-            let maxTemp = fmax(one, two), minTemp = fmin(one, two)
-            if maxTemp > maxValue { maxValue = maxTemp }
-            if minTemp < minValue { minValue = minTemp }
-        }
-        if lastValue > maxValue { maxValue = lastValue }
-        if lastValue < minValue { minValue = lastValue }
-        return UPeakValue(max: maxValue, min: minValue)
+        return peakValue(at: NSRange(location: 0, length: count), by: closure)
     }
     
     /// 查找数组某范围内最大最小值
@@ -383,20 +394,21 @@ public extension Date {
     }
     
     /// 返回某个时间段的分钟数集
+    /// 分时与分钟数对照：
+    /// 09:30 <=> 570
+    /// 10:00 <=> 600
+    /// 10:30 <=> 630
+    /// 11:00 <=> 660
+    /// 11:30 <=> 690
+    /// 13:00 <=> 780
+    /// 14:00 <=> 840
+    /// 14:30 <=> 870
+    /// 15:00 <=> 900
+    /// 15:05 <=> 905
+    /// 15:30 <=> 930
+    /// 16:00 <=> 960
+    /// 例如返回9点30到11点间的分钟数 `minuteUnitRanges(570...660)`
     static func minuteUnitRanges(_ ranges: ClosedRange<Int>...) -> [Int] {
-        /// 分时与分钟数对照：
-        /// 09:30 <=> 570
-        /// 10:00 <=> 600
-        /// 10:30 <=> 630
-        /// 11:00 <=> 660
-        /// 11:30 <=> 690
-        /// 13:00 <=> 780
-        /// 14:00 <=> 840
-        /// 14:30 <=> 870
-        /// 15:00 <=> 900
-        /// 15:05 <=> 905
-        /// 15:30 <=> 930
-        /// 16:00 <=> 960
         var values = [Int]()
         for range in ranges {
             values.append(contentsOf: range.map({  $0 }))

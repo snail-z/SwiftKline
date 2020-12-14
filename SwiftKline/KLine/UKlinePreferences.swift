@@ -32,6 +32,9 @@ public struct UKlinePreferences {
     /// K线数量，可视范围内显示的最少数量
     public var minNumberOfKlines: Int = 20
     
+    /// 绘制区边缘留白
+    public var contentEdgeInsets: NSEdgeInsets = .zero
+    
     /// K线图延伸线宽度
     public var shapeStrokeWidth: CGFloat = 1
 
@@ -74,6 +77,29 @@ public struct UKlinePreferences {
     /// 设置图表中的数值精度，默认保留两位小数
     public var decimalKeepPlace: Int = 2
     
-    /// 是否隐藏峰值点标记
+    /// 峰值点边缘留白
     public var peakTaggedEdgePadding: CGFloat = 10
+    
+    var majorChartRatio: CGFloat = 0.6
+    
+    
+    /// 日期栏显示位置
+    public enum DatePosition {
+        case top, middle, bottom
+    }
+    /// 日期栏位置
+    public var dateBarPosition: DatePosition = .bottom
+    
+    /// 主图高度 (高度和占比设置其一即可)
+    public var majorChartHeight: CGFloat = 0
+    
+    /// 主图区数据文本高度
+    public var majorBriefHeight: CGFloat = 20
+    
+    /// 副图区数据文本高度
+    public var minorBriefHeight: CGFloat = 20
+    
+    /// 日期栏分隔区域高度
+    public var dateBarHeight: CGFloat = 20
+    
 }

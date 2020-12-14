@@ -67,6 +67,7 @@
 		615C7255255CD48C00CD141E /* UTimeMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C7254255CD48C00CD141E /* UTimeMeasurement.swift */; };
 		615C7257255D17E000CD141E /* UGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C7256255D17E000CD141E /* UGradientLayer.swift */; };
 		615C7259255D2C1B00CD141E /* UTimeViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615C7258255D2C1B00CD141E /* UTimeViewInterface.swift */; };
+		616F67C8258736D2006F42D8 /* UBaseScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616F67C7258736D2006F42D8 /* UBaseScrollView.swift */; };
 		6171186125625AC900ACCCFA /* UTrackingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171186025625AC900ACCCFA /* UTrackingLayer.swift */; };
 		61B0F4D6256F7EA8005E2C1A /* time_chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 61B0F4D5256F7EA8005E2C1A /* time_chart_data.json */; };
 		61B0F4D8256FA635005E2C1A /* Date+PKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B0F4D7256FA635005E2C1A /* Date+PKExtensions.swift */; };
@@ -177,6 +178,7 @@
 		615C7254255CD48C00CD141E /* UTimeMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTimeMeasurement.swift; sourceTree = "<group>"; };
 		615C7256255D17E000CD141E /* UGradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UGradientLayer.swift; sourceTree = "<group>"; };
 		615C7258255D2C1B00CD141E /* UTimeViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTimeViewInterface.swift; sourceTree = "<group>"; };
+		616F67C7258736D2006F42D8 /* UBaseScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBaseScrollView.swift; sourceTree = "<group>"; };
 		6171186025625AC900ACCCFA /* UTrackingLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTrackingLayer.swift; sourceTree = "<group>"; };
 		61B0F4D5256F7EA8005E2C1A /* time_chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = time_chart_data.json; sourceTree = "<group>"; };
 		61B0F4D7256FA635005E2C1A /* Date+PKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+PKExtensions.swift"; sourceTree = "<group>"; };
@@ -368,12 +370,13 @@
 			isa = PBXGroup;
 			children = (
 				61F017A6255BC43A0003119A /* UBaseLayer.swift */,
-				61F017A8255BC4930003119A /* UBaseView.swift */,
-				61B86ADF257640B90005CD0D /* UBreathinglightLayer.swift */,
-				615C7256255D17E000CD141E /* UGradientLayer.swift */,
 				61F017AE255BC5DD0003119A /* UShapeLayer.swift */,
-				61F017AF255BC5DD0003119A /* UTextLayer.swift */,
+				61F017A8255BC4930003119A /* UBaseView.swift */,
+				616F67C7258736D2006F42D8 /* UBaseScrollView.swift */,
+				61B86ADF257640B90005CD0D /* UBreathinglightLayer.swift */,
 				6171186025625AC900ACCCFA /* UTrackingLayer.swift */,
+				61F017AF255BC5DD0003119A /* UTextLayer.swift */,
+				615C7256255D17E000CD141E /* UGradientLayer.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				614FE34325592C5A00FBE6AB /* UTimeLayerOverlaps.swift in Sources */,
 				61B86AE8257665F70005CD0D /* UKlineViewInterface.swift in Sources */,
 				61B0F4DA256FA74B005E2C1A /* String+PKExtensions.swift in Sources */,
+				616F67C8258736D2006F42D8 /* UBaseScrollView.swift in Sources */,
 				6111EE3B2570B0410093F6A8 /* UIView+PKExtensions.swift in Sources */,
 				61B86AE6257665E10005CD0D /* UKlineView.swift in Sources */,
 				61B0F4DC256FA880005E2C1A /* Double+PKExtensions.swift in Sources */,

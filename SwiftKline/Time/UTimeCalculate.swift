@@ -51,14 +51,18 @@ internal class UTimeCalculate {
         } else {
             // 计算当前价最大跨度
             let spanLatestPrice = target.dataList!.spanValue(reference: referenceValue, { $0._latestPrice })
+            
             // 计算均价最大跨度
-            let spanAveragePrice: Double = target.dataList!.spanValue(reference: referenceValue, { $0._averagePrice })
+            let spanAveragePrice = target.dataList!.spanValue(reference: referenceValue, { $0._averagePrice })
+           
             // 获取较大跨度
             var spanValue = fmax(spanLatestPrice, spanAveragePrice)
+            
             // 若跨度无效则使用默认比率
             if !spanValue.isValid {
                 spanValue = target.preference.defaultChange / 100 * referenceValue
             }
+            
             // 计算最大最小值
             return UPeakValue(max: referenceValue + spanValue, min: referenceValue - spanValue)
         }
