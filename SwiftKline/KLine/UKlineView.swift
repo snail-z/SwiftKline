@@ -38,6 +38,9 @@ open class UKlineView: UKlineBase, UKlineViewInterface {
     var fallKlineLayer: UShapeLayer!
     var flatKlineLayer: UShapeLayer!
     
+    var aixsXTextLayer: UTextLayer!
+    var progressLayer: UShapeLayer!
+    
     override func sublayerInitialization() {
         riseKlineLayer = UShapeLayer()
         chartContainerLayer.addSublayer(riseKlineLayer)
@@ -132,6 +135,12 @@ open class UKlineView: UKlineBase, UKlineViewInterface {
 //        meas.minorBriefFrame = minorBriefFrame
 //        meas.minorChartFrame = minorChartFrame
         
+        let testlyaer = CAShapeLayer()
+        testlyaer.fillColor = NSColor.gray.cgColor
+        let pss = CGMutablePath()
+        pss.addRect(majorChartFrame)
+        testlyaer.path = pss
+        chartContainerLayer.insertSublayer(testlyaer, below: riseKlineLayer)
         
         updateCWidth()
     }
@@ -226,13 +235,13 @@ open class UKlineView: UKlineBase, UKlineViewInterface {
             let klineWidth = meas.shapeWidth - meas.strokeWidth
             let originX = centerX - meas.shapeWidth * 0.5
             let originY = min(openY, closeY)
-            let klineHeight = fabs(openY - closeY)
+            let klineHeight = abs(openY - closeY)
             
             let top = CGPoint(x: centerX, y: highY)
             let bottom = CGPoint(x: centerX, y: lowY)
             let rect = CGRect(x: originX, y: originY, width: klineWidth, height: klineHeight)
             
-            let shape = UCandleShape.init(top: top, rect: rect, bottom: bottom)
+            let shape = UCandleShape(top: top, rect: rect, bottom: bottom)
             
             if element._openPrice < element._closePrice {
                 risePath.addCandle(shape)
@@ -247,6 +256,48 @@ open class UKlineView: UKlineBase, UKlineViewInterface {
         fallKlineLayer.path = fallPath
         flatKlineLayer.path = flatPath
         
+        
+//        aixsXTextLayer = UTextLayer()
+//        aixsXTextLayer.text = "呼呼呼哈哈"
+//        aixsXTextLayer.textColor = .red
+//        aixsXTextLayer.font = .systemFont(ofSize: 20)
+//        textContainerLayer.addSublayer(aixsXTextLayer)
+//
+        
+        
+//        progressLayer = UShapeLayer()
+//        progressLayer.fillColor = NSColor.red.cgColor
+//        progressLayer.strokeColor = NSColor.white.cgColor
+//        progressLayer.lineWidth = 5
+//        chartContainerLayer.addSublayer(progressLayer)
+//
+//        progressLayer.frame = CGRect(x: 50, y: 100, width: 200, height: 100)
+//        progressLayer.backgroundColor = NSColor.darkGray.cgColor
+//        let pasth = CGMutablePath()
+//        let rect = CGRect(x: 10, y: 10, width: 150, height: 50)
+//        pasth.addRoundedRect(in: rect, cornerWidth: 10, cornerHeight: 10)
+//        progressLayer.lineCap = .round
+//        progressLayer.path = pasth
+//
+//        let maskLayer = CAShapeLayer()
+//        maskLayer.fillColor = NSColor.white.cgColor
+//        maskLayer.strokeColor = NSColor.white.cgColor
+//        maskLayer.lineWidth = 5
+//
+//        let pasth2 = CGMutablePath()
+//        pasth2.addRoundedRect(in: rect, cornerWidth: 10, cornerHeight: 10)
+//        maskLayer.path = pasth2
+//        progressLayer.mask = maskLayer
+
+
+//        let prLayer = UProgress2Layer()
+//        prLayer.frame = CGRect(x: 100, y: 100, width: 200, height: 200)
+//        prLayer.backgroundColor = NSColor.brown.cgColor
+//        prLayer.trackColor = NSColor.red
+//        prLayer.cornerRadius = 10
+//
+//        chartContainerLayer.addSublayer(prLayer)
+//        prLayer.setProgress(1, animated: true)
     }
     
     @objc func boundsChange(noti: Notification) {
@@ -277,23 +328,19 @@ open class UKlineView: UKlineBase, UKlineViewInterface {
     }
 }
 
-extension UKlineView {
-    
-}
-
 // MARK: - UKlineBase
-
 
 open class UKlineBase: UBaseView, UBaseScrollViewDelegate {
     
     public func scrollViewDidScroll(_ scrollView: UBaseScrollView) {
         print("收到了副科级第三方老师打开")
     }
-    
-    
+
+    private(set) var gridContainerLayer: UBaseLayer!
     private(set) var chartContainerLayer: UBaseLayer!
     private(set) var textContainerLayer: UBaseLayer!
     private(set) var containerView: UBaseView!
+    
     private(set) var scrollView: UBaseScrollView!
     
     final override func initialization() {
@@ -305,22 +352,11 @@ open class UKlineBase: UBaseView, UBaseScrollViewDelegate {
         scrollView.delegate = self
         scrollView.contentInsets = .zero
         scrollView.horizontalScrollElasticity = .none
-//        scrollView.verticalScrollElasticity = .automatic
         scrollView.scrollerStyle = .legacy
+        scrollView.scrollerKnobStyle = .dark
         scrollView.hasHorizontalScroller = true
         scrollView.isScrollEnabled = true
-//        scrollView.hideScrollers = true
-//        scrollView.contentView = NSClipView.init()
-//        scrollView.contentView.constrainBoundsRect(<#T##proposedBounds: NSRect##NSRect#>)
-//        scrollView.verticalScroller = nil
-//        scrollView.ver
         scrollView.documentSize = CGSize(width: 2000, height: 2000)
-//        scrollView.isScrollEnabled = true
-//        scrollView.frame = CGRect(x: 100, y: 100, width: 500, height: 300)
-        
-        
-//        scrollView.scrollerStyle = .legacy
-//        scrollView.scrollerKnobStyle = .dark
         containerView.addSubview(scrollView)
         
         chartContainerLayer = UBaseLayer()
@@ -339,24 +375,35 @@ open class UKlineBase: UBaseView, UBaseScrollViewDelegate {
         scrollView.contentView.frame = bounds
         scrollView.frame = bounds
         
-//        scrollView.frame = CGRect(x: 100, y: 100, width: 500, height: 300)
+        scrollView.contentView.frame = bounds
+        scrollView.frame = bounds
+        
+        containerView.frame = bounds
+//        chartContainerLayer.sublayers?.forEach({ $0.frame = bounds })
+//        textContainerLayer.sublayers?.forEach({ $0.frame = bounds })
     }
     
     open override func resize(withOldSuperviewSize oldSize: NSSize) {
         super.resize(withOldSuperviewSize: oldSize)
         scrollView.contentView.frame = bounds
         scrollView.frame = bounds
-//        scrollView.frame = CGRect(x: 100, y: 100, width: 500, height: 300)
+        
+        scrollView.contentView.frame = bounds
+        scrollView.frame = bounds
+        
+        containerView.frame = bounds
+//        chartContainerLayer.sublayers?.forEach({ $0.frame = bounds })
+//        textContainerLayer.sublayers?.forEach({ $0.frame = bounds })
     }
     
     open override func layout() {
         super.layout()
         scrollView.contentView.frame = bounds
         scrollView.frame = bounds
-//        scrollView.frame = CGRect(x: 100, y: 100, width: 500, height: 300)
+        
         containerView.frame = bounds
-        chartContainerLayer.sublayers?.forEach({ $0.frame = bounds })
-        textContainerLayer.sublayers?.forEach({ $0.frame = bounds })
+//        chartContainerLayer.sublayers?.forEach({ $0.frame = bounds })
+//        textContainerLayer.sublayers?.forEach({ $0.frame = bounds })
     }
 
     fileprivate func defaultInitialization() {}

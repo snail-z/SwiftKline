@@ -108,8 +108,7 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         nsscrollView.contentView.documentView = _tableView
         
         _tableView.backgroundColor = .brown
-        
-        
+
         timeView = UTimeView()
         timeView.backgroundColor = .white
         view.addSubview(timeView)
@@ -122,6 +121,7 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         }
         
     
+        
         timeView.layoutSubtreeIfNeeded()
         timeView.needsLayout = true
         
@@ -271,7 +271,7 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
                 var preference = UKlinePreferences()
                 preference.numberOfKlines = 20
                 preference.dateBarPosition = .bottom
-                preference.contentEdgeInsets = NSEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+                preference.contentEdgeInsets = NSEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
                 preference.shapeSpacing = 10
                 klineView.preference = preference
                 

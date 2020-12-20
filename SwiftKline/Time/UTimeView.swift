@@ -211,7 +211,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         let ppxxx = meas.midxaixs(by: index)
         let pppppp = CGPoint(x: ppxxx, y: vapp.y)
         
-        let rectss = [meas.majorChartFrame, meas.minorChartFrame]
+        let rectss = [meas.majorChartFrame, meas.minorBriefFrames.first!]
         trackingLineLayer.updateTracking(location: pppppp, in: rectss)
         
 //        trackingTooltipLayer.frame = meas.unionChartFrame
@@ -348,7 +348,7 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         minorXaxisLineLayer.path = NSBezierPath(rect: meas.minorChartFrame).cgPath
         minorXaxisLineLayer.fillColor = NSColor.orange.cgColor
                 
-        dateLineLayer.path = NSBezierPath(rect: meas.datesBarFrame).cgPath
+        dateLineLayer.path = NSBezierPath(rect: meas.dateBarFrame).cgPath
         dateLineLayer.fillColor = NSColor.blue.cgColor
     }
     
@@ -439,11 +439,11 @@ open class UTimeView: UTimeBase, UTimeViewInterface, NSGestureRecognizerDelegate
         
         meas.shapeWidth = preference.shapeWidth
         meas.shapeSpacing = preference.shapeSpacing
-        meas.datesBarFrame = datesBarFrame
+        meas.dateBarFrame = datesBarFrame
         meas.majorBriefFrame = majorBriefFrame
         meas.majorChartFrame = majorChartFrame
-        meas.minorBriefFrame = minorBriefFrame
-        meas.minorChartFrame = minorChartFrame
+        meas.minorBriefFrames = [minorBriefFrame]
+        meas.minorChartFrames = [minorChartFrame]
     }
     
     
