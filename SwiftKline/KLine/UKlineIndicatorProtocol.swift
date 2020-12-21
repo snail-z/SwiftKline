@@ -40,10 +40,6 @@ protocol UIndicatorMinorProtocol {
     
     /// 当前范围内绘制图表
     func minorDrawChart(in range: NSRange)
-    
-    
-//    /// 返回副图区横轴线和坐标值
-//    func minorChartXaxis(by peakValue: UPeakValue) -> (CGMutablePath, [UTextRender]?)
 }
 
 

@@ -52,6 +52,8 @@
 		6111EE3C2570B0410093F6A8 /* UIView+PKOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6111EE332570B0410093F6A8 /* UIView+PKOverride.swift */; };
 		6111EE3D2570B0410093F6A8 /* UITableView+PKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6111EE342570B0410093F6A8 /* UITableView+PKExtensions.swift */; };
 		6111EE3E2570B0410093F6A8 /* UIWindow+PKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6111EE352570B0410093F6A8 /* UIWindow+PKExtensions.swift */; };
+		61356089259031890053E482 /* UIndicatorMALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61356088259031890053E482 /* UIndicatorMALayer.swift */; };
+		6135608E25904BDA0053E482 /* GlobalFunctionsAndExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6135608D25904BDA0053E482 /* GlobalFunctionsAndExtensions.swift */; };
 		614A3434256FAD2300F9FCE4 /* Dictionary+PKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614A3433256FAD2200F9FCE4 /* Dictionary+PKExtensions.swift */; };
 		614FE3412559118300FBE6AB /* NSAttributedString+PKExtensionsl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614FE3402559118300FBE6AB /* NSAttributedString+PKExtensionsl.swift */; };
 		614FE34325592C5A00FBE6AB /* UTimeLayerOverlaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614FE34225592C5A00FBE6AB /* UTimeLayerOverlaps.swift */; };
@@ -167,6 +169,8 @@
 		6111EE332570B0410093F6A8 /* UIView+PKOverride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+PKOverride.swift"; sourceTree = "<group>"; };
 		6111EE342570B0410093F6A8 /* UITableView+PKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+PKExtensions.swift"; sourceTree = "<group>"; };
 		6111EE352570B0410093F6A8 /* UIWindow+PKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+PKExtensions.swift"; sourceTree = "<group>"; };
+		61356088259031890053E482 /* UIndicatorMALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIndicatorMALayer.swift; sourceTree = "<group>"; };
+		6135608D25904BDA0053E482 /* GlobalFunctionsAndExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctionsAndExtensions.swift; sourceTree = "<group>"; };
 		614A3433256FAD2200F9FCE4 /* Dictionary+PKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+PKExtensions.swift"; sourceTree = "<group>"; };
 		614FE3402559118300FBE6AB /* NSAttributedString+PKExtensionsl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+PKExtensionsl.swift"; sourceTree = "<group>"; };
 		614FE34225592C5A00FBE6AB /* UTimeLayerOverlaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTimeLayerOverlaps.swift; sourceTree = "<group>"; };
@@ -285,9 +289,9 @@
 				614FE34225592C5A00FBE6AB /* UTimeLayerOverlaps.swift */,
 				61097ED32554F17A004AF81C /* Assets.xcassets */,
 				61097ED52554F17A004AF81C /* Main.storyboard */,
+				61D1912D255A723C00217C76 /* WakaCell.swift */,
 				61097ED82554F17A004AF81C /* Info.plist */,
 				61097ED92554F17A004AF81C /* swiftKline_macOS.entitlements */,
-				61D1912D255A723C00217C76 /* WakaCell.swift */,
 			);
 			path = swiftKline_macOS;
 			sourceTree = "<group>";
@@ -371,6 +375,7 @@
 				61555C69255BDCF300C75C54 /* GeometryExtensions.swift */,
 				61555C67255BDC5600C75C54 /* SwiftKlineExtensions.swift */,
 				616F67D5258AFF66006F42D8 /* SwiftKlineMeasurement.swift */,
+				6135608D25904BDA0053E482 /* GlobalFunctionsAndExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				61B030FF258C7FE30060436B /* UIndicatorBaseLayer.swift */,
+				61356088259031890053E482 /* UIndicatorMALayer.swift */,
 			);
 			path = Indicators;
 			sourceTree = "<group>";
@@ -482,10 +488,10 @@
 		61F017A5255BC41F0003119A /* SwiftKline */ = {
 			isa = PBXGroup;
 			children = (
-				61B030FE258C7FAD0060436B /* Indicators */,
 				61555C66255BDBCA00C75C54 /* Extension */,
 				61555C6B255BDF0400C75C54 /* Public */,
 				615C723F255CC4B000CD141E /* Time */,
+				61B030FE258C7FAD0060436B /* Indicators */,
 				61B86AE12576639E0005CD0D /* KLine */,
 			);
 			path = SwiftKline;
@@ -664,6 +670,7 @@
 			files = (
 				6111EDE7256FCB5E0093F6A8 /* DispatchQueue+PKExtensions.swift in Sources */,
 				61F017B1255BC5DD0003119A /* UTextLayer.swift in Sources */,
+				6135608E25904BDA0053E482 /* GlobalFunctionsAndExtensions.swift in Sources */,
 				6111EE3E2570B0410093F6A8 /* UIWindow+PKExtensions.swift in Sources */,
 				615C7253255CCD4C00CD141E /* UBaseItem.swift in Sources */,
 				6111EE3C2570B0410093F6A8 /* UIView+PKOverride.swift in Sources */,
@@ -683,6 +690,7 @@
 				615C7245255CC84700CD141E /* UTimeCalculate.swift in Sources */,
 				61097F4225552BED004AF81C /* WakaView.swift in Sources */,
 				6111EE1625709BDE0093F6A8 /* UIControl+PKExtensions.swift in Sources */,
+				61356089259031890053E482 /* UIndicatorMALayer.swift in Sources */,
 				616F67D8258B45A0006F42D8 /* UKlineIndicatorProtocol.swift in Sources */,
 				61097F4525553348004AF81C /* SecondViewController.swift in Sources */,
 				61555C68255BDC5600C75C54 /* SwiftKlineExtensions.swift in Sources */,

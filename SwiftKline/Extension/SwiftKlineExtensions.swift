@@ -224,6 +224,22 @@ public extension CGFloat {
     }
 }
 
+public extension CGRect {
+    
+    /// 通过origin、width、height初始化CGRect
+    init(origin: CGPoint, width: CGFloat, height: CGFloat) {
+        self.init(origin: origin, size: CGSize(width: width, height: height))
+    }
+
+    init(origin: CGPoint, width: Double, height: Double) {
+        self.init(origin: origin, size: CGSize(width: width, height: height))
+    }
+
+    init(origin: CGPoint, width: Int, height: Int) {
+        self.init(origin: origin, size: CGSize(width: width, height: height))
+    }
+}
+
 #if os(OSX)
 
 import Cocoa
@@ -398,21 +414,7 @@ public extension Date {
         return hour + ":" + mins
     }
     
-    /// 返回某个时间段的分钟数集
-    /// 分时与分钟数对照：
-    /// 09:30 <=> 570
-    /// 10:00 <=> 600
-    /// 10:30 <=> 630
-    /// 11:00 <=> 660
-    /// 11:30 <=> 690
-    /// 13:00 <=> 780
-    /// 14:00 <=> 840
-    /// 14:30 <=> 870
-    /// 15:00 <=> 900
-    /// 15:05 <=> 905
-    /// 15:30 <=> 930
-    /// 16:00 <=> 960
-    /// 例如返回9点30到11点间的分钟数 `minuteUnitRanges(570...660)`
+    /// 返回某个时间段的分钟数集，例如9点30到11点间的分钟数 `minuteUnitRanges(570...660)`
     static func minuteUnitRanges(_ ranges: ClosedRange<Int>...) -> [Int] {
         var values = [Int]()
         for range in ranges {
@@ -422,18 +424,9 @@ public extension Date {
     }
 }
 
-public extension CGRect {
+public extension Date {
     
-    /// 通过origin、width、height初始化CGRect
-    init(origin: CGPoint, width: CGFloat, height: CGFloat) {
-        self.init(origin: origin, size: CGSize(width: width, height: height))
-    }
-
-    init(origin: CGPoint, width: Double, height: Double) {
-        self.init(origin: origin, size: CGSize(width: width, height: height))
-    }
-
-    init(origin: CGPoint, width: Int, height: Int) {
-        self.init(origin: origin, size: CGSize(width: width, height: height))
+    func hah() {
+        
     }
 }

@@ -27,7 +27,7 @@ public protocol UKlineDataSource {
     var _volume: Double { get }
     
     /// 日期
-    var _date: Date? { get }
+    var _date: Date! { get }
     
     /// 日期文本
     var _dateText: String? { get }
@@ -45,7 +45,7 @@ public protocol UKlineDataSource {
 public extension UKlineDataSource {
     
     /// 日期
-    var _date: Date? { return nil }
+    var _date: Date! { return Date() }
     
     /// 日期文本
     var _dateText: String? { return nil }

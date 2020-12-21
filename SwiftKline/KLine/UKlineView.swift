@@ -326,6 +326,33 @@ open class UKlineView: UKlineBase, UKlineViewInterface {
     func shapeWidthLoop(_ numbers: Int) {
         
     }
+    
+    // 存储所有时间线的索引集
+    
+    
+    func doTimelineSets(range: NSRange) {
+        
+        guard let firstObj = dataList.firstElement(at: range) else {
+            return
+        }
+        
+        
+        var sdet = IndexSet.init()
+        sdet.insert(90)
+        
+        var target = firstObj._date.pk.component(.month)
+        dataList.forEach(at: range) { (index, element) in
+            let dmo = element._date.pk.component(.month)
+            if dmo > 0, dmo != target {
+                target = dmo
+                sdet.insert(index)
+            }
+        }
+        
+
+        
+        
+    }
 }
 
 // MARK: - UKlineBase

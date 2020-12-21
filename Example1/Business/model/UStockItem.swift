@@ -153,7 +153,7 @@ extension UKLineItem: UKlineDataSource {
         return volume
     }
     
-    public var _date: Date? {
+    public var _date: Date! {
         let mdate = Date.pk.date(fromString: date, format:.yMdHms)
         return mdate
     }
