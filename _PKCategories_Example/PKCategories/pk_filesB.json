@@ -1,0 +1,22 @@
+{
+    "key1" : {
+        "volume": 25800,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 45.8922,
+        "date": "2017-06-26 09:30:00",
+        "total_volume": 25800,
+        "avg_price": 17.78767441860465
+    },
+    "key2" : {
+        "volume": 40700,
+        "price_change": 0.08999999999999986,
+        "price": 17.83,
+        "price_change_rate": 0.5073280721533251,
+        "turnover": 72.4987,
+        "date": "2017-06-26 09:31:00",
+        "total_volume": 66500,
+        "avg_price": 17.80314285714286
+    }
+}
