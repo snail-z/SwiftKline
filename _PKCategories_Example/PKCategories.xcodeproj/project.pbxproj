@@ -30,11 +30,19 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		610B1A3F21C12977003571A3 /* PKNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B1A3E21C12977003571A3 /* PKNextViewController.m */; };
 		613560992590C2200053E482 /* TJProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 613560982590C2200053E482 /* TJProgressView.m */; };
-		6135609C2591DAF00053E482 /* TJPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6135609B2591DAF00053E482 /* TJPageController.m */; };
 		6135609F2591E2950053E482 /* TJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6135609E2591E2950053E482 /* TJPickerView.m */; };
 		613560A2259338040053E482 /* TJPickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 613560A1259338040053E482 /* TJPickerDataSource.m */; };
 		613560A8259344190053E482 /* TJPickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 613560A7259344190053E482 /* TJPickerDateView.m */; };
 		613560AE259362F20053E482 /* NSDate+TJPickerDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 613560AD259362F20053E482 /* NSDate+TJPickerDate.m */; };
+		614A36B7259AFDD70059268B /* TJWKWebViewTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A36B6259AFDD70059268B /* TJWKWebViewTabController.m */; };
+		614A36BD259B0FC70059268B /* TJWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A36BC259B0FC70059268B /* TJWKWebViewController.m */; };
+		614A36D0259C5BA40059268B /* TJPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A36CF259C5BA40059268B /* TJPageController.m */; };
+		614A36DE259D71C30059268B /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A36DD259D71C20059268B /* Demo1ViewController.m */; };
+		614A36E1259D71CF0059268B /* Demo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A36E0259D71CF0059268B /* Demo2ViewController.m */; };
+		614A36E4259D71DB0059268B /* Demo3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A36E3259D71DB0059268B /* Demo3ViewController.m */; };
+		614A36E8259DB7530059268B /* PKSegmentedSlideControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A36E6259DB7520059268B /* PKSegmentedSlideControl.m */; };
+		614A36EB259DBE310059268B /* Demo4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A36EA259DBE310059268B /* Demo4ViewController.m */; };
+		614A36EE259DBE3E0059268B /* Demo5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A36ED259DBE3E0059268B /* Demo5ViewController.m */; };
 		616F67D1258A07A0006F42D8 /* TJProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 616F67D0258A07A0006F42D8 /* TJProgressLayer.m */; };
 		61CC99F022D81C18004FC918 /* pk_filesB.json in Resources */ = {isa = PBXBuildFile; fileRef = 61CC99EE22D81C18004FC918 /* pk_filesB.json */; };
 		61CC99F122D81C18004FC918 /* pk_filesA.json in Resources */ = {isa = PBXBuildFile; fileRef = 61CC99EF22D81C18004FC918 /* pk_filesA.json */; };
@@ -90,8 +98,6 @@
 		610B1A3E21C12977003571A3 /* PKNextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PKNextViewController.m; sourceTree = "<group>"; };
 		613560972590C2200053E482 /* TJProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJProgressView.h; sourceTree = "<group>"; };
 		613560982590C2200053E482 /* TJProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJProgressView.m; sourceTree = "<group>"; };
-		6135609A2591DAF00053E482 /* TJPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJPageController.h; sourceTree = "<group>"; };
-		6135609B2591DAF00053E482 /* TJPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJPageController.m; sourceTree = "<group>"; };
 		6135609D2591E2950053E482 /* TJPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJPickerView.h; sourceTree = "<group>"; };
 		6135609E2591E2950053E482 /* TJPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJPickerView.m; sourceTree = "<group>"; };
 		613560A0259338040053E482 /* TJPickerDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJPickerDataSource.h; sourceTree = "<group>"; };
@@ -100,6 +106,24 @@
 		613560A7259344190053E482 /* TJPickerDateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJPickerDateView.m; sourceTree = "<group>"; };
 		613560AC259362F20053E482 /* NSDate+TJPickerDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+TJPickerDate.h"; sourceTree = "<group>"; };
 		613560AD259362F20053E482 /* NSDate+TJPickerDate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TJPickerDate.m"; sourceTree = "<group>"; };
+		614A36B5259AFDD70059268B /* TJWKWebViewTabController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJWKWebViewTabController.h; sourceTree = "<group>"; };
+		614A36B6259AFDD70059268B /* TJWKWebViewTabController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJWKWebViewTabController.m; sourceTree = "<group>"; };
+		614A36BB259B0FC70059268B /* TJWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJWKWebViewController.h; sourceTree = "<group>"; };
+		614A36BC259B0FC70059268B /* TJWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJWKWebViewController.m; sourceTree = "<group>"; };
+		614A36CE259C5BA40059268B /* TJPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJPageController.h; sourceTree = "<group>"; };
+		614A36CF259C5BA40059268B /* TJPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJPageController.m; sourceTree = "<group>"; };
+		614A36DC259D71C20059268B /* Demo1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
+		614A36DD259D71C20059268B /* Demo1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
+		614A36DF259D71CF0059268B /* Demo2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo2ViewController.h; sourceTree = "<group>"; };
+		614A36E0259D71CF0059268B /* Demo2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo2ViewController.m; sourceTree = "<group>"; };
+		614A36E2259D71DB0059268B /* Demo3ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo3ViewController.h; sourceTree = "<group>"; };
+		614A36E3259D71DB0059268B /* Demo3ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo3ViewController.m; sourceTree = "<group>"; };
+		614A36E6259DB7520059268B /* PKSegmentedSlideControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSegmentedSlideControl.m; sourceTree = "<group>"; };
+		614A36E7259DB7530059268B /* PKSegmentedSlideControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSegmentedSlideControl.h; sourceTree = "<group>"; };
+		614A36E9259DBE310059268B /* Demo4ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo4ViewController.h; sourceTree = "<group>"; };
+		614A36EA259DBE310059268B /* Demo4ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo4ViewController.m; sourceTree = "<group>"; };
+		614A36EC259DBE3E0059268B /* Demo5ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo5ViewController.h; sourceTree = "<group>"; };
+		614A36ED259DBE3E0059268B /* Demo5ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo5ViewController.m; sourceTree = "<group>"; };
 		616F67CF258A07A0006F42D8 /* TJProgressLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJProgressLayer.h; sourceTree = "<group>"; };
 		616F67D0258A07A0006F42D8 /* TJProgressLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJProgressLayer.m; sourceTree = "<group>"; };
 		61CC99EE22D81C18004FC918 /* pk_filesB.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pk_filesB.json; sourceTree = "<group>"; };
@@ -148,8 +172,6 @@
 		3E2858AE24A2ED42005C8690 /* HUD_imgs */ = {
 			isa = PBXGroup;
 			children = (
-				6135609A2591DAF00053E482 /* TJPageController.h */,
-				6135609B2591DAF00053E482 /* TJPageController.m */,
 				3E2858AF24A2ED42005C8690 /* hud_success_02.png */,
 				3E2858B024A2ED42005C8690 /* hud_success_03.png */,
 				3E2858B124A2ED42005C8690 /* hud_success_01.png */,
@@ -201,6 +223,16 @@
 		6003F593195388D20070C39A /* Example for PKCategories */ = {
 			isa = PBXGroup;
 			children = (
+				614A36DC259D71C20059268B /* Demo1ViewController.h */,
+				614A36DD259D71C20059268B /* Demo1ViewController.m */,
+				614A36DF259D71CF0059268B /* Demo2ViewController.h */,
+				614A36E0259D71CF0059268B /* Demo2ViewController.m */,
+				614A36E2259D71DB0059268B /* Demo3ViewController.h */,
+				614A36E3259D71DB0059268B /* Demo3ViewController.m */,
+				614A36E9259DBE310059268B /* Demo4ViewController.h */,
+				614A36EA259DBE310059268B /* Demo4ViewController.m */,
+				614A36EC259DBE3E0059268B /* Demo5ViewController.h */,
+				614A36ED259DBE3E0059268B /* Demo5ViewController.m */,
 				6003F59C195388D20070C39A /* PKAppDelegate.h */,
 				6003F59D195388D20070C39A /* PKAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -286,9 +318,41 @@
 			path = TJProgressView;
 			sourceTree = "<group>";
 		};
+		614A3693259AB5E30059268B /* TJWKWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				614A36BB259B0FC70059268B /* TJWKWebViewController.h */,
+				614A36BC259B0FC70059268B /* TJWKWebViewController.m */,
+				614A36B5259AFDD70059268B /* TJWKWebViewTabController.h */,
+				614A36B6259AFDD70059268B /* TJWKWebViewTabController.m */,
+			);
+			path = TJWKWebViewController;
+			sourceTree = "<group>";
+		};
+		614A36D1259C5BA80059268B /* TJPageController */ = {
+			isa = PBXGroup;
+			children = (
+				614A36CE259C5BA40059268B /* TJPageController.h */,
+				614A36CF259C5BA40059268B /* TJPageController.m */,
+			);
+			path = TJPageController;
+			sourceTree = "<group>";
+		};
+		614A36E5259DB72B0059268B /* TJSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				614A36E7259DB7530059268B /* PKSegmentedSlideControl.h */,
+				614A36E6259DB7520059268B /* PKSegmentedSlideControl.m */,
+			);
+			path = TJSegmentedControl;
+			sourceTree = "<group>";
+		};
 		616F67CB258A0766006F42D8 /* TJUIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				614A36E5259DB72B0059268B /* TJSegmentedControl */,
+				614A36D1259C5BA80059268B /* TJPageController */,
+				614A3693259AB5E30059268B /* TJWKWebViewController */,
 				61D0C0262594704200D76C2B /* TJStarRateView */,
 				613560B02594481D0053E482 /* TJProgressView */,
 				613560AF259446780053E482 /* TJPickerView */,
@@ -492,13 +556,21 @@
 				613560AE259362F20053E482 /* NSDate+TJPickerDate.m in Sources */,
 				613560A2259338040053E482 /* TJPickerDataSource.m in Sources */,
 				6003F59E195388D20070C39A /* PKAppDelegate.m in Sources */,
+				614A36E4259D71DB0059268B /* Demo3ViewController.m in Sources */,
+				614A36E1259D71CF0059268B /* Demo2ViewController.m in Sources */,
 				613560992590C2200053E482 /* TJProgressView.m in Sources */,
 				6003F5A7195388D20070C39A /* PKViewController.m in Sources */,
+				614A36DE259D71C30059268B /* Demo1ViewController.m in Sources */,
 				616F67D1258A07A0006F42D8 /* TJProgressLayer.m in Sources */,
 				6135609F2591E2950053E482 /* TJPickerView.m in Sources */,
-				6135609C2591DAF00053E482 /* TJPageController.m in Sources */,
+				614A36E8259DB7530059268B /* PKSegmentedSlideControl.m in Sources */,
+				614A36B7259AFDD70059268B /* TJWKWebViewTabController.m in Sources */,
+				614A36EB259DBE310059268B /* Demo4ViewController.m in Sources */,
 				610B1A3F21C12977003571A3 /* PKNextViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				614A36BD259B0FC70059268B /* TJWKWebViewController.m in Sources */,
+				614A36D0259C5BA40059268B /* TJPageController.m in Sources */,
+				614A36EE259DBE3E0059268B /* Demo5ViewController.m in Sources */,
 				613560A8259344190053E482 /* TJPickerDateView.m in Sources */,
 				61F8D3D42511A3D80088C290 /* MyCollectionViewCell.m in Sources */,
 				61D0C0292594705B00D76C2B /* TJStarRateView.m in Sources */,

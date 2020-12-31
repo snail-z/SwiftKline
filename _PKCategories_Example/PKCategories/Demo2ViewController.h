@@ -1,8 +1,8 @@
 //
-//  TJPageController.h
+//  Demo2ViewController.h
 //  PKCategories_Example
 //
-//  Created by zhanghao on 2020/12/22.
+//  Created by zhanghao on 2020/12/31.
 //  Copyright © 2020 gren-beans. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TJPageController : UIView
+@interface Demo2ViewController : UIViewController
 
 @end
 

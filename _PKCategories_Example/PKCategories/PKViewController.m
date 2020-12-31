@@ -9,6 +9,7 @@
 #import "PKViewController.h"
 #import <PKCategories/PKCategories.h>
 #import "PKNextViewController.h"
+#import "TJWKWebViewTabController.h"
 
 @interface PKViewController ()
 
@@ -19,6 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.translucent = NO;
 	// Do any additional setup after loading the view, typically from a nib.
 
 //    NSString *aText = nil;
@@ -61,10 +63,17 @@
 }
 
 - (void)buttonClicked:(UIButton *)sender {
-    [sender pk_badgeRemove];
-    
+//    [sender pk_badgeRemove];
+//
     PKNextViewController *vc = [PKNextViewController new];
     [self.navigationController pushViewController:vc animated:YES];
+    
+//    TJWKWebViewTabController *webVC = [TJWKWebViewTabController new];
+//    webVC.urlString = @"https://sspai.com/tag/热门文章#home";
+//    webVC.urlEncodeAllowed = YES;
+//    webVC.pageSourceDisplayed = YES;
+//    webVC.debugLogEnabled = YES;
+//    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

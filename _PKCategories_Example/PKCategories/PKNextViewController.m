@@ -16,8 +16,19 @@
 #import "TJPickerDateView.h"
 #import "NSDate+PKExtend.h"
 #import "TJStarRateView.h"
+#import "TJPageController.h"
+#import "Demo1ViewController.h"
+#import "Demo2ViewController.h"
+#import "Demo3ViewController.h"
+#import "Demo4ViewController.h"
+#import "Demo5ViewController.h"
+#import "PKSegmentedSlideControl.h"
 
-@interface PKNextViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, TJPickerViewDelegate, TJPickerDateViewDelegate>
+@interface PKNextViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, TJPickerViewDelegate, TJPickerDateViewDelegate, TJPageControllerDataSource, TJPageControllerDelegate>
+
+@property(nonatomic, strong) PKSegmentedSlideControl *slideControl;
+@property(nonatomic, strong) TJPageController *pageController;
+@property(nonatomic, strong) NSMutableArray<UIViewController *> *allControllers;
 
 @end
 
@@ -45,23 +56,87 @@
 //    [self progreeTest];
 //    [self pickerTest];
 //    [self pickerDateTest];
-    [self fiveStarTest];
+//    [self fiveStarTest];
+    
+    _pageController = [TJPageController new];
+    _pageController.dataSource = self;
+    _pageController.delegate = self;
+    [self addChildViewController:_pageController];
+    [self.view addSubview:_pageController.view];
+    _pageController.view.frame = CGRectMake(10, 160, self.view.bounds.size.width-20, 300);
+    [_pageController didMoveToParentViewController:self];
+    
+    Demo1ViewController *vc1 = [Demo1ViewController new];
+    Demo2ViewController *vc2 = [Demo2ViewController new];
+    Demo3ViewController *vc3 = [Demo3ViewController new];
+    Demo4ViewController *vc4 = [Demo4ViewController new];
+    Demo5ViewController *vc5 = [Demo5ViewController new];
+    _allControllers = [NSMutableArray array];
+    [_allControllers addObject:vc1];
+    [_allControllers addObject:vc2];
+    [_allControllers addObject:vc3];
+    [_allControllers addObject:vc4];
+    [_allControllers addObject:vc5];
+    [_pageController setCurrentIndex:2 animated:NO];
+    
+    NSArray *titles = @[@"Believer", @"Natural", @"The Ocean", @"Friends", @"Wolves"];
+    self.slideControl = [[PKSegmentedSlideControl alloc] initWithTitles:titles];
+    self.slideControl.frame = CGRectMake(10, 100, self.view.bounds.size.width-20, 50);
+    self.slideControl.normalTextColor = [UIColor blackColor];
+    self.slideControl.selectedTextColor = [UIColor pk_colorWithRed:223 green:80 blue:50];
+    self.slideControl.backgroundColor = [UIColor whiteColor];
+    self.slideControl.plainTextFont =  [UIFont boldSystemFontOfSize:20];
+    self.slideControl.indicatorLineWidth = 4;
+    self.slideControl.paddingInset = 20;
+    self.slideControl.innerSpacing = 20;
+    self.slideControl.allowBounces = NO;
+    self.slideControl.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5].CGColor;
+    self.slideControl.layer.borderWidth = 1 / [UIScreen mainScreen].scale;
+    [self.slideControl addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.slideControl];
+    [self.slideControl setWithIndex:2 animated:NO];
+}
+
+- (NSInteger)numberOfPagesInPageController:(TJPageController *)pageController {
+    return _allControllers.count;
+}
+
+-(UIViewController *)pageController:(TJPageController *)pageController pageAtIndex:(NSInteger)index {
+    return _allControllers[index];
+}
+
+- (void)pageControllerWillStartTransition:(TJPageController *)pageController {
+    NSLog(@"pageControllerWillStartTransition");
+    
+}
+
+- (void)pageController:(TJPageController *)pageController didUpdateTransition:(CGFloat)progress {
+    NSLog(@"progress is: %@", @(progress));
+    [self.slideControl updateWithProgress:progress];
+}
+
+- (void)pageControllerDidEndTransition:(TJPageController *)pageController {
+    NSLog(@"pageControllerDidEndTransition");
+}
+
+- (void)valueChanged:(PKSegmentedSlideControl *)sender {
+    NSLog(@"The selected index is: %@", @(sender.index));
+    [_pageController setCurrentIndex:sender.index animated:NO];
 }
 
 #pragma mark - Test
 
 - (void)fiveStarTest {
-    TJStarRateView *view = [[TJStarRateView alloc] initWithItemCount:5];
-    view.frame = CGRectMake(10, 100, 350, 50);
+    TJStarRateView *view = [[TJStarRateView alloc] initWithItemCount:7];
+    view.frame = CGRectMake(10, 100, 380, 50);
     view.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.25];
     [self.view addSubview:view];
     view.uncheckedImage = [UIImage imageNamed:@"game_evaluate_gray"];
     view.checkedImage = [UIImage imageNamed:@"star_red"];
     view.itemSize = CGSizeMake(40, 40);
-    view.itemSpacing = 30;
     view.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    view.maxScore = 30;
-    view.defaultScore = 9;
+    view.maxScore = 50;
+    view.defaultScore = 0;
     view.didScoreChanged = ^(TJStarRateView * _Nonnull sender, float currentScore) {
         NSLog(@"currentScore is: %@", @(currentScore));
     };

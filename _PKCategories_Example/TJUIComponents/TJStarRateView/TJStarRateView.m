@@ -7,6 +7,7 @@
 //
 
 #import "TJStarRateView.h"
+#import <WebKit/WebKit.h>
 
 @interface TJStarRateView ()
 
@@ -24,13 +25,17 @@
         [self defaultInitialization];
         [self subviewInitialization];
         [self starViewsInitialization];
+        
+//        TJWKWebView
+//        TJWKWebViewController
+        
+//        TJWKWebViewCapabale
     }
     return self;
 }
 
 - (void)defaultInitialization {
     _rateType = TJStarRateTypeWhole;
-    _itemCount = 5;
     _itemSpacing = 10;
     _contentEdgeInsets = UIEdgeInsetsZero;
     _itemSize = CGSizeZero;
