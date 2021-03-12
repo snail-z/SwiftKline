@@ -1,4 +1,5 @@
 PODS:
+  - Masonry (1.1.0)
   - PKCategories (0.3.1):
     - PKCategories/Foundation (= 0.3.1)
     - PKCategories/Other (= 0.3.1)
@@ -8,15 +9,21 @@ PODS:
   - PKCategories/UIKit (0.3.1)
 
 DEPENDENCIES:
+  - Masonry (~> 1.1.0)
   - PKCategories (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
 
 EXTERNAL SOURCES:
   PKCategories:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   PKCategories: edf5fa8ccb1ea7c56fe882b654a3709d82a0fba0
 
-PODFILE CHECKSUM: 3a3cfc15f3199ab17e928be3e320b1d27ca01e86
+PODFILE CHECKSUM: 1af53c3e3ea5378fdf5bafc18771170afab4a925
 
 COCOAPODS: 1.9.3

@@ -11,13 +11,13 @@
 
 @implementation TJPickerItem
 
-@synthesize text;
-@synthesize identifier;
+@synthesize pickerText;
+@synthesize pickerId;
 
-+ (instancetype)itemWithText:(NSString *)text identifier:(NSInteger)identifier {
++ (instancetype)itemWithPickerText:(NSString *)text pickerId:(NSInteger)pickerId {
     TJPickerItem *item = [TJPickerItem new];
-    item.text = text;
-    item.identifier = identifier;
+    item.pickerText = text;
+    item.pickerId = pickerId;
     return item;
 }
 

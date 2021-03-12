@@ -32,7 +32,8 @@ typedef NS_ENUM(NSInteger, TJPickerDateUnit) { /// 年月日时分秒
     NSMutableArray *mua = @[].mutableCopy;
     for (NSInteger idx = a; idx <= b; idx++) {
         NSString *text = [[self tj_format:idx by:TJPickerDateUnitYear] stringByAppendingString:@"年"];
-        TJPickerItem *item = [TJPickerItem itemWithText:text identifier:idx];
+        
+        TJPickerItem *item = [TJPickerItem itemWithPickerText:text pickerId:idx];
         [mua addObject:item];
     }
     return mua.copy;
@@ -42,7 +43,7 @@ typedef NS_ENUM(NSInteger, TJPickerDateUnit) { /// 年月日时分秒
     NSMutableArray *mua = @[].mutableCopy;
     for (NSInteger idx = 1; idx <= 12; idx++) {
         NSString *text = [[self tj_format:idx by:TJPickerDateUnitMonth] stringByAppendingString:@"月"];
-        TJPickerItem *item = [TJPickerItem itemWithText:text identifier:idx];
+        TJPickerItem *item = [TJPickerItem itemWithPickerText:text pickerId:idx];
         [mua addObject:item];
     }
     return mua.copy;
@@ -53,7 +54,7 @@ typedef NS_ENUM(NSInteger, TJPickerDateUnit) { /// 年月日时分秒
     NSMutableArray *mua = @[].mutableCopy;
     for (NSInteger idx = 1; idx <= max; idx++) {
         NSString *text = [[self tj_format:idx by:TJPickerDateUnitMonth] stringByAppendingString:@"日"];
-        TJPickerItem *item = [TJPickerItem itemWithText:text identifier:idx];
+        TJPickerItem *item = [TJPickerItem itemWithPickerText:text pickerId:idx];
         [mua addObject:item];
     }
     return mua.copy;

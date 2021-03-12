@@ -54,9 +54,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol TJPickerViewDelegate <NSObject>
 
+/// 自定义某项cell样式
+- (UIView *)pickerView:(TJPickerView *)pickerView viewForRow:(NSInteger)row inColumn:(NSInteger)column;
+
+/// 设置每列分隔线布局宽度 (实现该方法，则隐藏系统分隔线，使用自定义线段)
+- (CGFloat)pickerView:(TJPickerView *)pickerView lineWidthLayoutInColumn:(NSInteger)column;
+
 /// 选中了某一列的某行时的回调
 - (void)pickerView:(TJPickerView *)pickerView didSelectItem:(id<TJPickerDataSource>)item;
 
 @end
 
 NS_ASSUME_NONNULL_END
+

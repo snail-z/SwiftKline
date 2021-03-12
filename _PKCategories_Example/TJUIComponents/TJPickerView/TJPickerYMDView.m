@@ -6,21 +6,29 @@
 //  Copyright © 2020 gren-beans. All rights reserved.
 //
 
-#import "TJPickerDateView.h"
+#import "TJPickerYMDView.h"
 #import "NSDate+PKExtend.h"
 
-@interface TJPickerDateView () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface TJPickerYMDView () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property(nonatomic, strong) UIPickerView *pickerView;
+@property(nonatomic, strong) NSMutableArray<UIView *> *arrayLines;
 
 @end
 
-@implementation TJPickerDateView {
+@implementation TJPickerYMDView {
     struct {
         NSInteger year;
         NSInteger month;
         NSInteger day;
     } _pickerUnit;
+}
+
+- (NSMutableArray<UIView *> *)arrayLines {
+    if (!_arrayLines) {
+        _arrayLines = @[].mutableCopy;
+    }
+    return _arrayLines;
 }
 
 - (instancetype)init {
@@ -55,6 +63,29 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     _pickerView.frame = self.bounds;
+    if (_arrayLines.count < 1) return;
+    NSInteger index = 0;
+    for (NSInteger idx = 0; idx < _arrayLines.count; idx+=2) {
+        UIView *line1 = _arrayLines[idx];
+        UIView *line2 = _arrayLines[idx + 1];
+        line1.frame = [self elementFrameWithIndex:index isTop:YES];
+        line2.frame = [self elementFrameWithIndex:index isTop:NO];
+        index++;
+    }
+}
+
+- (CGRect)elementFrameWithIndex:(NSInteger)index isTop:(BOOL)isTop {
+    CGFloat divideWidth = self.bounds.size.width / _columnItems.count;
+    CGFloat padding = (divideWidth - _columnLineMaxLayoutWidth) / 2;
+    CGSize lineSize = CGSizeMake(_columnLineMaxLayoutWidth, 0.5);
+    CGRect frame = CGRectMake(0, 0, lineSize.width, lineSize.height);
+    frame.origin.x = (divideWidth * index) + padding;
+    if (isTop) {
+        frame.origin.y = self.bounds.size.height / 2 - _rowHeight / 2 - 1;
+    } else {
+        frame.origin.y = self.bounds.size.height / 2 + _rowHeight / 2 + 1;
+    }
+    return frame;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -73,12 +104,13 @@
     for (UIView *line in pickerView.subviews) {
         if (line.bounds.size.height > 1) continue;
         line.backgroundColor = self.separatorColor;
+        line.hidden = self.columnLineMaxLayoutWidth > 0;
     }
     UILabel *label = [UILabel new];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = self.textColor;
     label.font = self.textFont;
-    label.text = _columnItems[component][row].text;
+    label.text = _columnItems[component][row].pickerText;
     return label;
 }
 
@@ -86,15 +118,15 @@
     id<TJPickerDataSource> item = _columnItems[component][row];
     switch (component) {
         case 0: { // year
-            _pickerUnit.year = item.identifier;
+            _pickerUnit.year = item.pickerId;
             [self reloadDaysColumn:[self didSelectDate]];
         } break;
         case 1: { // month
-            _pickerUnit.month = item.identifier;
+            _pickerUnit.month = item.pickerId;
             [self reloadDaysColumn:[self didSelectDate]];
         } break;
         case 2: { // day
-            _pickerUnit.day = item.identifier;
+            _pickerUnit.day = item.pickerId;
         } break;
         default: break;
     }
@@ -120,12 +152,46 @@
     [self reloadComponents:[NSDate date]];
 }
 
+- (void)setColumnLineMaxLayoutWidth:(CGFloat)columnLineMaxLayoutWidth {
+    _columnLineMaxLayoutWidth = columnLineMaxLayoutWidth;
+    [self setColumnLines];
+}
+
+- (void)setSeparatorColor:(UIColor *)separatorColor {
+    _separatorColor = separatorColor;
+    [_pickerView reloadAllComponents];
+    for (UIView *line in _arrayLines) {
+        line.backgroundColor = separatorColor;
+    }
+}
+
+- (void)setColumnLines {
+    if (self.columnLineMaxLayoutWidth <= 0) return;
+    if (self.columnItems.count <= 0) return;
+    if (self.columnItems.count == _arrayLines.count) return;
+    
+    for (UIView *line in _arrayLines) { [line removeFromSuperview]; }
+    [_arrayLines removeAllObjects];
+    
+    for (NSInteger index = 0; index < _columnItems.count; index++) {
+        UIView *line1 = [UIView new];
+        [self addSubview:line1];
+        [self.arrayLines addObject:line1];
+        
+        UIView *line2 = [UIView new];
+        [self addSubview:line2];
+        [self.arrayLines addObject:line2];
+    }
+    [self setNeedsLayout];
+}
+
 - (void)reloadComponents:(NSDate *)date {
     if (!_columnItems) {
         _columnItems = [NSDate tj_yearsMonthsAndDays];
     }
     if (_columnItems.count < 1 || !date) return;
     [self reloadAllComponentsBy:date];
+    [self setColumnLines];
 }
 
 - (void)reloadAllComponentsBy:(NSDate *)date {
@@ -145,7 +211,7 @@
     for (NSInteger column = 0; column < _columnItems.count; column++) { // 遍历每列
         NSArray<id<TJPickerDataSource>> *targets = _columnItems[column];
         for (NSInteger index = 0; index < targets.count; index++) {
-            if (targets[index].identifier == keys[column].integerValue) { // 当前列需要选中的项
+            if (targets[index].pickerId == keys[column].integerValue) { // 当前列需要选中的项
                 [self.pickerView selectRow:index inComponent:column animated:YES];
                 break;
             }
@@ -162,12 +228,12 @@
     
     __block NSInteger index = days.count - 1;
     [days enumerateObjectsUsingBlock:^(id<TJPickerDataSource> obj, NSUInteger idx, BOOL *stop) {
-        if (obj.identifier == _pickerUnit.day) {
+        if (obj.pickerId == _pickerUnit.day) {
             index = idx;
             *stop = YES;
         }
     }];
-    _pickerUnit.day = days[index].identifier;
+    _pickerUnit.day = days[index].pickerId;
     [_pickerView reloadComponent:2];
 }
 

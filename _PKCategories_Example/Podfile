@@ -2,7 +2,8 @@ use_frameworks!
 
 target 'PKCategories_Example' do
   pod 'PKCategories', :path => '../'
-
+  pod 'Masonry', '~> 1.1.0'
+  
   target 'PKCategories_Tests' do
     inherit! :search_paths
 

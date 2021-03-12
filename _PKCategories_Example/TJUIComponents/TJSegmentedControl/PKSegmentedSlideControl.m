@@ -7,6 +7,7 @@
 //
 
 #import "PKSegmentedSlideControl.h"
+#import <PKCategories/PKCategories.h>
 
 @interface PKSegmentedSlideControl ()
 
@@ -74,23 +75,24 @@
     NSInteger pageCount = self.numberOfPageItems;
     pageCount = pageCount > self.titles.count ? self.titles.count : pageCount;
     
-    CGFloat sumWidth = [self elementWidthForIndex:0];;
+    CGFloat sumWidth = [self elementWidthForIndex:0];
     for (int idx = 1; idx < pageCount; idx++) {
         sumWidth += [self elementWidthForIndex:idx];
     }
     
     CGFloat sumSpacing = self.bounds.size.width - self.paddingInset * 2 - sumWidth;
-    _innerSpacing = sumSpacing / (pageCount - 1);
+//    _innerSpacing = sumSpacing / (pageCount - 1);
     for (int idx = 0; idx < self.buttonsView.subviews.count; idx++) {
         CGRect frame = [self elementFrameForIndex:idx];
         self.buttonsView.subviews[idx].frame = frame;
     }
     
     if (CGRectGetMaxX(self.buttonsView.subviews.lastObject.frame) < self.bounds.size.width) {
-        _innerSpacing = sumSpacing / (self.buttonsView.subviews.count - 1);
+//        _innerSpacing = sumSpacing / (self.buttonsView.subviews.count - 1);
         for (int idx = 0; idx < self.buttonsView.subviews.count; idx++) {
             CGRect frame = [self elementFrameForIndex:idx];
             self.buttonsView.subviews[idx].frame = frame;
+            self.buttonsView.subviews[idx].backgroundColor = [UIColor pk_randomColor];
         }
     }
     
@@ -340,17 +342,22 @@
     NSLog(@"leftFactor : %@", @(leftFactor));
 //    leftLabel
     
-    CGFloat refscale = 0.3;
-    CGFloat sxf = 1 - leftFactor * refscale;
-    rightLabel.transform = CGAffineTransformMakeScale(sxf, sxf);
     
-    CGFloat dsxf = (1 - refscale) + leftFactor * refscale;
-    leftLabel.transform = CGAffineTransformMakeScale(dsxf, dsxf);
+    BOOL isTransform = NO;
+    
+    if (isTransform) {
+        CGFloat refscale = 0.3;
+        CGFloat sxf = 1 - leftFactor * refscale;
+        rightLabel.transform = CGAffineTransformMakeScale(sxf, sxf);
+        
+        CGFloat dsxf = (1 - refscale) + leftFactor * refscale;
+        leftLabel.transform = CGAffineTransformMakeScale(dsxf, dsxf);
+    }
+    
 //    leftLabel.transform = CGAffineTransformMakeScale(sxf, sxf);
 //    rightLabel.transform = CGAffineTransformMakeScale(1+leftFactor, 1+leftFactor);
 //    self.imageV.transform = CGAffineTransformMakeScale(0.5, 0.5);
 //    self.imageV.transform = CGAffineTransformScale(self.imageV.transform, 0.8, 0.8);
-    
     
     CGFloat currentWidth = leftTextWidth + (rightTextWidth - leftTextWidth) * factor;
     CGFloat offsetX = (CGRectGetMidX(rightLabel.frame) - CGRectGetMidX(leftLabel.frame)) * factor;

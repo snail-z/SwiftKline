@@ -13,7 +13,7 @@
 #import "TJProgressView.h"
 #import "TJProgressLayer.h"
 #import "TJPickerView.h"
-#import "TJPickerDateView.h"
+#import "TJPickerYMDView.h"
 #import "NSDate+PKExtend.h"
 #import "TJStarRateView.h"
 #import "TJPageController.h"
@@ -23,6 +23,8 @@
 #import "Demo4ViewController.h"
 #import "Demo5ViewController.h"
 #import "PKSegmentedSlideControl.h"
+#import <Masonry/Masonry.h>
+#import "TJPickerViewCell.h"
 
 @interface PKNextViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, TJPickerViewDelegate, TJPickerDateViewDelegate, TJPageControllerDataSource, TJPageControllerDelegate>
 
@@ -54,47 +56,50 @@
     
     
 //    [self progreeTest];
-//    [self pickerTest];
+    [self pickerTest];
 //    [self pickerDateTest];
 //    [self fiveStarTest];
-    
+}
+
+- (void)pageControllerTest {
     _pageController = [TJPageController new];
-    _pageController.dataSource = self;
-    _pageController.delegate = self;
-    [self addChildViewController:_pageController];
-    [self.view addSubview:_pageController.view];
-    _pageController.view.frame = CGRectMake(10, 160, self.view.bounds.size.width-20, 300);
-    [_pageController didMoveToParentViewController:self];
-    
-    Demo1ViewController *vc1 = [Demo1ViewController new];
-    Demo2ViewController *vc2 = [Demo2ViewController new];
-    Demo3ViewController *vc3 = [Demo3ViewController new];
-    Demo4ViewController *vc4 = [Demo4ViewController new];
-    Demo5ViewController *vc5 = [Demo5ViewController new];
-    _allControllers = [NSMutableArray array];
-    [_allControllers addObject:vc1];
-    [_allControllers addObject:vc2];
-    [_allControllers addObject:vc3];
-    [_allControllers addObject:vc4];
-    [_allControllers addObject:vc5];
-    [_pageController setCurrentIndex:2 animated:NO];
-    
-    NSArray *titles = @[@"Believer", @"Natural", @"The Ocean", @"Friends", @"Wolves"];
-    self.slideControl = [[PKSegmentedSlideControl alloc] initWithTitles:titles];
-    self.slideControl.frame = CGRectMake(10, 100, self.view.bounds.size.width-20, 50);
-    self.slideControl.normalTextColor = [UIColor blackColor];
-    self.slideControl.selectedTextColor = [UIColor pk_colorWithRed:223 green:80 blue:50];
-    self.slideControl.backgroundColor = [UIColor whiteColor];
-    self.slideControl.plainTextFont =  [UIFont boldSystemFontOfSize:20];
-    self.slideControl.indicatorLineWidth = 4;
-    self.slideControl.paddingInset = 20;
-    self.slideControl.innerSpacing = 20;
-    self.slideControl.allowBounces = NO;
-    self.slideControl.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5].CGColor;
-    self.slideControl.layer.borderWidth = 1 / [UIScreen mainScreen].scale;
-    [self.slideControl addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:self.slideControl];
-    [self.slideControl setWithIndex:2 animated:NO];
+        _pageController.dataSource = self;
+        _pageController.delegate = self;
+        [self addChildViewController:_pageController];
+        [self.view addSubview:_pageController.view];
+        _pageController.view.frame = CGRectMake(10, 160, self.view.bounds.size.width-20, 300);
+        [_pageController didMoveToParentViewController:self];
+        
+        Demo1ViewController *vc1 = [Demo1ViewController new];
+        Demo2ViewController *vc2 = [Demo2ViewController new];
+        Demo3ViewController *vc3 = [Demo3ViewController new];
+        Demo4ViewController *vc4 = [Demo4ViewController new];
+        Demo5ViewController *vc5 = [Demo5ViewController new];
+        _allControllers = [NSMutableArray array];
+        [_allControllers addObject:vc1];
+        [_allControllers addObject:vc2];
+        [_allControllers addObject:vc3];
+    //    [_allControllers addObject:vc4];
+    //    [_allControllers addObject:vc5];
+    //    [_pageController setCurrentIndex:2 animated:NO];
+        
+    //    NSArray *titles = @[@"Believer", @"Natural", @"The Ocean", @"Friends", @"Wolves"];
+        NSArray *titles = @[@"收到的评价", @"待我评价", @"我已评的"];
+        self.slideControl = [[PKSegmentedSlideControl alloc] initWithTitles:titles];
+        self.slideControl.frame = CGRectMake(10, 100, self.view.bounds.size.width-20, 50);
+        self.slideControl.normalTextColor = [UIColor blackColor];
+        self.slideControl.selectedTextColor = [UIColor pk_colorWithRed:223 green:80 blue:50];
+        self.slideControl.backgroundColor = [UIColor whiteColor];
+        self.slideControl.plainTextFont =  [UIFont boldSystemFontOfSize:20];
+        self.slideControl.indicatorLineWidth = 4;
+        self.slideControl.paddingInset = 20;
+        self.slideControl.innerSpacing = 2;
+        self.slideControl.allowBounces = NO;
+        self.slideControl.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5].CGColor;
+        self.slideControl.layer.borderWidth = 1 / [UIScreen mainScreen].scale;
+        [self.slideControl addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+        [self.view addSubview:self.slideControl];
+    //    [self.slideControl setWithIndex:2 animated:NO];
 }
 
 - (NSInteger)numberOfPagesInPageController:(TJPageController *)pageController {
@@ -143,54 +148,84 @@
 }
 
 - (void)pickerDateTest {
-    TJPickerDateView *pickerView = [TJPickerDateView new];
+    TJPickerYMDView *pickerView = [TJPickerYMDView new];
     pickerView.delegate = self;
-    pickerView.frame = CGRectMake(20, 100, 350, 200);
+    pickerView.frame = CGRectMake(20, 100, 300, 200);
     pickerView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.25];
     [self.view addSubview:pickerView];
-    [pickerView reloadComponents:[NSDate date]];
+    
+    pickerView.separatorColor = [UIColor redColor];
+    pickerView.columnLineMaxLayoutWidth = 100;
+    NSArray<id<TJPickerDataSource>> *items = [NSDate tj_yearsFrom:2000 toYear:2021];
+    pickerView.columnItems = @[items, [NSDate tj_months], [NSDate tj_daysOfDate:[NSDate date]]];
 }
 
-- (void)pickerDateView:(TJPickerDateView *)sender didSelectItem:(id<TJPickerDataSource>)item {
+- (void)pickerDateView:(TJPickerYMDView *)sender didSelectItem:(id<TJPickerDataSource>)item {
     NSLog(@"日期is: %@", [NSDate pk_stringFromDate:sender.selectedDate formatter:@"yyyy-MM-dd"]);
 }
 
 - (void)pickerTest {
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    
     TJPickerView *aview = [TJPickerView new];
     aview.delegate = self;
-    aview.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
+    aview.backgroundColor = [UIColor whiteColor];
     aview.frame = CGRectMake(20, 100, 370, 200);
     [self.view addSubview:aview];
+    aview.separatorColor = [UIColor redColor];
     
-    TJPickerItem *item1 = [TJPickerItem itemWithText:@"东方红" identifier:1];
-    TJPickerItem *item2 = [TJPickerItem itemWithText:@"A" identifier:2];
-    TJPickerItem *item3 = [TJPickerItem itemWithText:@"BC" identifier:3];
-    TJPickerItem *item5 = [TJPickerItem itemWithText:@"UYD" identifier:4];
-    aview.columnItems = @[@[item5, item2, item3, item1], @[item1, item2, item3]];
+    TJPickerItem *item1 = [TJPickerItem itemWithPickerText:@"东方红" pickerId:1];
+    TJPickerItem *item2 = [TJPickerItem itemWithPickerText:@"A" pickerId:2];
+    TJPickerItem *item3 = [TJPickerItem itemWithPickerText:@"BC" pickerId:3];
+    TJPickerItem *item5 = [TJPickerItem itemWithPickerText:@"UYD" pickerId:4];
+    aview.columnItems = @[@[[TJPickerItem itemWithPickerText:@"本次使用" pickerId:0]], @[item5, item2, item3], @[[TJPickerItem itemWithPickerText:@"分" pickerId:0]]];
+
     
-    aview.oneColumnItems = @[item1, item2, item3];
-//    [aview needSelectedItems:@[item3, item1]];
-    
-//    [aview needSelectedIdentifiers:@[@2, @4]];
-    
-//    [aview setSelectIdentifiers:@[@2, @3]];
-    
+
     aview.didSelectItem = ^(TJPickerView * _Nonnull pickerView, id<TJPickerDataSource>  _Nonnull item) {
-        NSLog(@"item.text==> %@", item.text);
+        NSLog(@"item.text==> %@", item.pickerText);
         
         NSLog(@"pickerView.selectedItems==> %@", pickerView.selectedItems);
     };
     
-    [aview setSelectItems:@[item3, item2]];
+//    [aview setSelectItems:@[item2, item3]];
+    [aview setSelectIdentifiers:@[@(0), @(2), @(0)]];
     
     NSLog(@"hahi 结果is： %@", aview.selectedItems);
-    
-    
 }
 
+- (CGFloat)pickerView:(TJPickerView *)pickerView lineWidthLayoutInColumn:(NSInteger)column {
+    return 80;
+}
+
+- (UIView *)pickerView:(TJPickerView *)pickerView viewForRow:(NSInteger)row inColumn:(NSInteger)column {
+//    UIView *aView = [UIView new];
+//    aView.backgroundColor = [UIColor clearColor];
+//
+//    UILabel *label = [UILabel new];
+//    label.backgroundColor = [UIColor clearColor];
+//    label.text = pickerView.columnItems[column][row].text;
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.textColor = pickerView.textColor;
+//    label.font = pickerView.textFont;
+//    [aView addSubview:label];
+//
+//    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(100);
+//        make.height.mas_equalTo(pickerView.rowHeight);
+//        make.center.equalTo(aView);
+//    }];
+//
+//    return aView;
+    
+    TJPickerLineCell *cell = [TJPickerLineCell new];
+    cell.title = pickerView.columnItems[column][row].pickerText;
+    
+    return cell;
+}
 
 - (void)pickerView:(TJPickerView *)pickerView didSelectItem:(id<TJPickerDataSource>)item {
-    NSLog(@"delegate ==> item.text==> %@", item.text);
+    NSLog(@"delegate ==> item.text==> %@", item.pickerText);
     NSLog(@"delegate ==> pickerView.selectedItems==> %@", pickerView.selectedItems);
 }
 

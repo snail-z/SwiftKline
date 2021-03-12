@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TJPickerDataSource <NSObject>
 
 /// 标题
-@property(nonatomic, copy) NSString *text;
+@property(nonatomic, copy) NSString *pickerText;
 
 /// 唯一标识码
-@property(nonatomic, assign) NSInteger identifier;
+@property(nonatomic, assign) NSInteger pickerId;
 
 @end
 
@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TJPickerItem : NSObject <TJPickerDataSource>
 
 /// 遍历构造器
-+ (instancetype)itemWithText:(NSString *)text identifier:(NSInteger)identifier;
++ (instancetype)itemWithPickerText:(NSString *)text pickerId:(NSInteger)pickerId;
 
 @end
 
