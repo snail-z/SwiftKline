@@ -34,6 +34,44 @@ public extension PKArrayExtensions {
         return base.contains { type(of: $0) == elementType}
     }
     
+    ///  获取数组中指定某范围内的元素 (返回某范围内元素的数组)
+    func subarray(at range: NSRange) -> [Element] {
+        var elements = [Element]()
+        
+        guard range.location >= 0, range.location < base.count else {
+            return elements
+        }
+        
+        guard range.length > 0, NSMaxRange(range) <= base.count else {
+            return elements
+        }
+        
+        for obj in base[range.location..<NSMaxRange(range)] {
+            elements.append(obj)
+        }
+        return elements
+    }
+    
+    /// 获取数组中前n个元素 (返回包含前n个元素的数组)
+    func formerElements(length: NSInteger) -> [Element] {
+        var elements = [Element]()
+        let end = max(0, min(base.count, length))
+        for obj in base[0..<end] {
+            elements.append(obj)
+        }
+        return elements
+    }
+    
+    /// 获取数组中后n个元素 (返回包含后n个元素的数组)
+    func latterElements(length: NSInteger) -> [Element] {
+        let begin = base.count - max(0, min(base.count, length))
+        var elements = [Element]()
+        for obj in base[begin..<base.count] {
+            elements.append(obj)
+        }
+        return elements
+    }
+    
     /// 根据闭包返回的某个条件，查找数组内的最大最小值
     ///
     ///     let array: [UIButton] = [...]

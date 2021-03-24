@@ -315,16 +315,47 @@ class SecondViewController: NSViewController, NSTableViewDataSource, NSTableView
         
     }
     
-//========================================================================
+
+    func testDemo4() {
+        
+        let array = ["1", "2", "A", "b", "C", "d"]
+        
+//        let obj = array[array.pk.randomIndex]
+//        print("random obj is : \(obj)")
+//
+        let hha = array.pk.formerElements(length: 1)
+        print("hha is: \(hha)")
+//
+//        let last = array.pk.latterElements(length: 17)
+//        print("last is: \(last)")
+
+//        let subs = array.pk.subarray(at: NSRange(location: 4, length: 2))
+//        print("subs is: \(subs)")
+    }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//========================================================================
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        testDemo4()
 //        testDemo()
 //        testDemo2()
-        testDemo3()
+//        testDemo3()
         
         // Do view setup here.
 //        print("view is: \(view)")

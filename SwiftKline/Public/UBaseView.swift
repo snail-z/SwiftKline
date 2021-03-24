@@ -8,6 +8,14 @@
 
 import Cocoa
 
+class TJHhaha {
+    
+}
+
+class TJHhaha1: NSObject {
+    
+}
+
  open class UBaseView: NSView {
     
     open override var isFlipped: Bool {
@@ -28,6 +36,24 @@ import Cocoa
         get {
             return backedLayer
         }
+    }
+    
+    static func hahah(name: TJHhaha1) {
+    }
+    
+    static func hahah(name: TJHhaha) {
+    }
+    
+    static func hahah(type: Any) {
+        
+    }
+    
+    func hahah(type: Double) {
+        
+    }
+    
+    func hahah(type: String) {
+        
     }
     
     private var backedLayer: UBaseLayer!
