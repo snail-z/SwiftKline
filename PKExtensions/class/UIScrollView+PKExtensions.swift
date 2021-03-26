@@ -30,8 +30,8 @@ public extension PKViewExtensions where Base: UIScrollView {
 
 public extension PKViewExtensions where Base: UIScrollView {
     
-    /// 吃掉滚动视图自动调整的Insets
-    func eatAutomaticallyAdjustsInsets() {
+    /// 消除滚动视图自动调整的Insets
+    func eliminateAutomaticallyAdjustsInsets() {
         if #available(iOS 11.0, *) {
             base.contentInsetAdjustmentBehavior = .never
         } else {
@@ -65,5 +65,53 @@ public extension PKViewExtensions where Base: UIScrollView {
         base.setContentOffset(offset, animated: animated)
     }
 }
+
+public extension PKViewExtensions where Base: UIScrollView {
+    
+    /// 设置滚动视图顶部背景色
+    func insetTopBackgroundColor(_ color: UIColor?, offset: CGFloat = 0) {
+        removeTopBackground()
+        let view = base.pk_topBackground
+        if view.superview == nil {
+            base.addSubview(view)
+            view.pk.makeConstraints { (make) in
+                make.left.equalTo(0)
+                make.right.equalTo(0)
+                make.width.equalTo(self.base.pk.width)
+                make.bottom.equalTo(self.base.pk.top).offset(offset)
+                make.height.equalTo(1000)
+            }
+        }
+        view.backgroundColor = color
+    }
+    
+    /// 删除滚动视图顶部背景色
+    func removeTopBackground() {
+        base.pk_removeTopBackground()
+    }
+}
+ 
+private extension UIScrollView {
+    
+    var pk_topBackground: UIView {
+        let aView: UIView
+        if let existing = objc_getAssociatedObject(self, &UIScrollViewAssociatedTopBackgroundKey) as? UIView {
+            aView = existing
+        } else {
+            aView = UIView()
+            objc_setAssociatedObject(self, &UIScrollViewAssociatedTopBackgroundKey, aView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        return aView
+    }
+    
+    func pk_removeTopBackground() {
+        if let existing = objc_getAssociatedObject(self, &UIScrollViewAssociatedTopBackgroundKey) as? UIView {
+            existing.removeFromSuperview()
+            objc_setAssociatedObject(self, &UIScrollViewAssociatedTopBackgroundKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+}
+
+private var UIScrollViewAssociatedTopBackgroundKey: Void?
 
 #endif

@@ -84,4 +84,44 @@ public extension PKViewExtensions where Base: UITableView {
     }
 }
 
+public extension PKViewExtensions where Base: UITableViewCell {
+
+    /// 返回UITableView可重用的UITableViewCell及子类实例
+    static func cellForTableView(_ tableView: UITableView) -> Base {
+        return Base._cellForTableView(tableView)
+    }
+}
+
+public extension PKViewExtensions where Base: UITableViewHeaderFooterView {
+
+    /// 返回UITableView可重用的UITableViewHeaderFooterView及子类实例
+    static func headerFooterViewForTableView(_ tableView: UITableView) -> Base {
+        return Base._headerFooterViewForTableView(tableView)
+    }
+}
+
+private extension UITableViewCell {
+
+    class func _cellForTableView(_ tableView: UITableView) -> Self {
+        let identifier = String(describing: self)
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+        if cell == nil {
+            cell = Self.init(style: .default, reuseIdentifier: identifier)
+        }
+        return cell as! Self
+    }
+}
+
+private extension UITableViewHeaderFooterView {
+    
+    class func _headerFooterViewForTableView(_ tableView: UITableView) -> Self {
+        let identifier = String(describing: self)
+        var reusableView = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier)
+        if reusableView == nil {
+            reusableView = Self.init(reuseIdentifier: identifier)
+        }
+        return reusableView as! Self
+    }
+}
+
 #endif
