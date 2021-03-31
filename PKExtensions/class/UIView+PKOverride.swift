@@ -22,6 +22,7 @@ import UIKit
 *  6. 支持调整内容边距 (contentEdgeInsets) 注：不支持titleEdgeInsets/imageEdgeInsets
 *  7. 支持调整 cornerRadius 始终保持为高度的 1/2 (adjustsRoundedCornersAutomatically)
 *  8. 支持 Auto Layout 以上设置可根据内容自适应
+*  9. 支持点击时扩增响应范围 (touchResponseInsets)
 */
 public extension UIControl.ContentHorizontalAlignment {
     
@@ -78,6 +79,13 @@ open class PKUIButton: UIButton {
     
     /// 是否自动调整 `cornerRadius` 使其始终保持为高度的 1/2
     public var adjustsRoundedCornersAutomatically: Bool = false {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    /// 设置按钮点击时扩增的响应区域，默认UIEdgeInsetsZero
+    public var touchResponseInsets:UIEdgeInsets = .zero {
         didSet {
             setNeedsLayout()
         }
@@ -152,10 +160,11 @@ open class PKUIButton: UIButton {
             let titleY = anotherTop(titleSize.height, originY: imageView!.frame.maxY + spacing)
             titleLabel!.frame = CGRect(x: titleX, y: titleY, size: titleSize)
         case .left:
+            let edgePadding = contentEdgeInsets.left + contentEdgeInsets.right
             var contentWidth = titleSize.width + imageSize.width + spacing
-            if contentWidth > bounds.width {
-                titleSize.width = bounds.width - imageSize.width - spacing
-                contentWidth = bounds.width
+            if contentWidth > (bounds.width - edgePadding) {
+                titleSize.width = bounds.width - imageSize.width - spacing - edgePadding
+                contentWidth = bounds.width - edgePadding
             }
             let padding = horizontalLeft(contentWidth)
             let imageY = (bounds.height - inset.pk.vertical - imageSize.height) / 2 + inset.top
@@ -176,10 +185,11 @@ open class PKUIButton: UIButton {
             let imageY = anotherTop(imageSize.height, originY: titleLabel!.frame.maxY + spacing)
             imageView!.frame = CGRect(x: imageX, y: imageY, size: imageSize)
         case .right:
+            let edgePadding = contentEdgeInsets.left + contentEdgeInsets.right
             var contentWidth = titleSize.width + imageSize.width + spacing
-            if contentWidth > bounds.width {
-                titleSize.width = bounds.width - imageSize.width - spacing
-                contentWidth = bounds.width
+            if contentWidth > (bounds.width - edgePadding) {
+                titleSize.width = bounds.width - imageSize.width - spacing - edgePadding
+                contentWidth = bounds.width - edgePadding
             }
             let padding = horizontalLeft(contentWidth)
             let imageY = (bounds.height - inset.pk.vertical - imageSize.height) / 2 + inset.top
@@ -252,6 +262,24 @@ open class PKUIButton: UIButton {
     private func isImageValid() -> Bool { currentImage != nil }
     
     private func isTitleValid() -> Bool { (currentTitle != nil || currentAttributedTitle != nil) }
+    
+    private func getResponseRect() -> CGRect {
+        guard touchResponseInsets != UIEdgeInsets.zero else {
+            return bounds
+        }
+        return CGRect(x: bounds.minX - touchResponseInsets.left,
+                      y: bounds.minY - touchResponseInsets.top,
+                      width: bounds.width + touchResponseInsets.left + touchResponseInsets.right,
+                      height: bounds.height + touchResponseInsets.top + touchResponseInsets.bottom)
+    }
+    
+    open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let rect = getResponseRect()
+        if(rect.equalTo(bounds)) {
+            return super.point(inside: point, with: event)
+        }
+        return rect.contains(point)
+    }
 }
 
 private extension CGRect {
@@ -272,7 +300,6 @@ private extension CGRect {
 *  5. 增加键盘删除按钮的响应事件 - PKUITextField.deleteBackward
 */
 open class PKUITextField: UITextField {
-    
     
     /// 左视图边缘留白
     public var leftViewPadding: CGFloat = 0
@@ -358,9 +385,11 @@ open class PKUITextField: UITextField {
 *  1. 支持设置占位文本 (placeholder)
 *  2. 支持设置占位文本颜色 (placeholderColor)
 *  3. 支持设置占位文本内边距 (placeholderInsets)
-*  4. 输入框变化回调 - textDidChange 增加删除监听
+*  4. 支持设置文本框是否需要自适应内容高度 (adjustsToFitContentHeightAutomatically)
+*  5. 输入框 contentSize 改变回调 - didContentSizeChanged(oldSize, newSize)
+*  6. 输入框变化增加删除事件 - deleteBackward
 */
-open class PKUITextView: UITextView {
+open class PKUITextView: UITextView, UITextViewDelegate {
     
     /// 设置占位文本
     public var placeholder: String? {
@@ -377,14 +406,33 @@ open class PKUITextView: UITextView {
     }
     
     /// 调整占位文本内边距
-    public var placeholderInset: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 0, right: 0) {
+    public var placeholderInset: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0) {
         didSet {
             setNeedsDisplay()
         }
     }
     
+    /// 是否自适应内容高度，默认false (需要固定水平约束)
+    public var adjustsToFitContentHeightAutomatically = false
+    
+    /// 自适应内容尺寸限制的最大行数，默认0无限制
+    public var automaticallyMaxNumberOfLines: NSInteger = 0 {
+        didSet {
+            guard oldValue != automaticallyMaxNumberOfLines else {
+                return
+            }
+            let oldSize = bounds.size
+            invalidateIntrinsicContentSize()
+            didContentSizeChanged?(oldSize, getIntrinsicContentSize())
+        }
+    }
+    
+    /// 输入框 contentSize 改变回调
+    public var didContentSizeChanged: ((_ oldSize: CGSize, _ newSize: CGSize) -> Void)? = nil
+    
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
+        layoutManager.allowsNonContiguousLayout = false
         bindNotifications()
     }
     
@@ -399,7 +447,7 @@ open class PKUITextView: UITextView {
         let range = NSRange(location: 0, length: attributedText.length)
         attributedText.addAttribute(.font, value: fontValue, range: range)
         attributedText.addAttribute(.foregroundColor, value: colorValue, range: range)
-        let rect = CGRect(x: placeholderInset.left,
+        let rect = CGRect(x: placeholderInset.left + 8, // 优化占位文本偏移问题
                           y: placeholderInset.top,
                           width: bounds.width - placeholderInset.left - placeholderInset.right,
                           height: bounds.height - placeholderInset.top - placeholderInset.bottom)
@@ -436,16 +484,52 @@ open class PKUITextView: UITextView {
         }
     }
     
+    open override var intrinsicContentSize: CGSize {
+        return getIntrinsicContentSize()
+    }
+    
+    private func heightForNumberOfLines(_ lines: NSInteger) -> CGFloat {
+        return ceil((font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)).lineHeight * CGFloat(lines) + textContainerInset.top + textContainerInset.bottom)
+    }
+    
+    private func getIntrinsicContentSize() -> CGSize {
+        var size = self.contentSize
+        size.height = max(heightForNumberOfLines(1), size.height)
+        if automaticallyMaxNumberOfLines > 0 {
+            size.height = min(heightForNumberOfLines(automaticallyMaxNumberOfLines), size.height)
+        }
+        return size;
+    }
+    
     private func bindNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextView.textDidChangeNotification, object: nil)
+        addObserver(self, forKeyPath: "contentSize", options: [.old, .new], context: nil)
     }
     
     private func unbindNotifications() {
         NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: nil)
+        removeObserver(self, forKeyPath: "contentSize")
     }
     
     @objc private func textDidChange(_ notif: Notification) {
         setNeedsDisplay()
+    }
+    
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+            guard adjustsToFitContentHeightAutomatically else {
+                return
+            }
+            if let oldSize = change?[.oldKey] as? CGSize,
+               let newSize = change?[.newKey] as? CGSize {
+                if !oldSize.equalTo(newSize), newSize.width > 0, newSize.height > 0 {
+                    invalidateIntrinsicContentSize()
+                    didContentSizeChanged?(oldSize, getIntrinsicContentSize())
+                }
+            }
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
     }
     
     deinit {
