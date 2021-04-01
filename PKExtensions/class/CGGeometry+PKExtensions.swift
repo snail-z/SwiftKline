@@ -165,7 +165,7 @@ public extension PKCGSizeExtensions {
         return base.width.isNaN || base.height.isNaN
     }
     
-    /// 判断CGSize是否为空(宽或高为0)
+    /// 判断CGSize是否为空(宽或高小于等于0)
     var isEmpty: Bool {
         return base.width <= 0 || base.height <= 0
     }

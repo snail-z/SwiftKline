@@ -23,9 +23,14 @@ public extension PKViewExtensions where Base: UITextView {
         return base.text?.isEmpty == true
     }
     
-    /// 返回无空格换行符的文本
-    var trimmedText: String? {
+    /// 返回去除首尾空格及首尾换行符的文本
+    var trimmedWhitespacesAndNewlinesText: String? {
         return base.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    /// 返回去除首尾空格符的文本
+    var trimmedWhitespacesText: String? {
+        return base.text?.trimmingCharacters(in: .whitespaces)
     }
     
     /// 滚动到文本视图的底部
