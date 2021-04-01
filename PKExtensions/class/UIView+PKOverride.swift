@@ -517,15 +517,12 @@ open class PKUITextView: UITextView, UITextViewDelegate {
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentSize" {
-            guard adjustsToFitContentHeightAutomatically else {
-                return
-            }
+            guard adjustsToFitContentHeightAutomatically else { return }
             if let oldSize = change?[.oldKey] as? CGSize,
-               let newSize = change?[.newKey] as? CGSize {
-                if !oldSize.equalTo(newSize), newSize.width > 0, newSize.height > 0 {
-                    invalidateIntrinsicContentSize()
-                    didContentSizeChanged?(oldSize, getIntrinsicContentSize())
-                }
+               let newSize = change?[.newKey] as? CGSize,
+                !oldSize.equalTo(newSize), newSize.width > 0, newSize.height > 0 {
+                invalidateIntrinsicContentSize()
+                didContentSizeChanged?(oldSize, getIntrinsicContentSize())
             }
         } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
