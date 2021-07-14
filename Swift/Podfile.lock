@@ -1,0 +1,47 @@
+PODS:
+  - HandyJSON (5.0.2)
+  - PKExtensions (1.0.0)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - HandyJSON (~> 5.0.1)
+  - PKExtensions (from `https://github.com/psychokines/PKExtensions.git`, branch `optimized`)
+  - RxCocoa (= 6.2.0)
+  - RxSwift (= 6.2.0)
+  - SnapKit (~> 5.0.1)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - HandyJSON
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+
+EXTERNAL SOURCES:
+  PKExtensions:
+    :branch: optimized
+    :git: https://github.com/psychokines/PKExtensions.git
+
+CHECKOUT OPTIONS:
+  PKExtensions:
+    :commit: 99fbd559ac4c4322162952a4647582f546dfe940
+    :git: https://github.com/psychokines/PKExtensions.git
+
+SPEC CHECKSUMS:
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
+  PKExtensions: 009ed0ecfb0d8aee29a9bab90fdf2013a9c06963
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: c094ee2983ec8ead96ee538fca263f3b6483e131
+
+COCOAPODS: 1.9.3

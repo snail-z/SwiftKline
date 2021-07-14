@@ -1,0 +1,1214 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		610A2700214B52EE00C76F93 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 610A26FC214B52EE00C76F93 /* YYWeakProxy.m */; };
+		610A2701214B52EE00C76F93 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 610A26FE214B52EE00C76F93 /* YYFPSLabel.m */; };
+		610A2704214B820900C76F93 /* TQKIndicatorBaseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 610A2703214B820900C76F93 /* TQKIndicatorBaseLayer.m */; };
+		610A2710214F7D3A00C76F93 /* TQIndicatorSARLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 610A270F214F7D3A00C76F93 /* TQIndicatorSARLayer.m */; };
+		610B47F62102E46D009A5586 /* TQStockBaseHorizontalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B47F52102E46D009A5586 /* TQStockBaseHorizontalController.m */; };
+		610B480421030567009A5586 /* TQStockDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B480321030567009A5586 /* TQStockDataManager.m */; };
+		610B480B2103130A009A5586 /* TQStockDetailTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B480A2103130A009A5586 /* TQStockDetailTextView.m */; };
+		610B480E21031377009A5586 /* TQStockTypeSegmentedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B480D21031377009A5586 /* TQStockTypeSegmentedBar.m */; };
+		610B4811210313BD009A5586 /* TQStockTypePopupBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B4810210313BD009A5586 /* TQStockTypePopupBar.m */; };
+		610B4814210313FF009A5586 /* TQStockIndicatorSegmentedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B4813210313FF009A5586 /* TQStockIndicatorSegmentedBar.m */; };
+		610B48172103145F009A5586 /* TQStockDetailBusinessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B48162103145F009A5586 /* TQStockDetailBusinessView.m */; };
+		610B481A21031C48009A5586 /* TQStockModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B481921031C48009A5586 /* TQStockModel.m */; };
+		610B481E21040BB4009A5586 /* TQStockFiedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B481D21040BB4009A5586 /* TQStockFiedLabel.m */; };
+		610B482C210448EE009A5586 /* stock_15Minutes_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B4823210448ED009A5586 /* stock_15Minutes_data.plist */; };
+		610B482D210448EE009A5586 /* stock_allHistory_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B4824210448ED009A5586 /* stock_allHistory_data.plist */; };
+		610B482E210448EE009A5586 /* stock_5Minutes_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B4825210448ED009A5586 /* stock_5Minutes_data.plist */; };
+		610B482F210448EE009A5586 /* stock_timeFull_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B4826210448ED009A5586 /* stock_timeFull_data.plist */; };
+		610B4830210448EE009A5586 /* stock_timePart_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B4827210448ED009A5586 /* stock_timePart_data.plist */; };
+		610B4831210448EE009A5586 /* stock_60Minutes_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B4828210448ED009A5586 /* stock_60Minutes_data.plist */; };
+		610B4832210448EE009A5586 /* stock_week_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B4829210448ED009A5586 /* stock_week_data.plist */; };
+		610B4833210448EE009A5586 /* stock_month_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B482A210448ED009A5586 /* stock_month_data.plist */; };
+		610B4834210448EE009A5586 /* stock_30Minutes_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B482B210448ED009A5586 /* stock_30Minutes_data.plist */; };
+		610B48362104494F009A5586 /* stock_zhang.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B48352104494F009A5586 /* stock_zhang.plist */; };
+		610B483821044988009A5586 /* stock_hong.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610B483721044988009A5586 /* stock_hong.plist */; };
+		610B483B2104B71C009A5586 /* TQTimeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B483A2104B71C009A5586 /* TQTimeChartView.m */; };
+		610B483D2104BD97009A5586 /* time_chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 610B483C2104BD97009A5586 /* time_chart_data.json */; };
+		610B7D4B20FDB512007DB42C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D4A20FDB512007DB42C /* AppDelegate.m */; };
+		610B7D4E20FDB512007DB42C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D4D20FDB512007DB42C /* ViewController.m */; };
+		610B7D5120FDB512007DB42C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610B7D4F20FDB512007DB42C /* Main.storyboard */; };
+		610B7D5320FDB514007DB42C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 610B7D5220FDB514007DB42C /* Assets.xcassets */; };
+		610B7D5620FDB514007DB42C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610B7D5420FDB514007DB42C /* LaunchScreen.storyboard */; };
+		610B7D5920FDB514007DB42C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D5820FDB514007DB42C /* main.m */; };
+		610B7D6320FDB514007DB42C /* TQChartKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D6220FDB514007DB42C /* TQChartKitTests.m */; };
+		610B7D6E20FDB514007DB42C /* TQChartKitUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D6D20FDB514007DB42C /* TQChartKitUITests.m */; };
+		610B7D7E20FDB5D5007DB42C /* TQBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D7D20FDB5D5007DB42C /* TQBaseViewController.m */; };
+		610B7D8120FDB630007DB42C /* TQStockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D8020FDB630007DB42C /* TQStockViewController.m */; };
+		610B7D8720FDB6D3007DB42C /* TQStockHorizontalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D8620FDB6D3007DB42C /* TQStockHorizontalController.m */; };
+		610B7D9420FDB9B5007DB42C /* TQStockChartUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D9320FDB9B5007DB42C /* TQStockChartUtilities.m */; };
+		610B7DAA20FDCF8D007DB42C /* TQTimeChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D9D20FDCF8C007DB42C /* TQTimeChart.m */; };
+		610B7DAB20FDCF8D007DB42C /* TQTimeChart+Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7D9E20FDCF8C007DB42C /* TQTimeChart+Calculator.m */; };
+		610B7DAD20FDCF8D007DB42C /* TQTimeGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7DA520FDCF8C007DB42C /* TQTimeGradientLayer.m */; };
+		610B7DAE20FDCF8D007DB42C /* TQTimeChartStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7DA620FDCF8C007DB42C /* TQTimeChartStyle.m */; };
+		610B7DAF20FDCF8D007DB42C /* TQTimeBaseChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7DA720FDCF8C007DB42C /* TQTimeBaseChart.m */; };
+		610B7DB520FDD060007DB42C /* UIBezierPath+TQStockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7DB420FDD060007DB42C /* UIBezierPath+TQStockChart.m */; };
+		610B7DBA20FDD0B8007DB42C /* TQChartTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7DB720FDD0B8007DB42C /* TQChartTextLayer.m */; };
+		610B7DBB20FDD0B8007DB42C /* TQChartCrossLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B7DB920FDD0B8007DB42C /* TQChartCrossLineView.m */; };
+		61133FAE210CB3F90009EC84 /* TQTimePulsingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61133FAD210CB3F90009EC84 /* TQTimePulsingView.m */; };
+		611FD9D6211098B600FAEF23 /* 600887_kdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 611FD9D5211098B600FAEF23 /* 600887_kdata.json */; };
+		611FD9D9211098DC00FAEF23 /* TQKLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611FD9D8211098DC00FAEF23 /* TQKLineChartView.m */; };
+		611FD9DF211200BE00FAEF23 /* TQKLineChart+Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 611FD9DE211200BE00FAEF23 /* TQKLineChart+Calculator.m */; };
+		611FD9E321131A6500FAEF23 /* TQIndicatorBaseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 611FD9E221131A6500FAEF23 /* TQIndicatorBaseLayer.m */; };
+		611FD9E621131B1F00FAEF23 /* TQIndicatorChartStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 611FD9E521131B1F00FAEF23 /* TQIndicatorChartStyle.m */; };
+		617169F3213673490074138D /* NSArray+TQStockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 617169F2213673490074138D /* NSArray+TQStockChart.m */; };
+		617169FA213697530074138D /* TQIndicatorMALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 617169F9213697530074138D /* TQIndicatorMALayer.m */; };
+		61716A0F2137BA5A0074138D /* TQStockCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61716A0E2137BA5A0074138D /* TQStockCacheManager.m */; };
+		61716A152137C6F70074138D /* TQStockCacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61716A142137C6F70074138D /* TQStockCacheModel.m */; };
+		618223692139101D000295D9 /* TQIndicatorMACDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 618223682139101D000295D9 /* TQIndicatorMACDLayer.m */; };
+		6182236C21395A39000295D9 /* TQIndicatorCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6182236B21395A39000295D9 /* TQIndicatorCalculator.m */; };
+		61822379213FB20D000295D9 /* TQIndicatorKDJLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61822378213FB20D000295D9 /* TQIndicatorKDJLayer.m */; };
+		6182237C213FC387000295D9 /* TQIndicatorCCILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6182237B213FC387000295D9 /* TQIndicatorCCILayer.m */; };
+		61909E21212CDB9A001EBC9A /* TQStockChartLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 61909E20212CDB9A001EBC9A /* TQStockChartLayout.m */; };
+		61ADA90F2105A6E200658213 /* TQStockTimePropData.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ADA90E2105A6E200658213 /* TQStockTimePropData.m */; };
+		61ADA9112105C80100658213 /* 600887_five_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 61ADA9102105C80100658213 /* 600887_five_day.json */; };
+		61ADA9142106B65D00658213 /* NSTimer+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ADA9122106B65D00658213 /* NSTimer+Extend.m */; };
+		61ADAB962107420400658213 /* TQChartDateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ADAB952107420400658213 /* TQChartDateManager.m */; };
+		61ADAC3C2109D0C700658213 /* TQKLineBaseChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ADAC322109D0C600658213 /* TQKLineBaseChart.m */; };
+		61ADAC3E2109D0C700658213 /* TQKLineLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ADAC342109D0C600658213 /* TQKLineLoadingView.m */; };
+		61ADAC3F2109D0C700658213 /* TQKLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ADAC362109D0C700658213 /* TQKLineChart.m */; };
+		61ADAC402109D0C700658213 /* TQKLineChartStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ADAC3A2109D0C700658213 /* TQKLineChartStyle.m */; };
+		61B09007212659BD00008636 /* TQStockChartConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B09006212659BD00008636 /* TQStockChartConst.m */; };
+		61B0900F212800C600008636 /* 600887_append.json in Resources */ = {isa = PBXBuildFile; fileRef = 61B0900E212800C600008636 /* 600887_append.json */; };
+		61DC95A221400911004AFFCC /* more_pa_kline_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61DC959E21400911004AFFCC /* more_pa_kline_data.plist */; };
+		61DC95A321400911004AFFCC /* more_yl_kline_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61DC959F21400911004AFFCC /* more_yl_kline_data.plist */; };
+		61DC95A421400911004AFFCC /* pa_kline_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61DC95A021400911004AFFCC /* pa_kline_data.plist */; };
+		61DC95A521400911004AFFCC /* yl_kline_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61DC95A121400911004AFFCC /* yl_kline_data.plist */; };
+		61DC95A82140CFA8004AFFCC /* TQIndicatorVOLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95A72140CFA8004AFFCC /* TQIndicatorVOLLayer.m */; };
+		61DC95AB2140F50C004AFFCC /* TQIndicatorDMILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95AA2140F50C004AFFCC /* TQIndicatorDMILayer.m */; };
+		61DC95AE2140F6B6004AFFCC /* TQIndicatorBOLLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95AD2140F6B6004AFFCC /* TQIndicatorBOLLLayer.m */; };
+		61DC95B12140F6DF004AFFCC /* TQIndicatorDMALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95B02140F6DF004AFFCC /* TQIndicatorDMALayer.m */; };
+		61DC95B42140F6FF004AFFCC /* TQIndicatorRSILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95B32140F6FF004AFFCC /* TQIndicatorRSILayer.m */; };
+		61DC95B72140F717004AFFCC /* TQIndicatorCRLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95B62140F717004AFFCC /* TQIndicatorCRLayer.m */; };
+		61DC95BA2140F724004AFFCC /* TQIndicatorVRLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95B92140F724004AFFCC /* TQIndicatorVRLayer.m */; };
+		61DC95BD2140F738004AFFCC /* TQIndicatorWRLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95BC2140F738004AFFCC /* TQIndicatorWRLayer.m */; };
+		61DC95C02140F761004AFFCC /* TQIndicatorBIASLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95BF2140F761004AFFCC /* TQIndicatorBIASLayer.m */; };
+		61DC95C32140F797004AFFCC /* TQIndicatorOBVLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95C22140F797004AFFCC /* TQIndicatorOBVLayer.m */; };
+		61DC95C621440975004AFFCC /* TQIndicatorPSYLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC95C521440974004AFFCC /* TQIndicatorPSYLayer.m */; };
+		61E21BBD2153981F00F85384 /* TQIndicatorCycles.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E21BBC2153981F00F85384 /* TQIndicatorCycles.m */; };
+		61EB215D215097B2006E29F0 /* TQIndicatorType.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB215C215097B2006E29F0 /* TQIndicatorType.m */; };
+		61EB216021509F7D006E29F0 /* TQIndicatorParentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB215F21509F7D006E29F0 /* TQIndicatorParentLayer.m */; };
+		8E3575C30D224ED2EFC1F162 /* Pods_TQChartKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83EA35DADF23700ADD97FFA3 /* Pods_TQChartKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		610B7D5F20FDB514007DB42C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 610B7D3E20FDB511007DB42C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 610B7D4520FDB511007DB42C;
+			remoteInfo = TQChartKit;
+		};
+		610B7D6A20FDB514007DB42C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 610B7D3E20FDB511007DB42C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 610B7D4520FDB511007DB42C;
+			remoteInfo = TQChartKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		55B39D3DFC0EAB14710F253A /* Pods-TQChartKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TQChartKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TQChartKit/Pods-TQChartKit.debug.xcconfig"; sourceTree = "<group>"; };
+		610A26FC214B52EE00C76F93 /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
+		610A26FD214B52EE00C76F93 /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
+		610A26FE214B52EE00C76F93 /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		610A26FF214B52EE00C76F93 /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
+		610A2702214B820900C76F93 /* TQKIndicatorBaseLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQKIndicatorBaseLayer.h; sourceTree = "<group>"; };
+		610A2703214B820900C76F93 /* TQKIndicatorBaseLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQKIndicatorBaseLayer.m; sourceTree = "<group>"; };
+		610A270E214F7D3A00C76F93 /* TQIndicatorSARLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorSARLayer.h; sourceTree = "<group>"; };
+		610A270F214F7D3A00C76F93 /* TQIndicatorSARLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorSARLayer.m; sourceTree = "<group>"; };
+		610B47F42102E46D009A5586 /* TQStockBaseHorizontalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockBaseHorizontalController.h; sourceTree = "<group>"; };
+		610B47F52102E46D009A5586 /* TQStockBaseHorizontalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockBaseHorizontalController.m; sourceTree = "<group>"; };
+		610B480221030567009A5586 /* TQStockDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockDataManager.h; sourceTree = "<group>"; };
+		610B480321030567009A5586 /* TQStockDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockDataManager.m; sourceTree = "<group>"; };
+		610B48092103130A009A5586 /* TQStockDetailTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockDetailTextView.h; sourceTree = "<group>"; };
+		610B480A2103130A009A5586 /* TQStockDetailTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockDetailTextView.m; sourceTree = "<group>"; };
+		610B480C21031377009A5586 /* TQStockTypeSegmentedBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockTypeSegmentedBar.h; sourceTree = "<group>"; };
+		610B480D21031377009A5586 /* TQStockTypeSegmentedBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockTypeSegmentedBar.m; sourceTree = "<group>"; };
+		610B480F210313BD009A5586 /* TQStockTypePopupBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockTypePopupBar.h; sourceTree = "<group>"; };
+		610B4810210313BD009A5586 /* TQStockTypePopupBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockTypePopupBar.m; sourceTree = "<group>"; };
+		610B4812210313FF009A5586 /* TQStockIndicatorSegmentedBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockIndicatorSegmentedBar.h; sourceTree = "<group>"; };
+		610B4813210313FF009A5586 /* TQStockIndicatorSegmentedBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockIndicatorSegmentedBar.m; sourceTree = "<group>"; };
+		610B48152103145F009A5586 /* TQStockDetailBusinessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockDetailBusinessView.h; sourceTree = "<group>"; };
+		610B48162103145F009A5586 /* TQStockDetailBusinessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockDetailBusinessView.m; sourceTree = "<group>"; };
+		610B481821031C48009A5586 /* TQStockModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockModel.h; sourceTree = "<group>"; };
+		610B481921031C48009A5586 /* TQStockModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockModel.m; sourceTree = "<group>"; };
+		610B481C21040BB4009A5586 /* TQStockFiedLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockFiedLabel.h; sourceTree = "<group>"; };
+		610B481D21040BB4009A5586 /* TQStockFiedLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockFiedLabel.m; sourceTree = "<group>"; };
+		610B4823210448ED009A5586 /* stock_15Minutes_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_15Minutes_data.plist; sourceTree = "<group>"; };
+		610B4824210448ED009A5586 /* stock_allHistory_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_allHistory_data.plist; sourceTree = "<group>"; };
+		610B4825210448ED009A5586 /* stock_5Minutes_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_5Minutes_data.plist; sourceTree = "<group>"; };
+		610B4826210448ED009A5586 /* stock_timeFull_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_timeFull_data.plist; sourceTree = "<group>"; };
+		610B4827210448ED009A5586 /* stock_timePart_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_timePart_data.plist; sourceTree = "<group>"; };
+		610B4828210448ED009A5586 /* stock_60Minutes_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_60Minutes_data.plist; sourceTree = "<group>"; };
+		610B4829210448ED009A5586 /* stock_week_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_week_data.plist; sourceTree = "<group>"; };
+		610B482A210448ED009A5586 /* stock_month_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_month_data.plist; sourceTree = "<group>"; };
+		610B482B210448ED009A5586 /* stock_30Minutes_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_30Minutes_data.plist; sourceTree = "<group>"; };
+		610B48352104494F009A5586 /* stock_zhang.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stock_zhang.plist; sourceTree = "<group>"; };
+		610B483721044988009A5586 /* stock_hong.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = stock_hong.plist; sourceTree = "<group>"; };
+		610B48392104B71C009A5586 /* TQTimeChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQTimeChartView.h; sourceTree = "<group>"; };
+		610B483A2104B71C009A5586 /* TQTimeChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQTimeChartView.m; sourceTree = "<group>"; };
+		610B483C2104BD97009A5586 /* time_chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = time_chart_data.json; sourceTree = "<group>"; };
+		610B7D4620FDB511007DB42C /* TQChartKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TQChartKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		610B7D4920FDB511007DB42C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		610B7D4A20FDB512007DB42C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		610B7D4C20FDB512007DB42C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		610B7D4D20FDB512007DB42C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		610B7D5020FDB512007DB42C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		610B7D5220FDB514007DB42C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		610B7D5520FDB514007DB42C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		610B7D5720FDB514007DB42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		610B7D5820FDB514007DB42C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		610B7D5E20FDB514007DB42C /* TQChartKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TQChartKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		610B7D6220FDB514007DB42C /* TQChartKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQChartKitTests.m; sourceTree = "<group>"; };
+		610B7D6420FDB514007DB42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		610B7D6920FDB514007DB42C /* TQChartKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TQChartKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		610B7D6D20FDB514007DB42C /* TQChartKitUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQChartKitUITests.m; sourceTree = "<group>"; };
+		610B7D6F20FDB514007DB42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		610B7D7C20FDB5D5007DB42C /* TQBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQBaseViewController.h; sourceTree = "<group>"; };
+		610B7D7D20FDB5D5007DB42C /* TQBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQBaseViewController.m; sourceTree = "<group>"; };
+		610B7D7F20FDB630007DB42C /* TQStockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockViewController.h; sourceTree = "<group>"; };
+		610B7D8020FDB630007DB42C /* TQStockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockViewController.m; sourceTree = "<group>"; };
+		610B7D8520FDB6D3007DB42C /* TQStockHorizontalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockHorizontalController.h; sourceTree = "<group>"; };
+		610B7D8620FDB6D3007DB42C /* TQStockHorizontalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockHorizontalController.m; sourceTree = "<group>"; };
+		610B7D8B20FDB753007DB42C /* TQStockChartProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockChartProtocol.h; sourceTree = "<group>"; };
+		610B7D9220FDB9B5007DB42C /* TQStockChartUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockChartUtilities.h; sourceTree = "<group>"; };
+		610B7D9320FDB9B5007DB42C /* TQStockChartUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockChartUtilities.m; sourceTree = "<group>"; };
+		610B7D9B20FDCF8C007DB42C /* TQTimeChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQTimeChart.h; sourceTree = "<group>"; };
+		610B7D9D20FDCF8C007DB42C /* TQTimeChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQTimeChart.m; sourceTree = "<group>"; };
+		610B7D9E20FDCF8C007DB42C /* TQTimeChart+Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TQTimeChart+Calculator.m"; sourceTree = "<group>"; };
+		610B7DA020FDCF8C007DB42C /* TQTimeBaseChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQTimeBaseChart.h; sourceTree = "<group>"; };
+		610B7DA220FDCF8C007DB42C /* TQTimeGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQTimeGradientLayer.h; sourceTree = "<group>"; };
+		610B7DA420FDCF8C007DB42C /* TQTimeChartStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQTimeChartStyle.h; sourceTree = "<group>"; };
+		610B7DA520FDCF8C007DB42C /* TQTimeGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQTimeGradientLayer.m; sourceTree = "<group>"; };
+		610B7DA620FDCF8C007DB42C /* TQTimeChartStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQTimeChartStyle.m; sourceTree = "<group>"; };
+		610B7DA720FDCF8C007DB42C /* TQTimeBaseChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQTimeBaseChart.m; sourceTree = "<group>"; };
+		610B7DA820FDCF8D007DB42C /* TQTimeChart+Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TQTimeChart+Calculator.h"; sourceTree = "<group>"; };
+		610B7DB320FDD060007DB42C /* UIBezierPath+TQStockChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+TQStockChart.h"; sourceTree = "<group>"; };
+		610B7DB420FDD060007DB42C /* UIBezierPath+TQStockChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+TQStockChart.m"; sourceTree = "<group>"; };
+		610B7DB620FDD0B8007DB42C /* TQChartTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQChartTextLayer.h; sourceTree = "<group>"; };
+		610B7DB720FDD0B8007DB42C /* TQChartTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQChartTextLayer.m; sourceTree = "<group>"; };
+		610B7DB820FDD0B8007DB42C /* TQChartCrossLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQChartCrossLineView.h; sourceTree = "<group>"; };
+		610B7DB920FDD0B8007DB42C /* TQChartCrossLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQChartCrossLineView.m; sourceTree = "<group>"; };
+		61133FAC210CB3F90009EC84 /* TQTimePulsingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQTimePulsingView.h; sourceTree = "<group>"; };
+		61133FAD210CB3F90009EC84 /* TQTimePulsingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQTimePulsingView.m; sourceTree = "<group>"; };
+		611FD9D5211098B600FAEF23 /* 600887_kdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_kdata.json; sourceTree = "<group>"; };
+		611FD9D7211098DC00FAEF23 /* TQKLineChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQKLineChartView.h; sourceTree = "<group>"; };
+		611FD9D8211098DC00FAEF23 /* TQKLineChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQKLineChartView.m; sourceTree = "<group>"; };
+		611FD9DD211200BE00FAEF23 /* TQKLineChart+Calculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TQKLineChart+Calculator.h"; sourceTree = "<group>"; };
+		611FD9DE211200BE00FAEF23 /* TQKLineChart+Calculator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TQKLineChart+Calculator.m"; sourceTree = "<group>"; };
+		611FD9E121131A6500FAEF23 /* TQIndicatorBaseLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorBaseLayer.h; sourceTree = "<group>"; };
+		611FD9E221131A6500FAEF23 /* TQIndicatorBaseLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorBaseLayer.m; sourceTree = "<group>"; };
+		611FD9E421131B1F00FAEF23 /* TQIndicatorChartStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorChartStyle.h; sourceTree = "<group>"; };
+		611FD9E521131B1F00FAEF23 /* TQIndicatorChartStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorChartStyle.m; sourceTree = "<group>"; };
+		617169F1213673490074138D /* NSArray+TQStockChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+TQStockChart.h"; sourceTree = "<group>"; };
+		617169F2213673490074138D /* NSArray+TQStockChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TQStockChart.m"; sourceTree = "<group>"; };
+		617169F8213697530074138D /* TQIndicatorMALayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorMALayer.h; sourceTree = "<group>"; };
+		617169F9213697530074138D /* TQIndicatorMALayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorMALayer.m; sourceTree = "<group>"; };
+		61716A0D2137BA5A0074138D /* TQStockCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockCacheManager.h; sourceTree = "<group>"; };
+		61716A0E2137BA5A0074138D /* TQStockCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockCacheManager.m; sourceTree = "<group>"; };
+		61716A132137C6F70074138D /* TQStockCacheModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockCacheModel.h; sourceTree = "<group>"; };
+		61716A142137C6F70074138D /* TQStockCacheModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockCacheModel.m; sourceTree = "<group>"; };
+		618223672139101D000295D9 /* TQIndicatorMACDLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorMACDLayer.h; sourceTree = "<group>"; };
+		618223682139101D000295D9 /* TQIndicatorMACDLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorMACDLayer.m; sourceTree = "<group>"; };
+		6182236A21395A39000295D9 /* TQIndicatorCalculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorCalculator.h; sourceTree = "<group>"; };
+		6182236B21395A39000295D9 /* TQIndicatorCalculator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorCalculator.m; sourceTree = "<group>"; };
+		61822370213C21C6000295D9 /* TQIndicatorRef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorRef.h; sourceTree = "<group>"; };
+		61822377213FB20D000295D9 /* TQIndicatorKDJLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorKDJLayer.h; sourceTree = "<group>"; };
+		61822378213FB20D000295D9 /* TQIndicatorKDJLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorKDJLayer.m; sourceTree = "<group>"; };
+		6182237A213FC387000295D9 /* TQIndicatorCCILayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorCCILayer.h; sourceTree = "<group>"; };
+		6182237B213FC387000295D9 /* TQIndicatorCCILayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorCCILayer.m; sourceTree = "<group>"; };
+		61909E1F212CDB9A001EBC9A /* TQStockChartLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockChartLayout.h; sourceTree = "<group>"; };
+		61909E20212CDB9A001EBC9A /* TQStockChartLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockChartLayout.m; sourceTree = "<group>"; };
+		61AC80D12101962300B282E3 /* TQChartKitPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQChartKitPrefixHeader.pch; sourceTree = "<group>"; };
+		61ADA90D2105A6E200658213 /* TQStockTimePropData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockTimePropData.h; sourceTree = "<group>"; };
+		61ADA90E2105A6E200658213 /* TQStockTimePropData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockTimePropData.m; sourceTree = "<group>"; };
+		61ADA9102105C80100658213 /* 600887_five_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_five_day.json; sourceTree = "<group>"; };
+		61ADA9122106B65D00658213 /* NSTimer+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Extend.m"; sourceTree = "<group>"; };
+		61ADA9132106B65D00658213 /* NSTimer+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Extend.h"; sourceTree = "<group>"; };
+		61ADAB942107420400658213 /* TQChartDateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQChartDateManager.h; sourceTree = "<group>"; };
+		61ADAB952107420400658213 /* TQChartDateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQChartDateManager.m; sourceTree = "<group>"; };
+		61ADAC322109D0C600658213 /* TQKLineBaseChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQKLineBaseChart.m; sourceTree = "<group>"; };
+		61ADAC342109D0C600658213 /* TQKLineLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQKLineLoadingView.m; sourceTree = "<group>"; };
+		61ADAC352109D0C600658213 /* TQKLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQKLineChart.h; sourceTree = "<group>"; };
+		61ADAC362109D0C700658213 /* TQKLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQKLineChart.m; sourceTree = "<group>"; };
+		61ADAC372109D0C700658213 /* TQKLineBaseChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQKLineBaseChart.h; sourceTree = "<group>"; };
+		61ADAC382109D0C700658213 /* TQKLineChartStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQKLineChartStyle.h; sourceTree = "<group>"; };
+		61ADAC392109D0C700658213 /* TQKLineLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQKLineLoadingView.h; sourceTree = "<group>"; };
+		61ADAC3A2109D0C700658213 /* TQKLineChartStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQKLineChartStyle.m; sourceTree = "<group>"; };
+		61B09005212659BD00008636 /* TQStockChartConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockChartConst.h; sourceTree = "<group>"; };
+		61B09006212659BD00008636 /* TQStockChartConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQStockChartConst.m; sourceTree = "<group>"; };
+		61B0900E212800C600008636 /* 600887_append.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_append.json; sourceTree = "<group>"; };
+		61DC959E21400911004AFFCC /* more_pa_kline_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = more_pa_kline_data.plist; sourceTree = "<group>"; };
+		61DC959F21400911004AFFCC /* more_yl_kline_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = more_yl_kline_data.plist; sourceTree = "<group>"; };
+		61DC95A021400911004AFFCC /* pa_kline_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pa_kline_data.plist; sourceTree = "<group>"; };
+		61DC95A121400911004AFFCC /* yl_kline_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = yl_kline_data.plist; sourceTree = "<group>"; };
+		61DC95A62140CFA8004AFFCC /* TQIndicatorVOLLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorVOLLayer.h; sourceTree = "<group>"; };
+		61DC95A72140CFA8004AFFCC /* TQIndicatorVOLLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorVOLLayer.m; sourceTree = "<group>"; };
+		61DC95A92140F50C004AFFCC /* TQIndicatorDMILayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorDMILayer.h; sourceTree = "<group>"; };
+		61DC95AA2140F50C004AFFCC /* TQIndicatorDMILayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorDMILayer.m; sourceTree = "<group>"; };
+		61DC95AC2140F6B6004AFFCC /* TQIndicatorBOLLLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorBOLLLayer.h; sourceTree = "<group>"; };
+		61DC95AD2140F6B6004AFFCC /* TQIndicatorBOLLLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorBOLLLayer.m; sourceTree = "<group>"; };
+		61DC95AF2140F6DF004AFFCC /* TQIndicatorDMALayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorDMALayer.h; sourceTree = "<group>"; };
+		61DC95B02140F6DF004AFFCC /* TQIndicatorDMALayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorDMALayer.m; sourceTree = "<group>"; };
+		61DC95B22140F6FF004AFFCC /* TQIndicatorRSILayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorRSILayer.h; sourceTree = "<group>"; };
+		61DC95B32140F6FF004AFFCC /* TQIndicatorRSILayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorRSILayer.m; sourceTree = "<group>"; };
+		61DC95B52140F717004AFFCC /* TQIndicatorCRLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorCRLayer.h; sourceTree = "<group>"; };
+		61DC95B62140F717004AFFCC /* TQIndicatorCRLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorCRLayer.m; sourceTree = "<group>"; };
+		61DC95B82140F724004AFFCC /* TQIndicatorVRLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorVRLayer.h; sourceTree = "<group>"; };
+		61DC95B92140F724004AFFCC /* TQIndicatorVRLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorVRLayer.m; sourceTree = "<group>"; };
+		61DC95BB2140F738004AFFCC /* TQIndicatorWRLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorWRLayer.h; sourceTree = "<group>"; };
+		61DC95BC2140F738004AFFCC /* TQIndicatorWRLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorWRLayer.m; sourceTree = "<group>"; };
+		61DC95BE2140F761004AFFCC /* TQIndicatorBIASLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorBIASLayer.h; sourceTree = "<group>"; };
+		61DC95BF2140F761004AFFCC /* TQIndicatorBIASLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorBIASLayer.m; sourceTree = "<group>"; };
+		61DC95C12140F797004AFFCC /* TQIndicatorOBVLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorOBVLayer.h; sourceTree = "<group>"; };
+		61DC95C22140F797004AFFCC /* TQIndicatorOBVLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorOBVLayer.m; sourceTree = "<group>"; };
+		61DC95C421440974004AFFCC /* TQIndicatorPSYLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorPSYLayer.h; sourceTree = "<group>"; };
+		61DC95C521440974004AFFCC /* TQIndicatorPSYLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorPSYLayer.m; sourceTree = "<group>"; };
+		61E21BBA215391BA00F85384 /* TQStockChartHeaderTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQStockChartHeaderTools.h; sourceTree = "<group>"; };
+		61E21BBB2153981F00F85384 /* TQIndicatorCycles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorCycles.h; sourceTree = "<group>"; };
+		61E21BBC2153981F00F85384 /* TQIndicatorCycles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorCycles.m; sourceTree = "<group>"; };
+		61EB215B215097B2006E29F0 /* TQIndicatorType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorType.h; sourceTree = "<group>"; };
+		61EB215C215097B2006E29F0 /* TQIndicatorType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorType.m; sourceTree = "<group>"; };
+		61EB215E21509F7D006E29F0 /* TQIndicatorParentLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQIndicatorParentLayer.h; sourceTree = "<group>"; };
+		61EB215F21509F7D006E29F0 /* TQIndicatorParentLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQIndicatorParentLayer.m; sourceTree = "<group>"; };
+		83EA35DADF23700ADD97FFA3 /* Pods_TQChartKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TQChartKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1E8A18D17DC59AA4C422B46 /* Pods-TQChartKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TQChartKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-TQChartKit/Pods-TQChartKit.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		610B7D4320FDB511007DB42C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E3575C30D224ED2EFC1F162 /* Pods_TQChartKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		610B7D5B20FDB514007DB42C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		610B7D6620FDB514007DB42C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1187439ADAAFCF2E71F2A77D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				55B39D3DFC0EAB14710F253A /* Pods-TQChartKit.debug.xcconfig */,
+				F1E8A18D17DC59AA4C422B46 /* Pods-TQChartKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		610A26FB214B52EE00C76F93 /* YYFPSLabel */ = {
+			isa = PBXGroup;
+			children = (
+				610A26FD214B52EE00C76F93 /* YYFPSLabel.h */,
+				610A26FE214B52EE00C76F93 /* YYFPSLabel.m */,
+				610A26FF214B52EE00C76F93 /* YYWeakProxy.h */,
+				610A26FC214B52EE00C76F93 /* YYWeakProxy.m */,
+			);
+			path = YYFPSLabel;
+			sourceTree = "<group>";
+		};
+		610B47FA2102FD9F009A5586 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				610B481821031C48009A5586 /* TQStockModel.h */,
+				610B481921031C48009A5586 /* TQStockModel.m */,
+				61ADA90D2105A6E200658213 /* TQStockTimePropData.h */,
+				61ADA90E2105A6E200658213 /* TQStockTimePropData.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		610B47FB2102FDAE009A5586 /* chart */ = {
+			isa = PBXGroup;
+			children = (
+				610B7D8A20FDB70A007DB42C /* TQChartTool */,
+				610B7D8820FDB6F1007DB42C /* TQTimeChart */,
+				61ADAC312109D0A100658213 /* TQKLineChart */,
+				611FD9E021131A3D00FAEF23 /* TQIndicatorChart */,
+				61D37B67215228AA00046F5E /* TQCalculator */,
+			);
+			path = chart;
+			sourceTree = "<group>";
+		};
+		610B4808210312BD009A5586 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				610B480F210313BD009A5586 /* TQStockTypePopupBar.h */,
+				610B4810210313BD009A5586 /* TQStockTypePopupBar.m */,
+				610B480C21031377009A5586 /* TQStockTypeSegmentedBar.h */,
+				610B480D21031377009A5586 /* TQStockTypeSegmentedBar.m */,
+				610B4812210313FF009A5586 /* TQStockIndicatorSegmentedBar.h */,
+				610B4813210313FF009A5586 /* TQStockIndicatorSegmentedBar.m */,
+				610B48092103130A009A5586 /* TQStockDetailTextView.h */,
+				610B480A2103130A009A5586 /* TQStockDetailTextView.m */,
+				610B48152103145F009A5586 /* TQStockDetailBusinessView.h */,
+				610B48162103145F009A5586 /* TQStockDetailBusinessView.m */,
+				610B481C21040BB4009A5586 /* TQStockFiedLabel.h */,
+				610B481D21040BB4009A5586 /* TQStockFiedLabel.m */,
+				610B48392104B71C009A5586 /* TQTimeChartView.h */,
+				610B483A2104B71C009A5586 /* TQTimeChartView.m */,
+				611FD9D7211098DC00FAEF23 /* TQKLineChartView.h */,
+				611FD9D8211098DC00FAEF23 /* TQKLineChartView.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		610B481B21040785009A5586 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				610B47F42102E46D009A5586 /* TQStockBaseHorizontalController.h */,
+				610B47F52102E46D009A5586 /* TQStockBaseHorizontalController.m */,
+				610B480221030567009A5586 /* TQStockDataManager.h */,
+				610B480321030567009A5586 /* TQStockDataManager.m */,
+				610B7D8520FDB6D3007DB42C /* TQStockHorizontalController.h */,
+				610B7D8620FDB6D3007DB42C /* TQStockHorizontalController.m */,
+				610B7D7F20FDB630007DB42C /* TQStockViewController.h */,
+				610B7D8020FDB630007DB42C /* TQStockViewController.m */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		610B4822210448D7009A5586 /* stockData */ = {
+			isa = PBXGroup;
+			children = (
+				61DC959E21400911004AFFCC /* more_pa_kline_data.plist */,
+				61DC959F21400911004AFFCC /* more_yl_kline_data.plist */,
+				61DC95A021400911004AFFCC /* pa_kline_data.plist */,
+				61DC95A121400911004AFFCC /* yl_kline_data.plist */,
+				61B0900E212800C600008636 /* 600887_append.json */,
+				611FD9D5211098B600FAEF23 /* 600887_kdata.json */,
+				61ADA9102105C80100658213 /* 600887_five_day.json */,
+				610B483C2104BD97009A5586 /* time_chart_data.json */,
+				610B48352104494F009A5586 /* stock_zhang.plist */,
+				610B4825210448ED009A5586 /* stock_5Minutes_data.plist */,
+				610B4823210448ED009A5586 /* stock_15Minutes_data.plist */,
+				610B482B210448ED009A5586 /* stock_30Minutes_data.plist */,
+				610B4828210448ED009A5586 /* stock_60Minutes_data.plist */,
+				610B4824210448ED009A5586 /* stock_allHistory_data.plist */,
+				610B482A210448ED009A5586 /* stock_month_data.plist */,
+				610B4826210448ED009A5586 /* stock_timeFull_data.plist */,
+				610B4827210448ED009A5586 /* stock_timePart_data.plist */,
+				610B4829210448ED009A5586 /* stock_week_data.plist */,
+				610B483721044988009A5586 /* stock_hong.plist */,
+			);
+			path = stockData;
+			sourceTree = "<group>";
+		};
+		610B7D3D20FDB511007DB42C = {
+			isa = PBXGroup;
+			children = (
+				610B7D4820FDB511007DB42C /* TQChartKit */,
+				610B7D6120FDB514007DB42C /* TQChartKitTests */,
+				610B7D6C20FDB514007DB42C /* TQChartKitUITests */,
+				610B7D4720FDB511007DB42C /* Products */,
+				1187439ADAAFCF2E71F2A77D /* Pods */,
+				E99936C9D5597272DBDB2B19 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		610B7D4720FDB511007DB42C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				610B7D4620FDB511007DB42C /* TQChartKit.app */,
+				610B7D5E20FDB514007DB42C /* TQChartKitTests.xctest */,
+				610B7D6920FDB514007DB42C /* TQChartKitUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		610B7D4820FDB511007DB42C /* TQChartKit */ = {
+			isa = PBXGroup;
+			children = (
+				610A26FB214B52EE00C76F93 /* YYFPSLabel */,
+				610B4822210448D7009A5586 /* stockData */,
+				610B47FB2102FDAE009A5586 /* chart */,
+				610B7D7B20FDB5BC007DB42C /* stockDetails */,
+				610B7D4920FDB511007DB42C /* AppDelegate.h */,
+				610B7D4A20FDB512007DB42C /* AppDelegate.m */,
+				610B7D4C20FDB512007DB42C /* ViewController.h */,
+				610B7D4D20FDB512007DB42C /* ViewController.m */,
+				610B7D7C20FDB5D5007DB42C /* TQBaseViewController.h */,
+				610B7D7D20FDB5D5007DB42C /* TQBaseViewController.m */,
+				61ADA9132106B65D00658213 /* NSTimer+Extend.h */,
+				61ADA9122106B65D00658213 /* NSTimer+Extend.m */,
+				610B7D4F20FDB512007DB42C /* Main.storyboard */,
+				610B7D5220FDB514007DB42C /* Assets.xcassets */,
+				610B7D5420FDB514007DB42C /* LaunchScreen.storyboard */,
+				610B7D5720FDB514007DB42C /* Info.plist */,
+				610B7D5820FDB514007DB42C /* main.m */,
+				61AC80D12101962300B282E3 /* TQChartKitPrefixHeader.pch */,
+			);
+			path = TQChartKit;
+			sourceTree = "<group>";
+		};
+		610B7D6120FDB514007DB42C /* TQChartKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				610B7D6220FDB514007DB42C /* TQChartKitTests.m */,
+				610B7D6420FDB514007DB42C /* Info.plist */,
+			);
+			path = TQChartKitTests;
+			sourceTree = "<group>";
+		};
+		610B7D6C20FDB514007DB42C /* TQChartKitUITests */ = {
+			isa = PBXGroup;
+			children = (
+				610B7D6D20FDB514007DB42C /* TQChartKitUITests.m */,
+				610B7D6F20FDB514007DB42C /* Info.plist */,
+			);
+			path = TQChartKitUITests;
+			sourceTree = "<group>";
+		};
+		610B7D7B20FDB5BC007DB42C /* stockDetails */ = {
+			isa = PBXGroup;
+			children = (
+				610B481B21040785009A5586 /* controllers */,
+				610B4808210312BD009A5586 /* views */,
+				610B47FA2102FD9F009A5586 /* model */,
+			);
+			path = stockDetails;
+			sourceTree = "<group>";
+		};
+		610B7D8820FDB6F1007DB42C /* TQTimeChart */ = {
+			isa = PBXGroup;
+			children = (
+				610B7DA420FDCF8C007DB42C /* TQTimeChartStyle.h */,
+				610B7DA620FDCF8C007DB42C /* TQTimeChartStyle.m */,
+				610B7DA020FDCF8C007DB42C /* TQTimeBaseChart.h */,
+				610B7DA720FDCF8C007DB42C /* TQTimeBaseChart.m */,
+				610B7D9B20FDCF8C007DB42C /* TQTimeChart.h */,
+				610B7D9D20FDCF8C007DB42C /* TQTimeChart.m */,
+				610B7DA820FDCF8D007DB42C /* TQTimeChart+Calculator.h */,
+				610B7D9E20FDCF8C007DB42C /* TQTimeChart+Calculator.m */,
+				610B7DA220FDCF8C007DB42C /* TQTimeGradientLayer.h */,
+				610B7DA520FDCF8C007DB42C /* TQTimeGradientLayer.m */,
+				61133FAC210CB3F90009EC84 /* TQTimePulsingView.h */,
+				61133FAD210CB3F90009EC84 /* TQTimePulsingView.m */,
+			);
+			path = TQTimeChart;
+			sourceTree = "<group>";
+		};
+		610B7D8A20FDB70A007DB42C /* TQChartTool */ = {
+			isa = PBXGroup;
+			children = (
+				61E21BBA215391BA00F85384 /* TQStockChartHeaderTools.h */,
+				610B7D8B20FDB753007DB42C /* TQStockChartProtocol.h */,
+				61B09005212659BD00008636 /* TQStockChartConst.h */,
+				61B09006212659BD00008636 /* TQStockChartConst.m */,
+				61909E1F212CDB9A001EBC9A /* TQStockChartLayout.h */,
+				61909E20212CDB9A001EBC9A /* TQStockChartLayout.m */,
+				61ADAB942107420400658213 /* TQChartDateManager.h */,
+				61ADAB952107420400658213 /* TQChartDateManager.m */,
+				610B7DB620FDD0B8007DB42C /* TQChartTextLayer.h */,
+				610B7DB720FDD0B8007DB42C /* TQChartTextLayer.m */,
+				610B7DB820FDD0B8007DB42C /* TQChartCrossLineView.h */,
+				610B7DB920FDD0B8007DB42C /* TQChartCrossLineView.m */,
+				610B7D9220FDB9B5007DB42C /* TQStockChartUtilities.h */,
+				610B7D9320FDB9B5007DB42C /* TQStockChartUtilities.m */,
+				610B7DB320FDD060007DB42C /* UIBezierPath+TQStockChart.h */,
+				610B7DB420FDD060007DB42C /* UIBezierPath+TQStockChart.m */,
+				617169F1213673490074138D /* NSArray+TQStockChart.h */,
+				617169F2213673490074138D /* NSArray+TQStockChart.m */,
+			);
+			path = TQChartTool;
+			sourceTree = "<group>";
+		};
+		611FD9E021131A3D00FAEF23 /* TQIndicatorChart */ = {
+			isa = PBXGroup;
+			children = (
+				611FD9E421131B1F00FAEF23 /* TQIndicatorChartStyle.h */,
+				611FD9E521131B1F00FAEF23 /* TQIndicatorChartStyle.m */,
+				61EB215B215097B2006E29F0 /* TQIndicatorType.h */,
+				61EB215C215097B2006E29F0 /* TQIndicatorType.m */,
+				61EB215E21509F7D006E29F0 /* TQIndicatorParentLayer.h */,
+				61EB215F21509F7D006E29F0 /* TQIndicatorParentLayer.m */,
+				611FD9E121131A6500FAEF23 /* TQIndicatorBaseLayer.h */,
+				611FD9E221131A6500FAEF23 /* TQIndicatorBaseLayer.m */,
+				61DC95A62140CFA8004AFFCC /* TQIndicatorVOLLayer.h */,
+				61DC95A72140CFA8004AFFCC /* TQIndicatorVOLLayer.m */,
+				61DC95AC2140F6B6004AFFCC /* TQIndicatorBOLLLayer.h */,
+				61DC95AD2140F6B6004AFFCC /* TQIndicatorBOLLLayer.m */,
+				61DC95A92140F50C004AFFCC /* TQIndicatorDMILayer.h */,
+				61DC95AA2140F50C004AFFCC /* TQIndicatorDMILayer.m */,
+				618223672139101D000295D9 /* TQIndicatorMACDLayer.h */,
+				618223682139101D000295D9 /* TQIndicatorMACDLayer.m */,
+				61822377213FB20D000295D9 /* TQIndicatorKDJLayer.h */,
+				61822378213FB20D000295D9 /* TQIndicatorKDJLayer.m */,
+				61DC95C421440974004AFFCC /* TQIndicatorPSYLayer.h */,
+				61DC95C521440974004AFFCC /* TQIndicatorPSYLayer.m */,
+				6182237A213FC387000295D9 /* TQIndicatorCCILayer.h */,
+				6182237B213FC387000295D9 /* TQIndicatorCCILayer.m */,
+				61DC95AF2140F6DF004AFFCC /* TQIndicatorDMALayer.h */,
+				61DC95B02140F6DF004AFFCC /* TQIndicatorDMALayer.m */,
+				61DC95B22140F6FF004AFFCC /* TQIndicatorRSILayer.h */,
+				61DC95B32140F6FF004AFFCC /* TQIndicatorRSILayer.m */,
+				61DC95C12140F797004AFFCC /* TQIndicatorOBVLayer.h */,
+				61DC95C22140F797004AFFCC /* TQIndicatorOBVLayer.m */,
+				61DC95B52140F717004AFFCC /* TQIndicatorCRLayer.h */,
+				61DC95B62140F717004AFFCC /* TQIndicatorCRLayer.m */,
+				61DC95B82140F724004AFFCC /* TQIndicatorVRLayer.h */,
+				61DC95B92140F724004AFFCC /* TQIndicatorVRLayer.m */,
+				61DC95BB2140F738004AFFCC /* TQIndicatorWRLayer.h */,
+				61DC95BC2140F738004AFFCC /* TQIndicatorWRLayer.m */,
+				61DC95BE2140F761004AFFCC /* TQIndicatorBIASLayer.h */,
+				61DC95BF2140F761004AFFCC /* TQIndicatorBIASLayer.m */,
+				610A270E214F7D3A00C76F93 /* TQIndicatorSARLayer.h */,
+				610A270F214F7D3A00C76F93 /* TQIndicatorSARLayer.m */,
+				610A2702214B820900C76F93 /* TQKIndicatorBaseLayer.h */,
+				610A2703214B820900C76F93 /* TQKIndicatorBaseLayer.m */,
+				617169F8213697530074138D /* TQIndicatorMALayer.h */,
+				617169F9213697530074138D /* TQIndicatorMALayer.m */,
+			);
+			path = TQIndicatorChart;
+			sourceTree = "<group>";
+		};
+		61ADAC312109D0A100658213 /* TQKLineChart */ = {
+			isa = PBXGroup;
+			children = (
+				61ADAC382109D0C700658213 /* TQKLineChartStyle.h */,
+				61ADAC3A2109D0C700658213 /* TQKLineChartStyle.m */,
+				61ADAC372109D0C700658213 /* TQKLineBaseChart.h */,
+				61ADAC322109D0C600658213 /* TQKLineBaseChart.m */,
+				61ADAC352109D0C600658213 /* TQKLineChart.h */,
+				61ADAC362109D0C700658213 /* TQKLineChart.m */,
+				611FD9DD211200BE00FAEF23 /* TQKLineChart+Calculator.h */,
+				611FD9DE211200BE00FAEF23 /* TQKLineChart+Calculator.m */,
+				61ADAC392109D0C700658213 /* TQKLineLoadingView.h */,
+				61ADAC342109D0C600658213 /* TQKLineLoadingView.m */,
+			);
+			path = TQKLineChart;
+			sourceTree = "<group>";
+		};
+		61D37B67215228AA00046F5E /* TQCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				61822370213C21C6000295D9 /* TQIndicatorRef.h */,
+				61E21BBB2153981F00F85384 /* TQIndicatorCycles.h */,
+				61E21BBC2153981F00F85384 /* TQIndicatorCycles.m */,
+				6182236A21395A39000295D9 /* TQIndicatorCalculator.h */,
+				6182236B21395A39000295D9 /* TQIndicatorCalculator.m */,
+				61716A0D2137BA5A0074138D /* TQStockCacheManager.h */,
+				61716A0E2137BA5A0074138D /* TQStockCacheManager.m */,
+				61716A132137C6F70074138D /* TQStockCacheModel.h */,
+				61716A142137C6F70074138D /* TQStockCacheModel.m */,
+			);
+			path = TQCalculator;
+			sourceTree = "<group>";
+		};
+		E99936C9D5597272DBDB2B19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83EA35DADF23700ADD97FFA3 /* Pods_TQChartKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		610B7D4520FDB511007DB42C /* TQChartKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 610B7D7220FDB514007DB42C /* Build configuration list for PBXNativeTarget "TQChartKit" */;
+			buildPhases = (
+				5D2FBF2F8BEBB5CC968CF71B /* [CP] Check Pods Manifest.lock */,
+				610B7D4220FDB511007DB42C /* Sources */,
+				610B7D4320FDB511007DB42C /* Frameworks */,
+				610B7D4420FDB511007DB42C /* Resources */,
+				36DDB7FBB2CC4E49D0960455 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TQChartKit;
+			productName = TQChartKit;
+			productReference = 610B7D4620FDB511007DB42C /* TQChartKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		610B7D5D20FDB514007DB42C /* TQChartKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 610B7D7520FDB514007DB42C /* Build configuration list for PBXNativeTarget "TQChartKitTests" */;
+			buildPhases = (
+				610B7D5A20FDB514007DB42C /* Sources */,
+				610B7D5B20FDB514007DB42C /* Frameworks */,
+				610B7D5C20FDB514007DB42C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				610B7D6020FDB514007DB42C /* PBXTargetDependency */,
+			);
+			name = TQChartKitTests;
+			productName = TQChartKitTests;
+			productReference = 610B7D5E20FDB514007DB42C /* TQChartKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		610B7D6820FDB514007DB42C /* TQChartKitUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 610B7D7820FDB514007DB42C /* Build configuration list for PBXNativeTarget "TQChartKitUITests" */;
+			buildPhases = (
+				610B7D6520FDB514007DB42C /* Sources */,
+				610B7D6620FDB514007DB42C /* Frameworks */,
+				610B7D6720FDB514007DB42C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				610B7D6B20FDB514007DB42C /* PBXTargetDependency */,
+			);
+			name = TQChartKitUITests;
+			productName = TQChartKitUITests;
+			productReference = 610B7D6920FDB514007DB42C /* TQChartKitUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		610B7D3E20FDB511007DB42C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = zhanghao;
+				TargetAttributes = {
+					610B7D4520FDB511007DB42C = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					610B7D5D20FDB514007DB42C = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 610B7D4520FDB511007DB42C;
+					};
+					610B7D6820FDB514007DB42C = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 610B7D4520FDB511007DB42C;
+					};
+				};
+			};
+			buildConfigurationList = 610B7D4120FDB511007DB42C /* Build configuration list for PBXProject "TQChartKit" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 610B7D3D20FDB511007DB42C;
+			productRefGroup = 610B7D4720FDB511007DB42C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				610B7D4520FDB511007DB42C /* TQChartKit */,
+				610B7D5D20FDB514007DB42C /* TQChartKitTests */,
+				610B7D6820FDB514007DB42C /* TQChartKitUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		610B7D4420FDB511007DB42C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				610B7D5620FDB514007DB42C /* LaunchScreen.storyboard in Resources */,
+				611FD9D6211098B600FAEF23 /* 600887_kdata.json in Resources */,
+				610B483D2104BD97009A5586 /* time_chart_data.json in Resources */,
+				610B7D5320FDB514007DB42C /* Assets.xcassets in Resources */,
+				610B4831210448EE009A5586 /* stock_60Minutes_data.plist in Resources */,
+				61DC95A421400911004AFFCC /* pa_kline_data.plist in Resources */,
+				610B7D5120FDB512007DB42C /* Main.storyboard in Resources */,
+				610B4834210448EE009A5586 /* stock_30Minutes_data.plist in Resources */,
+				61DC95A221400911004AFFCC /* more_pa_kline_data.plist in Resources */,
+				610B482E210448EE009A5586 /* stock_5Minutes_data.plist in Resources */,
+				610B4833210448EE009A5586 /* stock_month_data.plist in Resources */,
+				61DC95A521400911004AFFCC /* yl_kline_data.plist in Resources */,
+				610B483821044988009A5586 /* stock_hong.plist in Resources */,
+				61B0900F212800C600008636 /* 600887_append.json in Resources */,
+				610B48362104494F009A5586 /* stock_zhang.plist in Resources */,
+				610B4832210448EE009A5586 /* stock_week_data.plist in Resources */,
+				610B482F210448EE009A5586 /* stock_timeFull_data.plist in Resources */,
+				610B4830210448EE009A5586 /* stock_timePart_data.plist in Resources */,
+				61DC95A321400911004AFFCC /* more_yl_kline_data.plist in Resources */,
+				610B482C210448EE009A5586 /* stock_15Minutes_data.plist in Resources */,
+				610B482D210448EE009A5586 /* stock_allHistory_data.plist in Resources */,
+				61ADA9112105C80100658213 /* 600887_five_day.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		610B7D5C20FDB514007DB42C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		610B7D6720FDB514007DB42C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36DDB7FBB2CC4E49D0960455 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TQChartKit/Pods-TQChartKit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/zhCategories/zhCategories.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/zhCategories.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TQChartKit/Pods-TQChartKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D2FBF2F8BEBB5CC968CF71B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TQChartKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		610B7D4220FDB511007DB42C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				610B480421030567009A5586 /* TQStockDataManager.m in Sources */,
+				61ADAC3E2109D0C700658213 /* TQKLineLoadingView.m in Sources */,
+				61E21BBD2153981F00F85384 /* TQIndicatorCycles.m in Sources */,
+				610A2700214B52EE00C76F93 /* YYWeakProxy.m in Sources */,
+				61716A0F2137BA5A0074138D /* TQStockCacheManager.m in Sources */,
+				61DC95A82140CFA8004AFFCC /* TQIndicatorVOLLayer.m in Sources */,
+				61ADAC3C2109D0C700658213 /* TQKLineBaseChart.m in Sources */,
+				610B7DAA20FDCF8D007DB42C /* TQTimeChart.m in Sources */,
+				610B7DB520FDD060007DB42C /* UIBezierPath+TQStockChart.m in Sources */,
+				61DC95AE2140F6B6004AFFCC /* TQIndicatorBOLLLayer.m in Sources */,
+				611FD9DF211200BE00FAEF23 /* TQKLineChart+Calculator.m in Sources */,
+				61B09007212659BD00008636 /* TQStockChartConst.m in Sources */,
+				61ADAB962107420400658213 /* TQChartDateManager.m in Sources */,
+				618223692139101D000295D9 /* TQIndicatorMACDLayer.m in Sources */,
+				61DC95BA2140F724004AFFCC /* TQIndicatorVRLayer.m in Sources */,
+				610B4811210313BD009A5586 /* TQStockTypePopupBar.m in Sources */,
+				61716A152137C6F70074138D /* TQStockCacheModel.m in Sources */,
+				61DC95C02140F761004AFFCC /* TQIndicatorBIASLayer.m in Sources */,
+				610B7DAF20FDCF8D007DB42C /* TQTimeBaseChart.m in Sources */,
+				6182236C21395A39000295D9 /* TQIndicatorCalculator.m in Sources */,
+				610B483B2104B71C009A5586 /* TQTimeChartView.m in Sources */,
+				610A2704214B820900C76F93 /* TQKIndicatorBaseLayer.m in Sources */,
+				61822379213FB20D000295D9 /* TQIndicatorKDJLayer.m in Sources */,
+				617169F3213673490074138D /* NSArray+TQStockChart.m in Sources */,
+				610B7D7E20FDB5D5007DB42C /* TQBaseViewController.m in Sources */,
+				610A2710214F7D3A00C76F93 /* TQIndicatorSARLayer.m in Sources */,
+				610B480B2103130A009A5586 /* TQStockDetailTextView.m in Sources */,
+				61ADA9142106B65D00658213 /* NSTimer+Extend.m in Sources */,
+				61DC95C32140F797004AFFCC /* TQIndicatorOBVLayer.m in Sources */,
+				610B481A21031C48009A5586 /* TQStockModel.m in Sources */,
+				61EB215D215097B2006E29F0 /* TQIndicatorType.m in Sources */,
+				611FD9E321131A6500FAEF23 /* TQIndicatorBaseLayer.m in Sources */,
+				61DC95BD2140F738004AFFCC /* TQIndicatorWRLayer.m in Sources */,
+				610B7DAD20FDCF8D007DB42C /* TQTimeGradientLayer.m in Sources */,
+				61ADAC402109D0C700658213 /* TQKLineChartStyle.m in Sources */,
+				610B7D9420FDB9B5007DB42C /* TQStockChartUtilities.m in Sources */,
+				610B4814210313FF009A5586 /* TQStockIndicatorSegmentedBar.m in Sources */,
+				610A2701214B52EE00C76F93 /* YYFPSLabel.m in Sources */,
+				610B47F62102E46D009A5586 /* TQStockBaseHorizontalController.m in Sources */,
+				61DC95C621440975004AFFCC /* TQIndicatorPSYLayer.m in Sources */,
+				610B480E21031377009A5586 /* TQStockTypeSegmentedBar.m in Sources */,
+				610B7DBA20FDD0B8007DB42C /* TQChartTextLayer.m in Sources */,
+				610B7D4E20FDB512007DB42C /* ViewController.m in Sources */,
+				610B481E21040BB4009A5586 /* TQStockFiedLabel.m in Sources */,
+				61DC95B72140F717004AFFCC /* TQIndicatorCRLayer.m in Sources */,
+				610B7D8120FDB630007DB42C /* TQStockViewController.m in Sources */,
+				61909E21212CDB9A001EBC9A /* TQStockChartLayout.m in Sources */,
+				61DC95B12140F6DF004AFFCC /* TQIndicatorDMALayer.m in Sources */,
+				61133FAE210CB3F90009EC84 /* TQTimePulsingView.m in Sources */,
+				610B7DBB20FDD0B8007DB42C /* TQChartCrossLineView.m in Sources */,
+				610B7D8720FDB6D3007DB42C /* TQStockHorizontalController.m in Sources */,
+				61DC95B42140F6FF004AFFCC /* TQIndicatorRSILayer.m in Sources */,
+				61EB216021509F7D006E29F0 /* TQIndicatorParentLayer.m in Sources */,
+				611FD9E621131B1F00FAEF23 /* TQIndicatorChartStyle.m in Sources */,
+				617169FA213697530074138D /* TQIndicatorMALayer.m in Sources */,
+				610B7D5920FDB514007DB42C /* main.m in Sources */,
+				61ADA90F2105A6E200658213 /* TQStockTimePropData.m in Sources */,
+				610B7DAB20FDCF8D007DB42C /* TQTimeChart+Calculator.m in Sources */,
+				611FD9D9211098DC00FAEF23 /* TQKLineChartView.m in Sources */,
+				610B7D4B20FDB512007DB42C /* AppDelegate.m in Sources */,
+				610B48172103145F009A5586 /* TQStockDetailBusinessView.m in Sources */,
+				61DC95AB2140F50C004AFFCC /* TQIndicatorDMILayer.m in Sources */,
+				610B7DAE20FDCF8D007DB42C /* TQTimeChartStyle.m in Sources */,
+				61ADAC3F2109D0C700658213 /* TQKLineChart.m in Sources */,
+				6182237C213FC387000295D9 /* TQIndicatorCCILayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		610B7D5A20FDB514007DB42C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				610B7D6320FDB514007DB42C /* TQChartKitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		610B7D6520FDB514007DB42C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				610B7D6E20FDB514007DB42C /* TQChartKitUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		610B7D6020FDB514007DB42C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 610B7D4520FDB511007DB42C /* TQChartKit */;
+			targetProxy = 610B7D5F20FDB514007DB42C /* PBXContainerItemProxy */;
+		};
+		610B7D6B20FDB514007DB42C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 610B7D4520FDB511007DB42C /* TQChartKit */;
+			targetProxy = 610B7D6A20FDB514007DB42C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		610B7D4F20FDB512007DB42C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				610B7D5020FDB512007DB42C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		610B7D5420FDB514007DB42C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				610B7D5520FDB514007DB42C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		610B7D7020FDB514007DB42C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		610B7D7120FDB514007DB42C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		610B7D7320FDB514007DB42C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55B39D3DFC0EAB14710F253A /* Pods-TQChartKit.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X7C46W9MVD;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/TQChartKit/TQChartKitPrefixHeader.pch";
+				INFOPLIST_FILE = TQChartKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tqteam.TQChartKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		610B7D7420FDB514007DB42C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1E8A18D17DC59AA4C422B46 /* Pods-TQChartKit.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/TQChartKit/TQChartKitPrefixHeader.pch";
+				INFOPLIST_FILE = TQChartKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tqteam.TQChartKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		610B7D7620FDB514007DB42C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zunguang zhu (AKMYCTHN4F)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = TQChartKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jhyt.TQChartKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TQChartKit.app/TQChartKit";
+			};
+			name = Debug;
+		};
+		610B7D7720FDB514007DB42C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zunguang zhu (AKMYCTHN4F)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = TQChartKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jhyt.TQChartKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TQChartKit.app/TQChartKit";
+			};
+			name = Release;
+		};
+		610B7D7920FDB514007DB42C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TQChartKitUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jhyt.TQChartKitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TQChartKit;
+			};
+			name = Debug;
+		};
+		610B7D7A20FDB514007DB42C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TQChartKitUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jhyt.TQChartKitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TQChartKit;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		610B7D4120FDB511007DB42C /* Build configuration list for PBXProject "TQChartKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				610B7D7020FDB514007DB42C /* Debug */,
+				610B7D7120FDB514007DB42C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		610B7D7220FDB514007DB42C /* Build configuration list for PBXNativeTarget "TQChartKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				610B7D7320FDB514007DB42C /* Debug */,
+				610B7D7420FDB514007DB42C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		610B7D7520FDB514007DB42C /* Build configuration list for PBXNativeTarget "TQChartKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				610B7D7620FDB514007DB42C /* Debug */,
+				610B7D7720FDB514007DB42C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		610B7D7820FDB514007DB42C /* Build configuration list for PBXNativeTarget "TQChartKitUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				610B7D7920FDB514007DB42C /* Debug */,
+				610B7D7A20FDB514007DB42C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 610B7D3E20FDB511007DB42C /* Project object */;
+}

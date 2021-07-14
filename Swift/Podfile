@@ -1,0 +1,16 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+
+def swift_pods
+  pod 'PKExtensions',:git =>'https://github.com/psychokines/PKExtensions.git',:branch =>'optimized'
+  pod 'SnapKit', '~> 5.0.1'
+  pod 'HandyJSON', '~> 5.0.1'
+  
+  pod 'RxSwift', '6.2.0'
+  pod 'RxCocoa', '6.2.0'
+      
+end
+
+target 'swiftKline' do
+  swift_pods
+end
