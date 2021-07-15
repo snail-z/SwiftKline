@@ -1,0 +1,26 @@
+PODS:
+  - MJExtension (3.0.15.1)
+  - zhCategories (1.1.0):
+    - zhCategories/Foundation (= 1.1.0)
+    - zhCategories/QuartzCore (= 1.1.0)
+    - zhCategories/UIKit (= 1.1.0)
+  - zhCategories/Foundation (1.1.0)
+  - zhCategories/QuartzCore (1.1.0)
+  - zhCategories/UIKit (1.1.0)
+
+DEPENDENCIES:
+  - MJExtension (~> 3.0)
+  - zhCategories (~> 1.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MJExtension
+    - zhCategories
+
+SPEC CHECKSUMS:
+  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
+  zhCategories: f490dca9471cc5b6826410e761dafa235502ddea
+
+PODFILE CHECKSUM: 5915b8b0a0c8c013f6e8e43dabbc7dd583faadfb
+
+COCOAPODS: 1.5.2

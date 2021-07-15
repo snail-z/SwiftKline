@@ -65,53 +65,6 @@
 
 #pragma mark - TQStockKLineModel
 
-@interface TQStockKLineModel ()
-
-@property (nonatomic, strong) NSDate *my_date;
-@property (nonatomic, strong) NSString *my_dateText;
-@property (nonatomic, assign) CGFloat my_centerX;
-
-@end
-
 @implementation TQStockKLineModel
-
-- (NSDate *)my_date {
-    if (!_my_date) {
-        _my_date = [NSDate zh_dateFromTimestring:self.date_string dateFormat:@"yyyyMMdd"];
-    }
-    return _my_date;
-}
-
-- (CGFloat)tq_open {
-    return self.open_price;
-}
-
-- (CGFloat)tq_close {
-    return self.close_price;
-}
-
-- (CGFloat)tq_high {
-    return self.high_price;
-}
-
-- (CGFloat)tq_low {
-    return self.low_price;
-}
-
-- (NSDate *)tq_date {
-    return self.my_date;
-}
-
-- (CGFloat)tq_closeYesterday {
-    return self.yesterday_close_price;
-}
-
-- (CGFloat)tq_volume {
-    return self.volume_total;
-}
-
-- (CGFloat)tq_turnover {
-    return self.volume_price;
-}
 
 @end

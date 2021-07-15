@@ -1,0 +1,6 @@
+module Pods_swiftKline {
+  umbrella header "Pods-swiftKline-umbrella.h"
+
+  export *
+  module * { export * }
+}

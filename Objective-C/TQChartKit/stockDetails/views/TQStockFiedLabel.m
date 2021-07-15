@@ -14,8 +14,8 @@
     TQStockFiedRenderer *ren = [TQStockFiedRenderer new];
     ren.prefixColor = [UIColor blackColor];
     ren.suffixColor = [UIColor darkGrayColor];
-    ren.prefixFont = [UIFont fontWithName:@"Thonburi" size:16];
-    ren.suffixFont = [UIFont fontWithName:@"Thonburi" size:15];
+    ren.prefixFont = [UIFont fontWithName:@"Thonburi-Bold" size:16];
+    ren.suffixFont = [UIFont fontWithName:@"Thonburi-Bold" size:16];
     return ren;
 }
 

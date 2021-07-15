@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>details</key>
+	<key>details_data</key>
 	<dict>
 		<key>date</key>
 		<integer>20180720</integer>
@@ -35,7 +35,7 @@
 		<key>yesterdayClosePrice</key>
 		<integer>0</integer>
 	</dict>
-	<key>times</key>
+	<key>time_data</key>
 	<dict>
 		<key>maxVolume</key>
 		<integer>153600</integer>

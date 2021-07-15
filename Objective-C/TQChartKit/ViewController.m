@@ -7,8 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "NSArray+TQStockChart.h"
-#import "TQStockHorizontalController.h"
+#import "TQStockChart+Categories.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -19,6 +18,7 @@
 @end
 
 @implementation ViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,18 +57,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSString *className = _classes[indexPath.row];
-//    Class class = NSClassFromString(className);
-//    NSParameterAssert(class);
-//    UIViewController *vc = [[class alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-    [self present];
-}
-
-- (void)present {
-    TQStockHorizontalController *vc = [TQStockHorizontalController new];
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:vc animated:YES completion:nil];
+    NSString *className = _classes[indexPath.row];
+    Class class = NSClassFromString(className);
+    NSParameterAssert(class);
+    UIViewController *vc = [[class alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

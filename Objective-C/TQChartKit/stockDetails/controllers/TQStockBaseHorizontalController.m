@@ -51,11 +51,7 @@
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskLandscape;
+    return UIInterfaceOrientationMaskLandscapeRight;
 }
-
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-//    
-//}
 
 @end

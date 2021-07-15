@@ -53,25 +53,13 @@
 //    _refTimeTextLayer.frame = self.chartRiverFrame;
 }
 
-- (void)stockTimeChart:(TQTimeChart *)timeChart didSingleTapAtRange:(BOOL)isTimeChartRange {
-    if (isTimeChartRange) {
-        NSLog(@"单击了分时图范围");
-    } else {
-        NSLog(@"单击了成交量图范围");
-    }
-}
-
-- (void)stockTimeChart:(TQTimeChart *)timeChart didDoubleTapAtRange:(BOOL)isTimeChartRange {
-    if (isTimeChartRange) {
-        NSLog(@"双击了分时图范围");
-    } else {
-        NSLog(@"双击了成交量图范围");
-    }
-}
-
-- (void)stockTimeChart:(TQTimeChart *)timeChart didLongPressOfIndex:(NSInteger)index {
+- (void)stockTimeChart:(TQTimeChart *)timeChart didLongPresOfIndex:(NSInteger)index {
     id<TQTimeChartProtocol> obj = self.dataArray[index];
     _refTimeTextLayer.string = [NSString stringWithFormat:@"%@", @(obj.tq_timeVolume)];
+}
+
+- (void)dealloc {
+    NSLog(@"%@~~~~~~dealloc!✈️",NSStringFromClass(self.class));
 }
 
 - (NSAttributedString *)makeAttributedStringWithIndex:(NSInteger)index {
@@ -85,13 +73,10 @@
     NSRange prefixRange = [text rangeOfString:prefix];
     NSRange suffixRange = [text rangeOfString:suffix];
     [attriText addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Thonburi" size:11] range:textRange];
-    [attriText addAttribute:NSForegroundColorAttributeName value:self.style.avgTimeLineColor range:prefixRange];
-    [attriText addAttribute:NSForegroundColorAttributeName value:self.style.volumeRiseColor range:suffixRange];
+    [attriText addAttribute:NSForegroundColorAttributeName value:self.configuration.avgTimeLineColor range:prefixRange];
+    [attriText addAttribute:NSForegroundColorAttributeName value:self.configuration.volumeRiseColor range:suffixRange];
     return attriText;
 }
 
-- (void)dealloc {
-    NSLog(@"%@~~~~~~dealloc!✈️",NSStringFromClass(self.class));
-}
 
 @end

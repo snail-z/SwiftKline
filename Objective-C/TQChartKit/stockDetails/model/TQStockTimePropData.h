@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TQStockChartProtocol.h"
 
-@interface TQStockTimePropData : NSObject <TQTimeChartCoordsProtocol>
+@interface TQStockTimePropData : NSObject <TQTimeChartPropProtocol>
 
 @property (nonatomic, strong) NSArray<id<TQTimeChartProtocol>> *dataArray;
 

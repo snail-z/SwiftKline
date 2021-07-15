@@ -9,11 +9,6 @@
 #import "TQStockViewController.h"
 #import "TQStockHorizontalController.h"
 #import "TQStockFiedLabel.h"
-#import "NSArray+TQStockChart.h"
-#import "TQStockChartUtilities.h"
-#import "TQStockCacheManager.h"
-#import "UIBezierPath+TQStockChart.h"
-#import "TQIndicatorCycles.h"
 
 @interface TQStockViewController ()
 
@@ -21,15 +16,28 @@
 
 @implementation TQStockViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self navigaInitialization];
+    
+    TQStockFiedLabel *fiedLabel = [TQStockFiedLabel new];
+    fiedLabel.frame = CGRectMake(100, 100, 200, 50);
+    fiedLabel.backgroundColor = [UIColor orangeColor];
+    [self.view addSubview:fiedLabel];
+    
+//    fiedLabel.prefixText = @"最高";
+//    fiedLabel.suffixText = @"17.85";
+
+    
+}
+
 - (void)navigaInitialization {
     UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithTitle:@"横屏" style:UIBarButtonItemStylePlain target:self action:@selector(present)];
     self.navigationItem.rightBarButtonItem = buttonItem;
 }
 
 - (void)present {
-    TQStockHorizontalController *vc = [TQStockHorizontalController new];
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:vc animated:YES completion:nil];
+    [self presentViewController:[TQStockHorizontalController new] animated:YES completion:nil];
 }
 
 @end

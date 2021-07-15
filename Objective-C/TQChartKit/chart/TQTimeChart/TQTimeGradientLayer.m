@@ -7,6 +7,7 @@
 //
 
 #import "TQTimeGradientLayer.h"
+#import "NSArray+TQChart.h"
 
 @interface TQTimeGradientLayer ()
 
@@ -46,11 +47,7 @@
     _path = path;
     _contentLayer.frame = self.bounds;
     _gradientLayer.frame = (CGRect){.size = _contentLayer.bounds.size};
-    NSMutableArray *CGColors = [NSMutableArray array];
-    for (UIColor *obj in self.gradientClolors) {
-        [CGColors addObject:(__bridge id)obj.CGColor];
-    }
-    _gradientLayer.colors = CGColors;
+    _gradientLayer.colors = self.gradientClolors.tq_toCGColors;
     _contentLayer.mask = _maskLayer;
     
     [self addAnimationFromPath:_maskLayer.path toPath:path];
@@ -66,7 +63,7 @@
     anim.fromValue = (__bridge id _Nullable)(originPath.CGPath);
     anim.toValue = (__bridge id _Nullable)(targetPath.CGPath);
     anim.removedOnCompletion = YES;
-    [_maskLayer addAnimation:anim forKey:@"PathKey"];
+    [_maskLayer addAnimation:anim forKey:@"_pathKey"];
 }
 
 @end

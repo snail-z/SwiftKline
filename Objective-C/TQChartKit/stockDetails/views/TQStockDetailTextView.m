@@ -62,15 +62,13 @@
     _nameLabel.text = _detailData.stockName;
     
     _freshLabel.size = _size;
-    _freshLabel.left = _size.width - 20;
+    _freshLabel.left = _size.width;
     _freshLabel.text = _detailData.stockCode;
 }
 
 - (void)_updateItems {
     UIColor *riseColor = [UIColor brownColor];
-    UIColor *fallColor = [UIColor blackColor];
-    _nameLabel.font = [UIFont fontWithName:@"Thonburi-Bold" size:17];
-    _freshLabel.font = [UIFont fontWithName:@"Thonburi" size:17];
+    UIColor *fallColor = [UIColor orangeColor];
     
     NSMutableArray<TQStockFiedRenderer *> *mudArray = [NSMutableArray array];
     
@@ -102,11 +100,11 @@
     TQStockFiedRenderer *ren4 = [TQStockFiedRenderer defaultRenderer];
     ren4.prefixText = @"换";
     ren4.suffixText = ratio;
-    ren4.prefixColor = [UIColor blackColor];
+    ren4.prefixColor = [UIColor darkGrayColor];
     ren4.suffixColor = fallColor;
     [mudArray addObject:ren4];
     
-    CGFloat _gap = 20;
+    CGFloat _gap = 30;
     CGFloat _allGap = _gap * mudArray.count;
     CGFloat _sizeW = (_contentView.frame.size.width - _nameLabel.width - _freshLabel.width - _allGap) / (CGFloat)mudArray.count;
     CGSize _size = CGSizeMake(_sizeW, _contentView.frame.size.height);

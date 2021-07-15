@@ -17,6 +17,7 @@
 - (CGFloat)getCenterXWithIndex:(NSInteger)index;
 - (CGFloat)getOriginXWithIndex:(NSInteger)index;
 
-- (void)makeDateRenderer:(CGFloat *)positionY baseOffsetVertical:(CGFloat *)vertical;
+- (CGFloat)mapRefValueWithPointY:(CGFloat)py peak:(CGPeakValue)peak inRect:(CGRect)rect;
+- (NSInteger)mapIndexWithPointX:(CGFloat)pointX;
 
 @end

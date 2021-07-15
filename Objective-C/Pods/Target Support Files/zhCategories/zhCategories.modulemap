@@ -1,0 +1,6 @@
+framework module zhCategories {
+  umbrella header "zhCategories-umbrella.h"
+
+  export *
+  module * { export * }
+}

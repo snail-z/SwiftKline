@@ -59,3 +59,7 @@
 - (void)stockTypeSegmentedBarDidClickMore:(TQStockTypeSegmentedBar *)segmentedBar;
 
 @end
+
+
+
+CG_EXTERN NSString * const kTag1;

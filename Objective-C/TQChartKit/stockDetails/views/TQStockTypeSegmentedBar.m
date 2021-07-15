@@ -8,6 +8,8 @@
 
 #import "TQStockTypeSegmentedBar.h"
 
+NSString * const kTag1 = @"sdf";
+
 @interface TQStockTypeSegmentedBar ()
 
 @property (nonatomic, strong, readonly) UIButton *moreItem;
@@ -41,7 +43,6 @@
     _unselectedTextColor = [UIColor blackColor];
     _barLineWidth = 2;
     _textFont = [UIFont systemFontOfSize:13];
-    _selectedIndex = -1;
 }
 
 - (void)layoutSubviews {
@@ -104,8 +105,8 @@
 }
 
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
+    if (selectedIndex >= self.items.count) return;
     _selectedIndex = selectedIndex;
-    if (selectedIndex >= self.items.count || selectedIndex < 0) return;
     UIButton *responder = _items[selectedIndex];
     [responder layoutIfNeeded];
     

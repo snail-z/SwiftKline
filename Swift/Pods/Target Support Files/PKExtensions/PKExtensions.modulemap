@@ -1,0 +1,6 @@
+module PKExtensions {
+  umbrella header "PKExtensions-umbrella.h"
+
+  export *
+  module * { export * }
+}

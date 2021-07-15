@@ -8,7 +8,7 @@
 
 #import "TQStockTimePropData.h"
 #import "TQStockChartUtilities.h"
-#import "NSArray+TQStockChart.h"
+#import "TQStockChart+Categories.h"
 
 @interface TQStockTimePropData ()
 
@@ -65,7 +65,7 @@
 - (void)fiveDayStyle {
     _priceOrigin = 18.9;
     _peakChangeRatio = CGPeakValueMake(3.57, -2.02);
-    CGPeakValue peak = [self.dataArray peakValueBySel:@selector(tq_timePrice)];
+    CGPeakValue peak = [self.dataArray tq_peakValueBySel:@selector(tq_timePrice)];
     _peakPrice = peak;
 }
 

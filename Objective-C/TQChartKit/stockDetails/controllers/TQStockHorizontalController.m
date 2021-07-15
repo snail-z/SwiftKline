@@ -10,15 +10,13 @@
 #import "TQStockDataManager.h"
 #import "TQStockTimePropData.h"
 #import "TQTimeChartView.h"
-#import "TQKLineChartView.h"
 #import "TQStockDetailTextView.h"
 #import "TQStockTypeSegmentedBar.h"
 #import "TQStockTypePopupBar.h"
-#import "TQStockIndicatorSegmentedBar.h"
+#import "TQStockIndexSegmentedBar.h"
 #import "TQStockDetailBusinessView.h"
-#import "YYFPSLabel.h"
 
-@interface TQStockHorizontalController () <TQStockTypeSegmentedBarDelegate, TQStockIndicatorSegmentedBarDelegate, TQStockTypePopupBarDelegate>
+@interface TQStockHorizontalController () <TQStockTypeSegmentedBarDelegate, TQStockIndexSegmentedBarDelegate, TQStockTypePopupBarDelegate>
 
 /** 数据管理 */
 @property (nonatomic, strong) TQStockDataManager *dataManager;
@@ -26,9 +24,6 @@
 
 /** 分时五日图 */
 @property (nonatomic, strong) TQTimeChartView *timeChartView;
-
-/** K线图 */
-@property (nonatomic, strong) TQKLineChartView *klineChartView;
 
 /** 顶部文本视图 */
 @property (nonatomic, strong) TQStockDetailTextView *topTextView;
@@ -40,13 +35,10 @@
 @property (nonatomic, strong) TQStockTypePopupBar *bottomPopupBar;
 
 /** 股票指标切换条(用于K线图显示时) */
-@property (nonatomic, strong) TQStockIndicatorSegmentedBar *indexSegmentedBar;
+@property (nonatomic, strong) TQStockIndexSegmentedBar *indexSegmentedBar;
 
 /** 股票买卖明细视图(用于分时图显示时) */
 @property (nonatomic, strong) TQStockDetailBusinessView *detailBusinessView;
-
-/** 查看屏幕帧数工具视图 */
-@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 
 @end
 
@@ -62,28 +54,18 @@
     [self _updateLayout];
     [self _updateInitialConfiguration];
     
-    // 设置底部条初始选项
-    [self stockTypeSegmentedBar:self.bottomSegmentedBar didClickItemAtIndex:2];
-    // 设置指标初始选项
-    [self stockIndicatorSegmentedBar:self.indexSegmentedBar didClickHeaderItemAtIndex:1];
-    [self stockIndicatorSegmentedBar:self.indexSegmentedBar didClickItemAtIndex:0];
+    [self _updateTimeData];
 }
 
 - (void)_initialization {
     self.dataManager = [TQStockDataManager new];
     self.timePropData = [TQStockTimePropData new];
     
-    TQStockChartLayout *layout = [TQStockChartLayout layoutWithTopChartHeight:170];
-    layout.separatedGap = 20;
-    layout.contentEdgeInset = UIEdgeInsetsMake(20, 0, 20, 0);
     self.timeChartView = [TQTimeChartView new];
-    self.timeChartView.layout = layout;
+    self.timeChartView.contentEdgeInset = UIEdgeInsetsMake(20, 5, 30, 0);
+    self.timeChartView.chartTimeHeight = 150;
+    self.timeChartView.chartSeparationGap = 30;
     [self.containerView addSubview:self.timeChartView];
-    
-    self.klineChartView = [TQKLineChartView new];
-    self.klineChartView.layout = layout;
-    self.klineChartView.backgroundColor = [UIColor whiteColor];
-    [self.containerView addSubview:self.klineChartView];
     
     self.topTextView = [TQStockDetailTextView new];
     self.topTextView.contentInsets = UIEdgeInsetsMake(0, 0, 0, 100);
@@ -107,31 +89,22 @@
     };
     [self.containerView addSubview:self.bottomPopupBar];
     
-    self.indexSegmentedBar = [TQStockIndicatorSegmentedBar new];
+    self.indexSegmentedBar = [TQStockIndexSegmentedBar new];
     self.indexSegmentedBar.delegate = self;
     [self.containerView addSubview:self.indexSegmentedBar];
-    
-    self.detailBusinessView = [TQStockDetailBusinessView new];
-    self.detailBusinessView.backgroundColor = [UIColor orangeColor];
-    [self.containerView addSubview:self.detailBusinessView];
     
     [self.containerView bringSubviewToFront:self.bottomPopupBar]; // 控制视图层级
     [self.containerView bringSubviewToFront:self.bottomSegmentedBar];
 }
 
 - (void)_updateLayout {
-    CGFloat topPadding = 40;
+    CGFloat topPadding = 50;
     CGFloat bottomPadding = 40;
     CGRect blankFrame = CGRectMake(0, topPadding, self.containerView.width, self.containerView.height - topPadding - bottomPadding);
-    UIEdgeInsets blackInset = UIEdgeInsetsMake(0, 40, 0, 75);
+    UIEdgeInsets blackInset = UIEdgeInsetsMake(0, 15, 0, 90);
     CGRect chartRect = UIEdgeInsetsInsetRect(blankFrame, blackInset);
     
     self.timeChartView.frame = chartRect;
-    self.klineChartView.frame = chartRect;
-    
-    TQKLineChartStyle *style = [TQKLineChartStyle defaultStyle];
-    self.klineChartView.style = style;
-    [self.klineChartView drawChart];
     
     self.topTextView.size = CGSizeMake(self.containerView.width, topPadding);
     [self.topTextView zh_add1pxSidelinePosition:zhSidelinePositionBottom];
@@ -147,15 +120,17 @@
     
     CGFloat margin = 10;
     self.indexSegmentedBar.width = blackInset.right - margin * 2;
-    self.indexSegmentedBar.height = CGRectGetMaxY(blankFrame) - topPadding - self.timeChartView.layout.contentEdgeInset.top;
-    self.indexSegmentedBar.top = topPadding + self.timeChartView.layout.contentEdgeInset.top;
+    self.indexSegmentedBar.height = CGRectGetMaxY(blankFrame) - topPadding - self.timeChartView.contentEdgeInset.top;
+    self.indexSegmentedBar.top = topPadding + self.timeChartView.contentEdgeInset.top;
     self.indexSegmentedBar.left = CGRectGetMaxX(self.timeChartView.frame) + margin;
     [self.indexSegmentedBar zh_add1pxSidelinePosition:zhSidelinePositionLeft | zhSidelinePositionTop | zhSidelinePositionRight];
 }
 
 - (void)_updateInitialConfiguration {
-    TQTimeChartStyle *config = [TQTimeChartStyle defaultStyle];
-    self.timeChartView.style = config;
+    TQTimeChartConfiguration *config = [TQTimeChartConfiguration defaultConfiguration];
+    self.timeChartView.configuration = config;
+    NSArray *dateArray = @[@"09:30", @"10:30", @"11:30/13:00", @"14:00", @"15:00"];
+    self.timeChartView.dateTimeArray = dateArray;
     
     TQStockDetailsModel *detailData = [TQStockDetailsModel new];
     detailData.price_highest = 27.85;
@@ -172,12 +147,11 @@
     NSArray *popupTitles = @[@"120分", @"30分", @"15分", @"5分", @"1分"];
     self.bottomPopupBar.titles = popupTitles;
     
-    NSArray *indexHeaderTitles = @[@"前复权", @"不复权", @"后复权"];
+    NSArray *indexHeaderTitles = @[@"不复权", @"前复权", @"后复权"];
     self.indexSegmentedBar.headerTitles = indexHeaderTitles;
     
-    NSArray *indexTitles = @[@"VOL", @"MACD", @"BIAS", @"VR", @"PSY", @"OBV", @"RSI", @"WR", @"BOLL", @"DMI", @"DMA", @"KDJ", @"CR", @"CCI"];
+    NSArray *indexTitles = @[@"成交量", @"成交额", @"MACD", @"DMI", @"CCI", @"WR", @"BOLL", @"KDJ"];
     self.indexSegmentedBar.titles = indexTitles;
-    [self.indexSegmentedBar reloadData];
 }
 
 #pragma mark - TQStockTypeSegmentedBarDelegate
@@ -198,18 +172,8 @@
     NSString *currentTitle = segmentedBar.titles[index];
     if ([currentTitle isEqualToString:@"五日"]) {
         [self _updateFiveDayTimeData];
-        self.klineChartView.hidden = YES;
-        self.timeChartView.hidden = NO;
-    } else if ([currentTitle isEqualToString:@"分时"]) {
-        [self _updateTimeData];
-        self.klineChartView.hidden = YES;
-        self.timeChartView.hidden = NO;
     } else {
-        if (!self.klineChartView.hidden) {
-            [self _updateKlineData];
-        }
-        self.klineChartView.hidden = NO;
-        self.timeChartView.hidden = YES;
+        [self _updateTimeData];
     }
 }
 
@@ -227,17 +191,15 @@
 #pragma mark - TQStockIndexSegmentedBarDelegate
 
 // 点击了指标切换条头部
-- (void)stockIndicatorSegmentedBar:(TQStockIndicatorSegmentedBar *)segmentedBar didClickHeaderItemAtIndex:(NSInteger)index {
+- (void)stockIndexSegmentedBar:(TQStockIndexSegmentedBar *)segmentedBar didClickHeaderItemAtIndex:(NSInteger)index {
     if (index == segmentedBar.headerSelectedIndex) return;
     segmentedBar.headerSelectedIndex = index;
 }
 
 // 点击了指标切换条
-- (void)stockIndicatorSegmentedBar:(TQStockIndicatorSegmentedBar *)segmentedBar didClickItemAtIndex:(NSInteger)index {
+- (void)stockIndexSegmentedBar:(TQStockIndexSegmentedBar *)segmentedBar didClickItemAtIndex:(NSInteger)index {
     if (index == segmentedBar.selectedIndex) return;
     segmentedBar.selectedIndex = index;
-    NSString *stringKey = [self.indexSegmentedBar.titles objectAtIndex:index];
-    [self.klineChartView changeIndicatorWithIdentifier:MakeIndicatorIdentifier(stringKey)];
 }
 
 #pragma mark - Update data
@@ -246,15 +208,17 @@
     @weakify(self);
     [self.dataManager sendTimeRequest:^(id  _Nullable requestObj, id  _Nullable responseObj) {
         @strongify(self);
-        
-        TQTimeChartStyle *config = [TQTimeChartStyle defaultStyle];
-        config.chartType = TQTimeChartTypeOne;
-        self.timeChartView.style = config;
-        
         self.timeChartView.dataArray = responseObj;
         self.timePropData.dataArray = responseObj;
+        
+        TQTimeChartConfiguration *config = [TQTimeChartConfiguration defaultConfiguration];
+        config.chartType = TQTimeChartTypeDefault;
+        config.maxDataCount = 242;
+        config.volumeBarGap = 0.5;
+        self.timeChartView.configuration = config;
+        
         [self.timePropData defaultStyle];
-        self.timeChartView.coordsConfig = self.timePropData;
+        self.timeChartView.propData = self.timePropData;
         [self.timeChartView drawChart];
     } failureCallback:NULL];
 }
@@ -263,75 +227,29 @@
     @weakify(self);
     [self.dataManager sendFiveDayTimeRequest:^(id  _Nullable requestObj, id  _Nullable responseObj) {
         @strongify(self);
-        TQTimeChartStyle *config = [TQTimeChartStyle defaultStyle];
-        config.chartType = TQTimeChartTypeFive;
-        config.maxDataCount = 242 * 5;
-        config.volumeShapeGap = 0.2;
-        self.timeChartView.style = config;
-        
         self.timeChartView.dataArray = responseObj;
         self.timePropData.dataArray = responseObj;
-        [self.timePropData fiveDayStyle];
-        self.timeChartView.coordsConfig = self.timePropData;
-        [self.timeChartView drawChart];
         
+        TQTimeChartConfiguration *config = [TQTimeChartConfiguration defaultConfiguration];
+        config.chartType = TQTimeChartTypeFiveDay;
+        config.maxDataCount = 242 * 5;
+        config.volumeBarGap = 0.2;
+        self.timeChartView.configuration = config;
+        
+        [self.timePropData fiveDayStyle];
+        self.timeChartView.propData = self.timePropData;
+        [self.timeChartView drawChart];
     } failureCallback:NULL];
-}
-
-- (NSArray *)respZengda:(id)resp number:(NSInteger)number {
-    NSMutableArray *mud = [NSMutableArray array];
-    for (NSInteger i = 0; i < number; i++) {
-        [mud addObjectsFromArray:resp];
-    }
-    return mud;
 }
 
 - (void)_updateKlineData {
-    __weak TQStockHorizontalController *weakSelf = self;
-    self.klineChartView.loadingView.loadingCallback = ^(TQKLineLoadingView * _Nonnull loadingView) {
-        [weakSelf loadDataCompletion:^(NSArray<TQStockKLineModel *> *array) {
-            [loadingView endLoading];
-            [weakSelf.klineChartView insertEarlierDataArray:array];
-            [weakSelf.klineChartView drawChart];
-        }];
-    };
-    
     @weakify(self);
     [self.dataManager sendKlineRequest:^(id  _Nullable requestObj, id  _Nullable responseObj) {
         @strongify(self);
-        TQKLineChartStyle *style = [TQKLineChartStyle defaultStyle];
-        self.klineChartView.style = style;
         
-        self.klineChartView.dataArray = responseObj;
-        [self.klineChartView drawChart];
+        NSLog(@"responseObj is: %@", responseObj);
+        [self.timeChartView drawChart];
     } failureCallback:NULL];
-    
-    [self _addFpsLabelInView:self.klineChartView];
-}
-
-- (void)loadDataCompletion:(void (^)(NSArray<TQStockKLineModel *> *))completion {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"more_yl_kline_data" ofType:@"plist"];
-        NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
-        NSArray *results = [dictionary objectForKey:@"results"];
-        NSArray<TQStockKLineModel *> *respData = [TQStockKLineModel mj_objectArrayWithKeyValuesArray:results];
-        if (completion) completion(respData);
-    });
-}
-
-- (void)_addFpsLabelInView:(UIView *)sView {
-    if (![sView.subviews containsObject:self.fpsLabel]) {
-        [sView addSubview:self.fpsLabel];
-        self.fpsLabel.left = sView.width - self.fpsLabel.width;
-    }
-}
-
-- (YYFPSLabel *)fpsLabel {
-    if (!_fpsLabel) {
-        _fpsLabel = [YYFPSLabel new];
-        _fpsLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-    }
-    return _fpsLabel;
 }
 
 @end

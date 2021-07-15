@@ -7,8 +7,7 @@
 //
 
 #import "TQTimeBaseChart.h"
-#import "TQTimeChartStyle.h"
-#import "TQStockChartLayout.h"
+#import "TQTimeChartConfiguration.h"
 #import "TQStockChartProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -16,19 +15,32 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TQTimeChartDelegate;
 @interface TQTimeChart : TQTimeBaseChart
 
+@property (nonatomic, assign, readonly) CGRect chartFrame;
+@property (nonatomic, assign, readonly) CGRect chartTimeFrame;
+@property (nonatomic, assign, readonly) CGRect chartVolumeFrame;
+@property (nonatomic, assign, readonly) CGRect chartRiverFrame;
 @property (nonatomic, weak) id<TQTimeChartDelegate> delegate;
 
-/** 设置图表内部布局 */
-@property (nonatomic, strong) TQStockChartLayout *layout;
-
 /** 设置外观样式 */
-@property (nonatomic, strong) TQTimeChartStyle *style;
+@property (nonatomic, strong) TQTimeChartConfiguration *configuration;
 
-/** 配置图表坐标系统 */
-@property (nonatomic, strong) id<TQTimeChartCoordsProtocol> coordsConfig;
+/** 用于控制绘制分时图坐标值 */
+@property (nonatomic, strong) id<TQTimeChartPropProtocol> propData;
 
 /** 设置数据源 */
 @property (nonatomic, strong) NSArray<id<TQTimeChartProtocol>> *dataArray;
+
+/** 设置时间线文本数据 */
+@property (nonatomic, strong) NSArray<NSString *> *dateTimeArray;
+
+/** 设置内边距(边缘留白) */
+@property (nonatomic, assign) UIEdgeInsets contentEdgeInset;
+
+/** 设置分时图表高度 */
+@property (nonatomic, assign) CGFloat chartTimeHeight;
+
+/** 设置中间分隔区域 */
+@property (nonatomic, assign) CGFloat chartSeparationGap;
 
 /** 绘制图表 */
 - (void)drawChart;
@@ -38,20 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TQTimeChartDelegate <NSObject>
 @optional
 
-/** 分时图表单击时回调 */
-- (void)stockTimeChart:(TQTimeChart *)timeChart didDoubleTapAtRange:(BOOL)isTimeChartRange;
-
-/** 分时图表双击时回调 */
-- (void)stockTimeChart:(TQTimeChart *)timeChart didSingleTapAtRange:(BOOL)isTimeChartRange;
-
-/** 分时图表将要长按时回调 */
-- (void)stockTimeChartWillLongPress:(TQTimeChart *)timeChart;
-
-/** 分时图表长按时回调 */
-- (void)stockTimeChart:(TQTimeChart *)timeChart didLongPressAtCorrespondIndex:(NSInteger)index;
-
-/** 分时图表长按结束时回调 */
-- (void)stockTimeChartEndLongPress:(TQTimeChart *)timeChart;
+/** 图表长按时回调 */
+- (void)stockTimeChart:(TQTimeChart *)timeChart didLongPresOfIndex:(NSInteger)index;
 
 @end
 

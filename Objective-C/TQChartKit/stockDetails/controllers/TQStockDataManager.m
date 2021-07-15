@@ -38,19 +38,14 @@
 - (void)sendKlineRequest:(TQStcokSuccessCallback)successCallback
          failureCallback:(TQStcokFailureCallback)failureCallback
 {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"stock_allHistory_data" ofType:@"plist"];
+    NSMutableDictionary *resp = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSLog(@"~~~~~~data2 is: %@", resp);
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"yl_kline_data" ofType:@"plist"];
-    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
-    NSArray *results = [dictionary objectForKey:@"results"];
-    NSArray<TQStockKLineModel *> *respData = [TQStockKLineModel mj_objectArrayWithKeyValuesArray:results];
-    
-//    NSArray<TQStockKLineModel *> *respData = nil;
-//    NSArray<TQStockKLineModel *> *respData = [TQStockKLineModel mj_objectArrayWithKeyValuesArray:array];
-//    NSMutableDictionary *resp = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-//    NSLog(@"~~~~~~data2 is: %@", respData);
 //    NSArray<TQStockKLineModel *> *resp = [TQStockKLineModel mj_objectArrayWithKeyValuesArray:dataArray];
+   
     if (self && successCallback) {
-        successCallback(nil, respData);
+        successCallback(nil, resp);
     }
 }
 

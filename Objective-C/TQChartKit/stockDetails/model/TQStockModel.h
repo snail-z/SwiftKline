@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TQStockChartProtocol.h"
 
-@interface TQStockDetailsModel : NSObject <TQTimeChartCoordsProtocol>
+@interface TQStockDetailsModel : NSObject <TQTimeChartPropProtocol>
 
 @property (nonatomic, assign) BOOL isSuspended;
 @property (nonatomic, assign) NSInteger marketId;
@@ -49,26 +49,6 @@
 
 @end
 
-@interface TQStockKLineModel : NSObject <TQKlineChartProtocol>
-
-@property (nonatomic , assign) CGFloat close_price; // 收盘价
-@property (nonatomic , assign) CGFloat high_price;  // 最高价
-@property (nonatomic , assign) CGFloat low_price;   // 最低价
-@property (nonatomic , assign) CGFloat open_price;  // 开盘价
-
-@property (nonatomic , assign) CGFloat price_change; // 涨跌
-@property (nonatomic , assign) CGFloat price_change_rate; // 涨跌幅
-
-@property (nonatomic , assign) CGFloat volume_price; // 成交额
-@property (nonatomic , assign) CGFloat volume_total; // 成交量
-
-@property (nonatomic , assign) CGFloat yesterday_close_price;   // 昨收
-
-@property (nonatomic , copy) NSString *date_string; // 日期
-
-//@property (nonatomic , assign) CGFloat amplitude;   // 振幅
-//@property (nonatomic , assign) CGFloat avg_price_5;
-//@property (nonatomic , assign) CGFloat avg_price_10;
-//@property (nonatomic , assign) CGFloat avg_price_20;
+@interface TQStockKLineModel : NSObject
 
 @end
