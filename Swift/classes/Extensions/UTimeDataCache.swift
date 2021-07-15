@@ -59,14 +59,6 @@ public extension UMeasurement {
         return peakValue.max - proportionValue
     }
     
-    
-    
-    func sdkf() {
-        
-    }
-    
-    
-    
     /// 将横轴下标转为绘图区对应的位置
     typealias XaxisClosure = (_ index: Int) -> CGFloat
     
@@ -79,21 +71,8 @@ public extension UMeasurement {
     }
     
     func xaxisToIndex(_ shapeWidth: CGFloat, _ shapeSpacing: CGFloat, dataCount: Int, xaxis: CGFloat) -> Int {
-        
         return 9
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     func makeXaxisClosure() {
 //        let pe = UPeakValue.init(max: 190, min: 9)
@@ -101,12 +80,8 @@ public extension UMeasurement {
 //        let yaxisFromValue = UMeasurement.yaxisClosureMake(pe, rect)
 //        let d = yaxisFromValue(90)
 //        let value = UMeasurement.yaxisToValue(pe, rect, yaxis: 10)
-        
     }
 }
-
-
-
 
 struct UKineMeasurements {
     
@@ -131,5 +106,3 @@ struct UKineMeasurements {
     /// 日期栏区域
     private(set) var datesBarFrame = CGRect.zero
 }
-
-

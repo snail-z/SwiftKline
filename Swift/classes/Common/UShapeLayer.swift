@@ -18,9 +18,7 @@ open class UShapeLayer: CAShapeLayer {
         guard let oldValue = oldPath, let toValue = path else {
             return
         }
-        
-        
-        
+
         let anim = CABasicAnimation(keyPath: "path")
         anim.fromValue = oldValue
         anim.toValue = toValue
